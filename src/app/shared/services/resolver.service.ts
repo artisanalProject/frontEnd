@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
-import { Product } from '../classes/product';
+import { Product } from '../../models/product';
 import { ProductService } from './product.service';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { ProductService } from './product.service';
 })
 export class Resolver implements Resolve<Product> {
   
-  public product: Product = {};
+  public product: Product;
 
   constructor(
     private router: Router,

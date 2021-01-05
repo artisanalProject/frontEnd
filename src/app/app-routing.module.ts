@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./backOffice/app.module').then(m => m.AdminModule)
+  },
+  {
     path: 'shop',
     component: ShopComponent,
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)

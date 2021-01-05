@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from "../../services/product.service";
-import { Product } from "../../classes/product";
+import { Product } from "../../../models/product";
 
 @Component({
   selector: 'app-settings',
@@ -60,9 +60,9 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  get getTotal(): Observable<number> {
-    return this.productService.cartTotalAmount();
-  }
+  // get getTotal(): Observable<number> {
+  //   return this.productService.cartTotalAmount();
+  // }
 
   removeItem(product: any) {
     this.productService.removeCartItem(product);

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from '../classes/product';
+import { Product } from '../../models/product';
 
 const state = {
   products: JSON.parse(localStorage['products'] || '[]'),
@@ -16,10 +16,10 @@ const state = {
   providedIn: 'root'
 })
 export class ProductService {
-
+  baseUrl="/api";
   public Currency = { name: 'Dollar', currency: 'USD', price: 1 } // Default Currency
   public OpenCart: boolean = false;
-  public Products
+  public Products : Product []
 
   constructor(private http: HttpClient,
     private toastrService: ToastrService) { }
@@ -31,15 +31,18 @@ export class ProductService {
   */
 
   // Product
-  private get products(): Observable<Product[]> {
-    this.Products = this.http.get<Product[]>('assets/data/products.json').pipe(map(data => data));
-    this.Products.subscribe(next => { localStorage['products'] = JSON.stringify(next) });
-    return this.Products = this.Products.pipe(startWith(JSON.parse(localStorage['products'] || '[]')));
+  private get products(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/allProduct")
   }
 
   // Get Products
-  public get getProducts(): Observable<Product[]> {
+  public  getProducts(): Observable<Product[]> {
+    console.log(this.products);
     return this.products;
+  }
+
+  public deleteProduct(id){
+    return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
 
   // Get Products By Slug
@@ -163,19 +166,19 @@ export class ProductService {
   }
 
   // Update Cart Quantity
-  public updateCartQuantity(product: Product, quantity: number): Product | boolean {
-    return state.cart.find((items, index) => {
-      if (items.id === product.id) {
-        const qty = state.cart[index].quantity + quantity
-        const stock = this.calculateStockCounts(state.cart[index], quantity)
-        if (qty !== 0 && stock) {
-          state.cart[index].quantity = qty
-        }
-        localStorage.setItem("cartItems", JSON.stringify(state.cart));
-        return true
-      }
-    })
-  }
+  // public updateCartQuantity(product: Product, quantity: number): Product | boolean {
+  //   return state.cart.find((items, index) => {
+  //     if (items.id === product.id) {
+  //       const qty = state.cart[index].quantity + quantity
+  //       const stock = this.calculateStockCounts(state.cart[index], quantity)
+  //       if (qty !== 0 && stock) {
+  //         state.cart[index].quantity = qty
+  //       }
+  //       localStorage.setItem("cartItems", JSON.stringify(state.cart));
+  //       return true
+  //     }
+  //   })
+  // }
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
@@ -197,17 +200,17 @@ export class ProductService {
   }
 
   // Total amount 
-  public cartTotalAmount(): Observable<number> {
-    return this.cartItems.pipe(map((product: Product[]) => {
-      return product.reduce((prev, curr: Product) => {
-        let price = curr.price;
-        if(curr.discount) {
-          price = curr.price - (curr.price * curr.discount / 100)
-        }
-        return (prev + price * curr.quantity) * this.Currency.price;
-      }, 0);
-    }));
-  }
+  // public cartTotalAmount(): Observable<number> {
+  //   return this.cartItems.pipe(map((product: Product[]) => {
+  //     return product.reduce((prev, curr: Product) => {
+  //       let price = curr.price;
+  //       if(curr.discount) {
+  //         price = curr.price - (curr.price * curr.discount / 100)
+  //       }
+  //       return (prev + price * curr.quantity) * this.Currency.price;
+  //     }, 0);
+  //   }));
+  // }
 
   /*
     ---------------------------------------------
@@ -216,72 +219,72 @@ export class ProductService {
   */
 
   // Get Product Filter
-  public filterProducts(filter: any): Observable<Product[]> {
-    return this.products.pipe(map(product => 
-      product.filter((item: Product) => {
-        if (!filter.length) return true
-        const Tags = filter.some((prev) => { // Match Tags
-          if (item.tags) {
-            if (item.tags.includes(prev)) {
-              return prev
-            }
-          }
-        })
-        return Tags
-      })
-    ));
-  }
+  // public filterProducts(filter: any): Observable<Product[]> {
+  //   return this.products.pipe(map(product => 
+  //     product.filter((item: Product) => {
+  //       if (!filter.length) return true
+  //       const Tags = filter.some((prev) => { // Match Tags
+  //         if (item.tags) {
+  //           if (item.tags.includes(prev)) {
+  //             return prev
+  //           }
+  //         }
+  //       })
+  //       return Tags
+  //     })
+  //   ));
+  // }
 
   // Sorting Filter
-  public sortProducts(products: Product[], payload: string): any {
+  // public sortProducts(products: Product[], payload: string): any {
 
-    if(payload === 'ascending') {
-      return products.sort((a, b) => {
-        if (a.id < b.id) {
-          return -1;
-        } else if (a.id > b.id) {
-          return 1;
-        }
-        return 0;
-      })
-    } else if (payload === 'a-z') {
-      return products.sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        } else if (a.title > b.title) {
-          return 1;
-        }
-        return 0;
-      })
-    } else if (payload === 'z-a') {
-      return products.sort((a, b) => {
-        if (a.title > b.title) {
-          return -1;
-        } else if (a.title < b.title) {
-          return 1;
-        }
-        return 0;
-      })
-    } else if (payload === 'low') {
-      return products.sort((a, b) => {
-        if (a.price < b.price) {
-          return -1;
-        } else if (a.price > b.price) {
-          return 1;
-        }
-        return 0;
-      })
-    } else if (payload === 'high') {
-      return products.sort((a, b) => {
-        if (a.price > b.price) {
-          return -1;
-        } else if (a.price < b.price) {
-          return 1;
-        }
-        return 0;
-      })
-    } 
-  }
+  //   if(payload === 'ascending') {
+  //     return products.sort((a, b) => {
+  //       if (a.id < b.id) {
+  //         return -1;
+  //       } else if (a.id > b.id) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     })
+  //   } else if (payload === 'a-z') {
+  //     return products.sort((a, b) => {
+  //       if (a.title < b.title) {
+  //         return -1;
+  //       } else if (a.title > b.title) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     })
+  //   } else if (payload === 'z-a') {
+  //     return products.sort((a, b) => {
+  //       if (a.title > b.title) {
+  //         return -1;
+  //       } else if (a.title < b.title) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     })
+  //   } else if (payload === 'low') {
+  //     return products.sort((a, b) => {
+  //       if (a.price < b.price) {
+  //         return -1;
+  //       } else if (a.price > b.price) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     })
+  //   } else if (payload === 'high') {
+  //     return products.sort((a, b) => {
+  //       if (a.price > b.price) {
+  //         return -1;
+  //       } else if (a.price < b.price) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     })
+  //   } 
+  // }
 
   /*
     ---------------------------------------------

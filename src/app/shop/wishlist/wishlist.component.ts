@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from "../../shared/services/product.service";
-import { Product } from "../../shared/classes/product";
+import { Product } from "../../models/product";
 
 @Component({
   selector: 'app-wishlist',

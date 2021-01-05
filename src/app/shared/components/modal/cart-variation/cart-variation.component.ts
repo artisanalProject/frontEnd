@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from "../../../services/product.service";
-import { Product } from "../../../classes/product";
+import { Product } from "../../../../models/product";
 
 @Component({
   selector: 'app-cart-variation',
@@ -26,9 +26,9 @@ export class CartVariationComponent implements OnInit, OnDestroy {
     this.productService.OpenCart = false;
   }
 
-  get getTotal(): Observable<number> {
-    return this.productService.cartTotalAmount();
-  }
+  // get getTotal(): Observable<number> {
+  //   return this.productService.cartTotalAmount();
+  // }
 
   removeItem(product: any) {
     this.productService.removeCartItem(product);

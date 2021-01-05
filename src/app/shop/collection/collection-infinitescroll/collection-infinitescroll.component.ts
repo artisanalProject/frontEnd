@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { ProductService } from "../../../shared/services/product.service";
-import { Product } from '../../../shared/classes/product';
+import { Product } from '../../../models/product';
 import * as _ from 'lodash'
 
 @Component({
@@ -49,24 +49,24 @@ export class CollectionInfinitescrollComponent implements OnInit {
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
 
         // Get Filtered Products..
-        this.productService.filterProducts(this.tags).subscribe(response => {
+        // this.productService.filterProducts(this.tags).subscribe(response => {
 
-          // All Products
-          this.all_products = response;
+        //   // All Products
+        //   this.all_products = response;
 
-          // Sorting Filter
-          this.all_products = this.productService.sortProducts(response, this.sortBy);
+        //   // Sorting Filter
+        //   this.all_products = this.productService.sortProducts(response, this.sortBy);
 
-          // Category Filter
-          if(params.category)
-            this.all_products = this.all_products.filter(item => item.type == this.category);
+        //   // Category Filter
+        //   if(params.category)
+        //     this.all_products = this.all_products.filter(item => item.type == this.category);
 
-          // Price Filter
-          this.all_products = this.all_products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice)
+        //   // Price Filter
+        //   this.all_products = this.all_products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice)
     
-          this.addItems();
+        //   this.addItems();
           
-        })
+        // })
       })
   }
 

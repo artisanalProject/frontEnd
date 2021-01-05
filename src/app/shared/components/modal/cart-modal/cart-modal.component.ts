@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewI
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from "../../../services/product.service";
-import { Product } from "../../../classes/product";
+import { Product } from "../../../../models/product";
 
 @Component({
   selector: 'app-cart-modal',
@@ -33,7 +33,7 @@ export class CartModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async openModal(product) {
-    await this.productService.getProducts.subscribe(response => this.products = response);
+    await this.productService.getProducts().subscribe(response => this.products = response);
     this.products = await this.products.filter(items => items.category == product.category && items.id != product.id);
     const status = await this.productService.addToCart(product);
     if(status) {

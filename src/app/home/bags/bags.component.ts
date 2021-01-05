@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductSlider, ProductOneSlider } from '../../shared/data/slider';
-import { Product } from '../../shared/classes/product';
+import { Product } from '../../models/product';
 import { ProductService } from '../../shared/services/product.service';
 
 @Component({
@@ -20,15 +20,15 @@ export class BagsComponent implements OnInit, OnDestroy {
   public ProductSliderOneConfig: any = ProductOneSlider;
 
   constructor(public productService: ProductService) {
-    this.productService.getProducts.subscribe(response => {
-      this.products = response.filter(item => item.type == 'bags');
+    this.productService.getProducts().subscribe(response => {
+      // this.products = response.filter(item => item.type == 'bags');
       // Get Product Collection
-      this.products.filter((item) => {
-        item.collection.filter((collection) => {
-          const index = this.productCollections.indexOf(collection);
-          if (index === -1) this.productCollections.push(collection);
-        })
-      })
+      // this.products.filter((item) => {
+      //   item.collection.filter((collection) => {
+      //     const index = this.productCollections.indexOf(collection);
+      //     if (index === -1) this.productCollections.push(collection);
+      //   })
+      // })
     });
   }
   
@@ -85,12 +85,12 @@ export class BagsComponent implements OnInit, OnDestroy {
   }
 
   // Product Tab collection
-  getCollectionProducts(collection) {
-    return this.products.filter((item) => {
-      if (item.collection.find(i => i === collection)) {
-        return item
-      }
-    })
-  }
+  // getCollectionProducts(collection) {
+  //   return this.products.filter((item) => {
+  //     if (item.collection.find(i => i === collection)) {
+  //       return item
+  //     }
+  //   })
+  // }
 
 }

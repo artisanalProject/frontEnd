@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewProductSlider } from '../../../data/slider';
-import { Product } from '../../../classes/product';
+import { Product } from '../../../../models/product';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
@@ -18,9 +18,9 @@ export class ProductBoxVerticalSliderComponent implements OnInit {
   public NewProductSliderConfig: any = NewProductSlider;
 
   constructor(public productService: ProductService) { 
-    this.productService.getProducts.subscribe(response => 
-      this.products = response.filter(item => item.type == this.type)
-    );
+    // this.productService.getProducts().subscribe(response => 
+    //   this.products = response.filter(item => item.type == this.type)
+    // );
   }
 
   ngOnInit(): void {
