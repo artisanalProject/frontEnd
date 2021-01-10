@@ -32,6 +32,7 @@ import { DialogContentExampleDialogComponent } from './digital/dialog-content-ex
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
