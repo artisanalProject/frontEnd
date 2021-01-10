@@ -14,7 +14,7 @@ import { DialogContentExampleDialogComponent } from '../dialog-content-example-d
 export class DigitalListComponent implements OnInit, AfterViewInit {
   public products = []
   dataSource: MatTableDataSource<Product>;
-  displayedColumns: string[] = ['ref', 'name', 'status','topProduct','creationDate','remise','category','buttons','editbutton'];
+  displayedColumns: string[] = ['ref', 'name', 'status','topProduct','creationDate','category','buttons','editbutton'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private ps:ProductService,public dialog: MatDialog) {

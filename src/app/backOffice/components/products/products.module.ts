@@ -19,7 +19,6 @@ import { ProductDetailComponent } from './physical/product-detail/product-detail
 import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';
 import 'mousetrap';
-
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
@@ -31,7 +30,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { DialogContentExampleDialogComponent } from './digital/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -57,6 +57,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatCardModule,
+    MatSelectModule,
     GalleryModule.forRoot()
   ],
   providers: [
