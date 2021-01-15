@@ -10,4 +10,11 @@ table {
   td, th {
     width: 10%;
   }
-  
+
+.header{
+  display: flex;
+  justify-content: space-around;
+}
+button{
+  height: 40px;
+}

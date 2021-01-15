@@ -1,6 +1,6 @@
 <mat-card>
     <div class="example-container">
-        <form [formGroup]="productForm" (ngSubmit)="userFormSubmit()">
+        <form [formGroup]="productForm">
 <p>
     <mat-form-field appearance="outline">
       <mat-label>nom du produit</mat-label>
@@ -12,7 +12,7 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>référence</mat-label>
-      <input matInput placeholder="Placeholder" type="text" formControlName="reference" required>
+      <input matInput placeholder="référence" type="text" formControlName="reference" required>
      
       <mat-error>Ce champs est obligatoire!</mat-error>
     </mat-form-field>
@@ -29,7 +29,7 @@
   
       <mat-form-field appearance="outline" >
         <mat-label>prix</mat-label>
-        <input  matInput  placeholder="Simple placeholder" type="number" name="price" formControlName="price" required>
+        <input  matInput  placeholder="prix" type="number" name="price" formControlName="price" required>
         <mat-error>Ce champs est obligatoire!</mat-error>
       </mat-form-field>
    
@@ -74,27 +74,29 @@
    
     <mat-error>Ce champs est obligatoire!</mat-error>
 </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">ajouter</button>
-<!--   
-      <mat-form-field appearance="fill"
-          [hideRequiredMarker]="hideRequiredControl.value"
-          [floatLabel]="floatLabelControl.value">
-        <mat-select required>
-          <mat-option>categorie</mat-option>
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
-        <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
-      </mat-form-field> -->
-  
-  
-  <!-- <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Outline form field</mat-label>
-      <input matInput placeholder="Placeholder">
-     
-    
-    </mat-form-field>
-  </p> -->
+<mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>Collection</mat-label>
+  <mat-select formControlName="collections" [(ngModel)]="collection"  required>
+          <ng-container *ngFor="let c of collections ">
+              <mat-option [value]="c._id">
+                 {{c.name}}
+              </mat-option>
+          </ng-container>
+          
+  </mat-select>
+ 
+  <mat-error>Ce champs est obligatoire!</mat-error>
+</mat-form-field>
+
+
+<ngx-dropzone (change)="onSelect($event)">
+  <ngx-dropzone-label>glissez ici</ngx-dropzone-label>
+  <ngx-dropzone-preview *ngFor="let f of files"  [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label></ngx-dropzone-label>
+  </ngx-dropzone-preview>
+</ngx-dropzone>
+<br>
+  <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="addProduct()">ajouter</button>
 </form>
 </div>
 </mat-card>

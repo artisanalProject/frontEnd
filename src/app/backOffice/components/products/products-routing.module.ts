@@ -9,6 +9,7 @@ import { DigitalSubCategoryComponent } from './digital/digital-sub-category/digi
 import { DigitalListComponent } from './digital/digital-list/digital-list.component';
 import { DigitalAddComponent } from './digital/digital-add/digital-add.component';
 import { ProductDetailComponent } from './physical/product-detail/product-detail.component';
+import { UpdateProductComponent } from './digital/update-product/update-product.component';
 
 const routes: Routes = [
   {
@@ -50,8 +51,8 @@ const routes: Routes = [
         path: 'physical/add-product',
         component: AddProductComponent,
         data: {
-          title: "Add Products",
-          breadcrumb: "Add Product"
+          title: "Ajouter Produit",
+          breadcrumb: "Ajouter Produit"
         }
       },
       {
@@ -63,27 +64,35 @@ const routes: Routes = [
         }
       },
       {
-        path: 'digital/digital-sub-category',
+        path: 'marque',
         component: DigitalSubCategoryComponent,
         data: {
-          title: "Sub Category",
-          breadcrumb: "Sub Category"
+          title: "Marque",
+          breadcrumb: "Marque"
         }
       },
       {
-        path: 'digital/digital-product-list',
+        path: 'product-list',
         component: DigitalListComponent,
         data: {
-          title: "Product List",
-          breadcrumb: "Product List"
+          title: "Listes des produits",
+          breadcrumb: "Listes des produits"
         }
       },
       {
-        path: 'digital/digital-add-product',
+        path: 'add-product',
         component: DigitalAddComponent,
         data: {
-          title: "Add Products",
-          breadcrumb: "Add Product"
+          title: "Ajouter Produit",
+          breadcrumb: "Ajouter Produit"
+        }
+      },
+      {
+        path: 'update-product/:id',
+        component: UpdateProductComponent,
+        data: {
+          title: "modifier Produit",
+          breadcrumb: "modifier Produit"
         }
       }
     ]

@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Product } from 'src/app/models/product';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-digital-list',
   templateUrl: './digital-list.component.html',
@@ -17,7 +18,7 @@ export class DigitalListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['ref', 'name', 'status','topProduct','creationDate','category','buttons','editbutton'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private ps:ProductService,public dialog: MatDialog) {
+  constructor(private ps:ProductService,public dialog: MatDialog, private router: Router) {
     // this.digital_list = digitalListDB.digital_list;
    
   }
@@ -71,6 +72,11 @@ this.dataSource.sort = this.sort;
       }
     });
  
+  }
+  update(product){
+    console.log(product);
+    this.router.navigateByUrl("products/update-product/"+product._id)
+    
   }
 }
 

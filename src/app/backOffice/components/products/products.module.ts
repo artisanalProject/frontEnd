@@ -32,7 +32,9 @@ import { DialogContentExampleDialogComponent } from './digital/dialog-content-ex
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { UpdateProductComponent } from './digital/update-product/update-product.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -41,7 +43,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent],
+  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -60,6 +62,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatDialogModule,
     MatCardModule,
     MatSelectModule,
+    NgxDropzoneModule,
+    MatSnackBarModule,
     GalleryModule.forRoot()
   ],
   providers: [
