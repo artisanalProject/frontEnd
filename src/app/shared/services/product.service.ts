@@ -47,6 +47,9 @@ export class ProductService {
   public deleteProduct(id){
     return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
+  public getProductById(id){
+    return this.http.get(this.baseUrl+"/product/getProductById/"+id)
+  }
 
   // Get Products By Slug
   public getProductBySlug(slug: string): Observable<Product> {
