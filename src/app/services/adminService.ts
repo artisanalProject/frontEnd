@@ -15,4 +15,7 @@ login(body){
   return this.http.post(this.baseUrl+"/admin/loginAdmin",body);
   }
 
+  forgotPwd(email){
+    return this.http.get(this.baseUrl+"/admin/forgotPwd?emailTo="+email);
+    }
 }

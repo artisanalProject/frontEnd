@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   public registerForm: FormGroup;
   responseRegister;
   responseLogin;
+  responseForgotPwd;
 
   constructor(private formBuilder: FormBuilder, private artisanService : artisanService,private _snackBar: MatSnackBar,private adminService : adminService,private router : Router) {
     this.createLoginForm();
@@ -152,6 +153,40 @@ export class LoginComponent implements OnInit {
     
   })
     }
+ }
+
+
+ forgotPwd(){
+   if(this.loginForm.controls.email.value){
+    this.adminService.forgotPwd(this.loginForm.controls.email.value).subscribe(res=>{this.responseForgotPwd=JSON.parse(JSON.stringify(res))},
+    err=>{},
+    ()=>{
+      if(this.responseForgotPwd=="Email sent!"){
+        this._snackBar.open('Un email de récupération de mot de passe est envoyé','ok',{
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      }else{
+        this._snackBar.open("Une erreur s'est produite !",'ok',{
+          duration: 10000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      }
+    })
+   }
+    else{
+      this._snackBar.open('Veuillez entrer votre adresse mail','ok',{
+        duration: 10000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
+    } 
+
+    
+   
+   
  }
 
 }
