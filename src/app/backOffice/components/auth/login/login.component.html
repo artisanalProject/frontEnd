@@ -146,16 +146,22 @@
                                                     <input  type="email" formControlName="email"
                                                         class="form-control" placeholder="Username"
                                                       >
+                                                      <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
+                                                        Ce champ est obligatoire
+                                                      </div>
                                                 </div>
-                                                <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
-                                                    Ce champ est obligatoire
-                                                  </div>
+                                                
                                                 <div class="form-group">
                                                     <input formControlName="password" type="password"
                                                         class="form-control" placeholder="Password">
+                                                        <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+                                                            Ce champ est obligatoire
+                                                          </div>
                                                 </div>
-                                                <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
-                                                    Ce champ est obligatoire
+                                               
+                                                  <div class="form-check">
+                                                    <input type="checkbox" formControlName="checkAdmin"  class="form-check-input" id="exampleCheck1">
+                                                    <label class="form-check-label" for="exampleCheck1">Admin</label>
                                                   </div>
                                                 <div class="form-terms">
                                                     <div class="custom-control custom-checkbox mr-sm-2">

@@ -5,17 +5,14 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
   })
-export class artisanService{
+export class adminService{
 baseUrl="/api";
 
     constructor(private http:HttpClient) { }
 
-register(body){
-return this.http.post(this.baseUrl+"/artisant/addArtisant",body);
-}
 
 login(body){
-  return this.http.post(this.baseUrl+"/artisant/loginArtisant",body);
+  return this.http.post(this.baseUrl+"/admin/loginAdmin",body);
   }
 
 }

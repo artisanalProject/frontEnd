@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Artisant } from 'src/app/models/artisant';
 import { artisanService } from 'src/app/services/artisanService';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { adminService } from 'src/app/services/adminService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   responseRegister;
   responseLogin;
 
-  constructor(private formBuilder: FormBuilder, private artisanService : artisanService,private _snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private artisanService : artisanService,private _snackBar: MatSnackBar,private adminService : adminService,private router : Router) {
     this.createLoginForm();
     this.createRegisterForm();
   }
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: ['',[Validators.required, Validators.email]],
       password: ['',Validators.required],
+      checkAdmin:[false]
     })
   }
   createRegisterForm() {
@@ -73,7 +76,7 @@ export class LoginComponent implements OnInit {
         horizontalPosition: 'center',
       });
     }
-    else{
+    else if(!this.loginForm.controls.checkAdmin.value){
       this.artisanService.login(this.loginForm.value).subscribe(res=>{
       this.responseLogin=JSON.parse(JSON.stringify(res));
       },
@@ -94,8 +97,28 @@ export class LoginComponent implements OnInit {
           });
         }
         else {
-          console.log(this.responseLogin);
+          localStorage.setItem('connectedUser',JSON.stringify(this.responseLogin))
+          console.log("artisaaan "+this.responseLogin);
           
+        }
+      })
+    }
+    else {
+      
+      this.adminService.login(this.loginForm.value).subscribe(res=>{this.responseLogin=JSON.parse(JSON.stringify(res))},
+      err=>{},
+      ()=>{
+        if(this.responseLogin=="verify email or password"){
+          this._snackBar.open('Vérifiez email ou mot de passe','ok',{
+            duration: 10000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          });
+        }
+        else{
+          localStorage.setItem('connectedUser',JSON.stringify(this.responseLogin));
+          this.router.navigateByUrl('/admin/dashboard/default');
+          console.log("admiin "+this.responseLogin);
         }
       })
     }
