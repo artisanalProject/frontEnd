@@ -19,4 +19,7 @@ export class CategoryService {
   public deleteCategory(id){
     return this.http.delete(this.baseUrl+"/category/deletCategory/"+id)
   }
+  public updateCategory(id,category){
+    return this.http.put(this.baseUrl+"/category/updateCategory/"+id,category)
+  }
 }

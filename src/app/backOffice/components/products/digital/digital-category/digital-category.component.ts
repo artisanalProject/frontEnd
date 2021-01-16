@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { ModalUpdateComponent } from './modal-update/modal-update.component';
 
 @Component({
   selector: 'app-digital-category',
@@ -29,6 +30,12 @@ export class DigitalCategoryComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router : Router,
     public dialog: MatDialog) {
+      dialog.afterAllClosed
+    .subscribe(() => {
+    // update a variable or call a function when the dialog closes
+      this.getCategories();
+    }
+  );
    
   }
 
@@ -104,4 +111,17 @@ export class DigitalCategoryComponent implements OnInit {
       });
       }
     });
-  }}
+  }
+  update(category){
+    this.dialog.open(ModalUpdateComponent,{
+      width: '330px',
+      data: {
+        dataKey: category
+      }});
+
+  }
+
+
+}
+
+ 

@@ -27,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list'
 import {MatButtonModule} from '@angular/material/button';
 import { DialogContentExampleDialogComponent } from './digital/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -35,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UpdateProductComponent } from './digital/update-product/update-product.component';
+import { ModalUpdateComponent } from './digital/digital-category/modal-update/modal-update.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -43,7 +45,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent],
+  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent, ModalUpdateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -64,6 +66,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatSelectModule,
     NgxDropzoneModule,
     MatSnackBarModule,
+    MatGridListModule,
     GalleryModule.forRoot()
   ],
   providers: [
