@@ -56,7 +56,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'digital/digital-category',
+        path: 'category',
         component: DigitalCategoryComponent,
         data: {
           title: "Category",

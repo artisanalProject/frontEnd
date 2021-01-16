@@ -36,7 +36,7 @@
       </div>
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>categorie</mat-label>
-        <mat-select formControlName="category" [(ngModel)]="product.category"   (ngModelChange)="show($event)" required>
+        <mat-select formControlName="category" [(ngModel)]="product.category._id"   (ngModelChange)="show($event)" required>
                 <ng-container *ngFor="let c of categories">
                     <mat-option [value]="c._id">
                        {{c.name}}
@@ -50,7 +50,7 @@
 
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" required>
+      <mat-select formControlName="marque" [(ngModel)]="product.marque._id" [disabled]="showMarque" required>
               <ng-container *ngFor="let m of marques">
                   <mat-option [value]="m._id">
                      {{m.name}}
@@ -63,7 +63,7 @@
 
   <mat-form-field appearance="outline" floatLabel="always">
     <mat-label>Artisant</mat-label>
-    <mat-select formControlName="artisant" [(ngModel)]="artisant"  required>
+    <mat-select formControlName="artisant" [(ngModel)]="product.artisant._id"  required>
             <ng-container *ngFor="let a of artisantList ">
                 <mat-option [value]="a._id">
                    {{a.name}}
@@ -76,7 +76,7 @@
 </mat-form-field>
 <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
-  <mat-select formControlName="collections" [(ngModel)]="collection"  required>
+  <mat-select formControlName="collections" [(ngModel)]="product.collections._id"  required>
           <ng-container *ngFor="let c of collections ">
               <mat-option [value]="c._id">
                  {{c.name}}

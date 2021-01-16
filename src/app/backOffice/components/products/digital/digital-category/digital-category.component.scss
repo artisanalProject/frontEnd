@@ -1,0 +1,24 @@
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+mat-card{
+    width: 500px;
+}
+mat-form-field {
+    display: inline;
+}
+.buttonSubmit{
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+table {
+    width: 100%;
+  }
+  
+  
+  td, th {
+    width: 10%;
+  }
