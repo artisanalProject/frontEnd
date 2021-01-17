@@ -44,7 +44,6 @@ export class NavService {
 			title: 'Produits', icon: 'box', type: 'sub', active: false, children: [
 				
 						{ path: '/products/category', title: 'Category', type: 'link' },
-						{ path: '/products/marque', title: 'Marque', type: 'link' },
 						{ path: '/products/product-list', title: 'Mes Produits', type: 'link' },
 					
 			]

@@ -9,6 +9,21 @@ mat-card{
 mat-form-field {
     display: inline;
 }
+h4{
+   text-align: center;
+}
+.buttonSubmit{
+    margin-left: 180px;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+.marque{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
 .buttonSubmit{
     display: flex;
     justify-self: flex-end;

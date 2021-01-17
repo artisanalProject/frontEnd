@@ -67,7 +67,8 @@ export class DigitalAddComponent implements OnInit {
       category: new FormControl(),
       marque: new FormControl(),
       collections: new FormControl(),
-      artisant: new FormControl()
+      artisant: new FormControl(),
+      description: new FormControl()
     });
     
   }
@@ -123,6 +124,7 @@ this.collections= JSON.parse(JSON.stringify(result))
 }
 addProduct():void{
     var data = this.productForm.getRawValue()  
+   console.log(data);
    
       
     this.formData.set('name',data.name)
@@ -133,6 +135,7 @@ addProduct():void{
     this.formData.set('quantity',data.quantity)
     this.formData.set('marque',data.marque)
     this.formData.set('collections',data.collections)
+    this.formData.set('description',data.description)
     let images=[];
     this.files.forEach(element => {
        images.push(element)
@@ -161,7 +164,7 @@ addProduct():void{
           duration        : 2000
       });
       // // Change the location with new one
-      this.router.navigateByUrl('/products/digital/digital-product-list')
+      this.router.navigateByUrl('/products/product-list')
      }
    )
 }

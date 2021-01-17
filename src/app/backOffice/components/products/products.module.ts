@@ -37,6 +37,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UpdateProductComponent } from './digital/update-product/update-product.component';
 import { ModalUpdateComponent } from './digital/digital-category/modal-update/modal-update.component';
+import { ModalUpdateMarqueComponent } from './digital/digital-category/modal-update-marque/modal-update-marque.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -45,7 +46,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent, ModalUpdateComponent],
+  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent, ModalUpdateComponent, ModalUpdateMarqueComponent],
   imports: [
     CommonModule,
     FormsModule,
