@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { PendingRegistrationComponent } from './pending-registration/pending-registration.component';
 
 
 const routes: Routes = [
@@ -9,9 +10,16 @@ const routes: Routes = [
     component: ProfileComponent,
     data: {
       title: "Profile",
-      breadcrumb: "Profile"
     }
   },
+  {
+    path: 'pendingRegistration',
+    component: PendingRegistrationComponent,
+    data: {
+      title: "En attente d'activation",
+    }
+  },
+  
 ];
 
 @NgModule({

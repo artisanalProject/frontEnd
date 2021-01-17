@@ -7,9 +7,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SettingRoutingModule } from './setting-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../../shared/shared.module';
+import { PendingRegistrationComponent } from './pending-registration/pending-registration.component';
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, PendingRegistrationComponent],
   imports: [
     CommonModule,
     NgbModule,
