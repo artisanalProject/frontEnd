@@ -17,7 +17,7 @@ export class Product {
     category: string;
     marque:string;
     collections: Collections;
-    artisant:Artisant
+    artisant:Artisant;
     public Product (name:string, price:number, quantity:number,images:string,status:string,createdByAdmin:boolean,tva:number, tv:number,creationDate:Date,category: string,
         marque:string,
         collections: Collections,

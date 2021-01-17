@@ -12,4 +12,14 @@ export class CategoryService {
   public getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUrl+"/category/getCategories")
   }
+
+  public addCategory(category){
+    return this.http.post(this.baseUrl+"/category/addCategory",category)
+  }
+  public deleteCategory(id){
+    return this.http.delete(this.baseUrl+"/category/deletCategory/"+id)
+  }
+  public updateCategory(id,category){
+    return this.http.put(this.baseUrl+"/category/updateCategory/"+id,category)
+  }
 }

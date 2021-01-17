@@ -47,16 +47,19 @@
             <button mat-icon-button color="warn" (click)="$event.stopPropagation();delete(row)"  aria-label="Example icon button with a delete icon">
                 <mat-icon>delete</mat-icon>
               </button>
+              <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
+                <mat-icon>edit</mat-icon>
+              </button>
             </td>
     </ng-container>
-    <ng-container matColumnDef="editbutton">
+    <!-- <ng-container matColumnDef="editbutton">
       <th  mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row" [style.color]="row.color">
           <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
               <mat-icon>edit</mat-icon>
             </button>
           </td>
-  </ng-container>
+  </ng-container> -->
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

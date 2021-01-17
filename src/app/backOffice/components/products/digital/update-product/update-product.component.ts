@@ -48,14 +48,12 @@ export class UpdateProductComponent implements OnInit {
     
     this.ps.getProductById(this.product_id).subscribe(res=>{      
       this.product=JSON.parse(JSON.stringify(res))
+     
       },
       err=>{},
-      ()=>{ 
-        console.log("aaa");
-         
-        console.log(this.product.category);
-               
-         this.categorie = this.product.category
+      ()=>{              
+        this.categorie = this.product.category
+     
         this.createProductForm()})  
    
   }
@@ -101,15 +99,13 @@ export class UpdateProductComponent implements OnInit {
        })
    }
   createProductForm()
-    {  
-      console.log(this.product);
-      
+    {    
          this.productForm = new FormGroup({
           name: new FormControl(this.product.name),
           price: new FormControl(this.product.price),
           reference: new FormControl(this.product.ref),
           quantity: new FormControl(this.product.quantity),
-          category: new FormControl(this.product.category.name),
+          category: new FormControl(this.product.category),
           marque: new FormControl(this.product.marque),
           collections: new FormControl(this.product.collections),
           artisant: new FormControl(this.product.artisant)

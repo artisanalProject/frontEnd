@@ -50,6 +50,9 @@ export class ProductService {
   public getProductById(id){
     return this.http.get(this.baseUrl+"/product/getProductById/"+id)
   }
+  public updateProduct(id,product){
+    return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
+  }
 
   // Get Products By Slug
   public getProductBySlug(slug: string): Observable<Product> {
