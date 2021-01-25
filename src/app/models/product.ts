@@ -10,19 +10,20 @@ export class Product {
     status: string;
     createdByAdmin: boolean;
     description:string;
-    tva : string;
     remise: number;
     creationDate:Date;
     topProduct:boolean;
-    category: string;
+    category: Category;
     marque:string;
     collections: Collections;
     artisant:Artisant;
-    public Product (name:string, price:number, quantity:number,images:string,status:string,createdByAdmin:boolean,tva:number, tv:number,creationDate:Date,category: string,
+    new : boolean;
+    public Product (name:string, price:number,remise:number, quantity:number,images:string,status:string,createdByAdmin:boolean,creationDate:Date,category: Category,
         marque:string,
         collections: Collections,
         artisant:Artisant,
         topProduct:boolean, description:string){
+            this.remise= remise;
             this.name= name;
             this.price= price;
             this.quantity = quantity;
@@ -30,10 +31,10 @@ export class Product {
             this.status = status;
             this.creationDate=creationDate;
             this.createdByAdmin = createdByAdmin;
-            this.category=category;
-            this.marque = marque;
-            this.collections= collections;
-            this.artisant= artisant;
+            this.category=category || null;
+            this.marque = marque || null;
+            this.collections= collections || null;
+            this.artisant= artisant || null;
             this.topProduct = topProduct;
             this.description = description
 

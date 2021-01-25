@@ -113,7 +113,7 @@ export class UpdateProductComponent implements OnInit {
        
         
     }
-  updateProduct(){
+    updateProduct(){
 
   }
   onSelect(event) {

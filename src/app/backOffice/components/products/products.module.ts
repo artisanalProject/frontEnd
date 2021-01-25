@@ -38,6 +38,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UpdateProductComponent } from './digital/update-product/update-product.component';
 import { ModalUpdateComponent } from './digital/digital-category/modal-update/modal-update.component';
 import { ModalUpdateMarqueComponent } from './digital/digital-category/modal-update-marque/modal-update-marque.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -68,6 +69,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgxDropzoneModule,
     MatSnackBarModule,
     MatGridListModule,
+    MatCheckboxModule,
     GalleryModule.forRoot()
   ],
   providers: [

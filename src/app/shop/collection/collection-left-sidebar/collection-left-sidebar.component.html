@@ -23,11 +23,11 @@
                             <app-brands [products]="products" [brands]="brands" (brandsFilter)="updateFilter($event)">
                             </app-brands>
                             <!-- color filter start here -->
-                            <app-colors [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
-                            </app-colors>
+                            <!-- <app-colors [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
+                            </app-colors> -->
                             <!-- size filter start here -->
-                            <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
-                            </app-size>
+                            <!-- <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
+                            </app-size> -->
                             <!-- price filter start here -->
                             <app-price [min]="minPrice" [max]="maxPrice" (priceFilter)="updateFilter($event)">
                             </app-price>
@@ -52,7 +52,7 @@
                             <div class="col-sm-12">
                                 <div class="top-banner-wrapper">
                                     <a [routerLink]="['/shop/collection/left/sidebar']">
-                                        <img src="assets/images/collection-banner.jpg" class="img-fluid " alt="">
+                                        <img src="assets/images/collection/shop-first.png" class="img-fluid " alt="">
                                     </a>
                                     <div class="top-banner-content small-section">
                                         <h4>fashion</h4>
