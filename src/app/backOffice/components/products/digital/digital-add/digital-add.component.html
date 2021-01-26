@@ -39,11 +39,17 @@
         <input  matInput  placeholder="prix" type="number" name="price" formControlName="price" required>
         <mat-error>Ce champs est obligatoire!</mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>prix avec remise</mat-label>
+        <input  matInput  placeholder="remise" type="number" name="remise" formControlName="remise">
+      </mat-form-field>
    
       </div>
+     
+
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>categorie</mat-label>
-        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)" required>
+        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)" >
                 <ng-container *ngFor="let c of categories">
                     <mat-option [value]="c._id">
                        {{c.name}}
@@ -57,7 +63,7 @@
 
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" required>
+      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" >
               <ng-container *ngFor="let m of marques">
                   <mat-option [value]="m._id">
                      {{m.name}}
@@ -70,7 +76,7 @@
 
   <mat-form-field appearance="outline" floatLabel="always">
     <mat-label>Artisant</mat-label>
-    <mat-select formControlName="artisant" [(ngModel)]="artisant"  required>
+    <mat-select formControlName="artisant" [(ngModel)]="artisant"  >
             <ng-container *ngFor="let a of artisantList ">
                 <mat-option [value]="a._id">
                    {{a.name}}
@@ -83,7 +89,7 @@
 </mat-form-field>
 <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
-  <mat-select formControlName="collections" [(ngModel)]="collection"  required>
+  <mat-select formControlName="collections" [(ngModel)]="collection" >
           <ng-container *ngFor="let c of collections ">
               <mat-option [value]="c._id">
                  {{c.name}}
@@ -94,6 +100,7 @@
  
   <mat-error>Ce champs est obligatoire!</mat-error>
 </mat-form-field>
+<mat-checkbox color="primary"formControlName="new"  [(ngModel)]="checked" value="true" >nouveau produit</mat-checkbox>
 
 
 <ngx-dropzone (change)="onSelect($event)">

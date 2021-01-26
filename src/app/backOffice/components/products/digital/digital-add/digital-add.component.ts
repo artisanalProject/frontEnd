@@ -30,6 +30,7 @@ export class DigitalAddComponent implements OnInit {
  collections= []
  files: File[] = [];
  showMarque:boolean = true;
+ checked:boolean = false
  formData: FormData = new FormData();
  product : Product = new Product()
   constructor(private fb: FormBuilder, 
@@ -68,21 +69,22 @@ export class DigitalAddComponent implements OnInit {
       marque: new FormControl(),
       collections: new FormControl(),
       artisant: new FormControl(),
-      description: new FormControl()
+      description: new FormControl(),
+      new: new FormControl(),
+      remise: new FormControl()
     });
     
   }
   show(e){
     if (e){
         this.showMarque= false;
-        console.log(e);
+     
         
      this.ms.getMarqueByCategoryId(e).subscribe(res=>{
          this.marques = JSON.parse(JSON.stringify(res))
      },
      error=>{
-         console.log(error);
-         
+      
      })
     }
  }
@@ -136,6 +138,8 @@ addProduct():void{
     this.formData.set('marque',data.marque)
     this.formData.set('collections',data.collections)
     this.formData.set('description',data.description)
+    this.formData.set('new',data.new)
+    this.formData.set('remise',data.remise)
     let images=[];
     this.files.forEach(element => {
        images.push(element)

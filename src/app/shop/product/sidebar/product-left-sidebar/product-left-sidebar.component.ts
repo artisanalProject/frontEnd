@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../../shared/data/slider';
-import { Product } from '../../../../shared/classes/product';
+import { Product } from '../../../../models/product';
 import { ProductService } from '../../../../shared/services/product.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
 
@@ -12,7 +12,7 @@ import { SizeModalComponent } from "../../../../shared/components/modal/size-mod
 })
 export class ProductLeftSidebarComponent implements OnInit {
 
-  public product: Product = {};
+  public product: any
   public counter: number = 1;
   public activeSlide: any = 0;
   public selectedSize: any;
@@ -22,40 +22,51 @@ export class ProductLeftSidebarComponent implements OnInit {
   
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
-
+  idProduct;
   constructor(private route: ActivatedRoute, private router: Router,
     public productService: ProductService) { 
-      this.route.data.subscribe(response => this.product = response.data );
     }
 
   ngOnInit(): void {
+   
+    this.idProduct = this.route.snapshot.params['id'];
+    this.productService.getProductById(this.idProduct).subscribe(product=>{
+   this.product = product
+    
+    },err=>{
+      console.log(err);
+      
+    },()=>{console.log(this.product);
+    })
+
+   
   }
 
   // Get Product Color
-  Color(variants) {
-    const uniqColor = []
-    for (let i = 0; i < Object.keys(variants).length; i++) {
-      if (uniqColor.indexOf(variants[i].color) === -1 && variants[i].color) {
-        uniqColor.push(variants[i].color)
-      }
-    }
-    return uniqColor
-  }
+  // Color(variants) {
+  //   const uniqColor = []
+  //   for (let i = 0; i < Object.keys(variants).length; i++) {
+  //     if (uniqColor.indexOf(variants[i].color) === -1 && variants[i].color) {
+  //       uniqColor.push(variants[i].color)
+  //     }
+  //   }
+  //   return uniqColor
+  // }
 
   // Get Product Size
-  Size(variants) {
-    const uniqSize = []
-    for (let i = 0; i < Object.keys(variants).length; i++) {
-      if (uniqSize.indexOf(variants[i].size) === -1 && variants[i].size) {
-        uniqSize.push(variants[i].size)
-      }
-    }
-    return uniqSize
-  }
+  // Size(variants) {
+  //   const uniqSize = []
+  //   for (let i = 0; i < Object.keys(variants).length; i++) {
+  //     if (uniqSize.indexOf(variants[i].size) === -1 && variants[i].size) {
+  //       uniqSize.push(variants[i].size)
+  //     }
+  //   }
+  //   return uniqSize
+  // }
 
-  selectSize(size) {
-    this.selectedSize = size;
-  }
+  // selectSize(size) {
+  //   this.selectedSize = size;
+  // }
   
   // Increament
   increment() {

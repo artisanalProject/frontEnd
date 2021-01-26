@@ -47,21 +47,20 @@ export class ProductService {
   public deleteProduct(id){
     return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
-  public getProductById(id){
-    return this.http.get(this.baseUrl+"/product/getProductById/"+id)
+  public getProductById(id) : Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/getProductById/"+id)
   }
   public updateProduct(id,product){
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
-
   // Get Products By Slug
-  public getProductBySlug(slug: string): Observable<Product> {
-    return this.products.pipe(map(items => { 
-      return items.find((item: any) => { 
-        return item.title.replace(' ', '-') === slug; 
-      }); 
-    }));
-  }
+  // public getProductBySlug(slug: string): Observable<Product> {
+  //   return this.products.pipe(map(items => { 
+  //     return items.find((item: any) => { 
+  //       return item.title.replace(' ', '-') === slug; 
+  //     }); 
+  //   }));
+  // }
 
 
   /*
@@ -228,72 +227,72 @@ export class ProductService {
   */
 
   // Get Product Filter
-  // public filterProducts(filter: any): Observable<Product[]> {
-  //   return this.products.pipe(map(product => 
-  //     product.filter((item: Product) => {
-  //       if (!filter.length) return true
-  //       const Tags = filter.some((prev) => { // Match Tags
-  //         if (item.tags) {
-  //           if (item.tags.includes(prev)) {
-  //             return prev
-  //           }
-  //         }
-  //       })
-  //       return Tags
-  //     })
-  //   ));
-  // }
+  public filterProducts(filter: any): Observable<Product[]> {
+    return this.products.pipe(map(product => 
+      product.filter((item: Product) => {
+        if (!filter.length) return true
+        const Tags = filter.some((prev) => { // Match Tags
+          if (item.name) {
+            if (item.name.includes(prev)) {
+              return prev
+            }
+          }
+        })
+        return Tags
+      })
+    ));
+  }
 
   // Sorting Filter
-  // public sortProducts(products: Product[], payload: string): any {
+  public sortProducts(products: Product[], payload: string): any {
 
-  //   if(payload === 'ascending') {
-  //     return products.sort((a, b) => {
-  //       if (a.id < b.id) {
-  //         return -1;
-  //       } else if (a.id > b.id) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'a-z') {
-  //     return products.sort((a, b) => {
-  //       if (a.title < b.title) {
-  //         return -1;
-  //       } else if (a.title > b.title) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'z-a') {
-  //     return products.sort((a, b) => {
-  //       if (a.title > b.title) {
-  //         return -1;
-  //       } else if (a.title < b.title) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'low') {
-  //     return products.sort((a, b) => {
-  //       if (a.price < b.price) {
-  //         return -1;
-  //       } else if (a.price > b.price) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'high') {
-  //     return products.sort((a, b) => {
-  //       if (a.price > b.price) {
-  //         return -1;
-  //       } else if (a.price < b.price) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } 
-  // }
+    if(payload === 'ascending') {
+      return products.sort((a, b) => {
+        if (a._id < b._id) {
+          return -1;
+        } else if (a._id > b._id) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'a-z') {
+      return products.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        } else if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'z-a') {
+      return products.sort((a, b) => {
+        if (a.name > b.name) {
+          return -1;
+        } else if (a.name < b.name) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'low') {
+      return products.sort((a, b) => {
+        if (a.price < b.price) {
+          return -1;
+        } else if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'high') {
+      return products.sort((a, b) => {
+        if (a.price > b.price) {
+          return -1;
+        } else if (a.price < b.price) {
+          return 1;
+        }
+        return 0;
+      })
+    } 
+  }
 
   /*
     ---------------------------------------------

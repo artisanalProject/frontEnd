@@ -45,7 +45,8 @@ import {MatTableModule} from '@angular/material/table';
     MediaModule,
     MenusModule,
     UsersModule,
-    AppRoutingModule
+    AppRoutingModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
