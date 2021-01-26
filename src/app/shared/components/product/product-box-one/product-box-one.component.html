@@ -11,18 +11,19 @@
           [lazyLoad]="ImageSrc ? ImageSrc : '/api/'+product.images[0]" 
           class="img-fluid lazy-loading" 
           alt="{{  '/api/'+product.images[0] }}"
+         style="min-height: 350px; max-height: 350px;"
          />
       </a>
     </div>
     <div class="back" *ngIf="onHowerChangeImage">
       <a [routerLink]="['/shop/product/left/sidebar/',product._id]">
-        <img [src]="ImageSrc ? ImageSrc : '/api/'+product.images[1]" class="img-fluid lazy-loading" alt="{{ product.images[1] }}">
+        <img [src]="ImageSrc ? ImageSrc : '/api/'+product.images[1]" class="img-fluid lazy-loading" alt="{{ product.images[1] }}" style="min-height: 350px; max-height: 350px;">
       </a>
     </div>
     <ul class="product-thumb-list" *ngIf="thumbnail">
-      <li class="grid_thumb_img" [class.active]="ImageSrc == image.src" *ngFor="let image of product.images">
-        <a href="javascript:void(0)" (mouseover)="ChangeVariantsImage(image.src)">
-          <img [lazyLoad]="image.src">
+      <li class="grid_thumb_img" [class.active]="ImageSrc == image" *ngFor="let image of product.images">
+        <a href="javascript:void(0)" (mouseover)="ChangeVariantsImage(image)">
+          <img [lazyLoad]="'/api/'+image" >
         </a>
       </li>
     </ul>

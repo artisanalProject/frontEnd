@@ -8,7 +8,7 @@ import { ProductService } from './product.service';
 })
 export class Resolver implements Resolve<Product> {
   
-  public product: Product;
+  public product: any;
 
   constructor(
     private router: Router,
@@ -18,7 +18,7 @@ export class Resolver implements Resolve<Product> {
   // Resolver
   async resolve(route: ActivatedRouteSnapshot): Promise<any> {
     await new Promise(resolve => setTimeout(resolve, 1000));    
-    this.productService.getProductBySlug(route.params.slug).subscribe(product => {
+    this.productService.getProductById(route.params.id).subscribe(product => {
       if(!product) { // When product is empty redirect 404
           this.router.navigateByUrl('/pages/404', {skipLocationChange: true});
       } else {

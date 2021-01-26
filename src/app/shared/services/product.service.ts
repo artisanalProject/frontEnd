@@ -54,13 +54,13 @@ export class ProductService {
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
   // Get Products By Slug
-  public getProductBySlug(slug: string): Observable<Product> {
-    return this.products.pipe(map(items => { 
-      return items.find((item: any) => { 
-        return item.title.replace(' ', '-') === slug; 
-      }); 
-    }));
-  }
+  // public getProductBySlug(slug: string): Observable<Product> {
+  //   return this.products.pipe(map(items => { 
+  //     return items.find((item: any) => { 
+  //       return item.title.replace(' ', '-') === slug; 
+  //     }); 
+  //   }));
+  // }
 
 
   /*
