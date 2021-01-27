@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavService } from '../../service/nav.service';
+import { artisanService } from 'src/app/services/artisanService';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,10 @@ export class HeaderComponent implements OnInit {
   public open: boolean = false;
   public openNav: boolean = false;
   public isOpenMobile : boolean;
-
+  notActivated;
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
-  constructor(public navServices: NavService) { }
+  constructor(public navServices: NavService,private artisanService:artisanService) { }
 
   collapseSidebar() {
     this.open = !this.open;
@@ -30,6 +31,12 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  ngOnInit() {  }
+  ngOnInit() { 
+    this.artisanService.NotActivatedAccounts().subscribe(res=>{this.notActivated=JSON.parse(JSON.stringify(res))},
+    err=>{},
+    ()=>{
+      console.log(this.notActivated);
+    })
+   }
 
 }

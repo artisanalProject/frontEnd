@@ -41,6 +41,9 @@ export class NavService {
 			path: '/dashboard/default', title: 'Dashboard', icon: 'home', type: 'link', badgeType: 'primary', active: false
 		},
 		{
+			path: '/Accueil', title: 'Accueil', icon: 'home', type: 'link', badgeType: 'primary', active: false
+		},
+		{
 			title: 'Produits', icon: 'box', type: 'sub', active: false, children: [
 				
 						{ path: '/products/category', title: 'Category', type: 'link' },

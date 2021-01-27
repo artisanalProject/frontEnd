@@ -162,7 +162,9 @@ const routes: Routes = [
   { 
     path: 'portfolio/masonry/full-width', 
     component: MasonryFullWidthComponent 
-  }
+  },
+  
+
 ];
 
 @NgModule({

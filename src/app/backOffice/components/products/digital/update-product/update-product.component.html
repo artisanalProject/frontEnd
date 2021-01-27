@@ -74,7 +74,7 @@
    
     <mat-error>Ce champs est obligatoire!</mat-error>
 </mat-form-field>
-<mat-form-field appearance="outline" floatLabel="always">
+<!-- <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
   <mat-select formControlName="collections" [(ngModel)]="product.collections._id"  required>
           <ng-container *ngFor="let c of collections ">
@@ -86,7 +86,7 @@
   </mat-select>
  
   <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field>
+</mat-form-field> -->
 
 
 <ngx-dropzone (change)="onSelect($event)">

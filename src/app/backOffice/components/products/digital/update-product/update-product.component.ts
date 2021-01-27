@@ -3,12 +3,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Artisant } from 'src/app/models/artisant';
 import { Category } from 'src/app/models/category';
-import { Collections } from 'src/app/models/collections';
+// import { Collections } from 'src/app/models/collections';
 import { Marque } from 'src/app/models/marque';
 import { Product } from 'src/app/models/product';
 import { ArtisantService } from 'src/app/shared/services/artisant.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
-import { CollectionService } from 'src/app/shared/services/collection.service';
+// import { CollectionService } from 'src/app/shared/services/collection.service';
 import { MarqueService } from 'src/app/shared/services/marque.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -28,22 +28,23 @@ export class UpdateProductComponent implements OnInit {
  marques = [];
  artisant : Artisant;
  artisantList= [];
- collection:Collections;
- collections= []
+//  collection:Collections;
+//  collections= []
  showMarque:boolean = true;
 
   constructor(private route: ActivatedRoute, private ps: ProductService, private fb :FormBuilder,
     private cs: CategoryService, 
     private ms: MarqueService,
      private as:ArtisantService,
-     private collectionService: CollectionService,) {
+    //  private collectionService: CollectionService,
+     ) {
     
    }
 
   ngOnInit(): void {
     this.getArtisant()
   this.getCategories()
-  this.getCollections()
+  // this.getCollections()
     this.product_id = this.route.snapshot.params.id;
     
     this.ps.getProductById(this.product_id).subscribe(res=>{      
@@ -75,11 +76,11 @@ export class UpdateProductComponent implements OnInit {
     this.artisantList = JSON.parse(JSON.stringify(res))
   })
    }
-   getCollections(){
-     this.collectionService.getCollection().subscribe(result=>{
-  this.collections= JSON.parse(JSON.stringify(result))
-     })
-   }
+  //  getCollections(){
+  //    this.collectionService.getCollection().subscribe(result=>{
+  // this.collections= JSON.parse(JSON.stringify(result))
+  //    })
+  //  }
    getCategories(){
     this.cs.getCategories().subscribe(result=>{
       result.forEach(element=>{
@@ -107,7 +108,7 @@ export class UpdateProductComponent implements OnInit {
           quantity: new FormControl(this.product.quantity),
           category: new FormControl(this.product.category),
           marque: new FormControl(this.product.marque),
-          collections: new FormControl(this.product.collections),
+          // collections: new FormControl(this.product.collections),
           artisant: new FormControl(this.product.artisant)
         });
        

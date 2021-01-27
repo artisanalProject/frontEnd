@@ -140,86 +140,113 @@
                                     <ng-template ngbTabContent>
                                         <div class="tab-pane fade active show" id="account" role="tabpanel"
                                             aria-labelledby="account-tab">
-                                            <form [formGroup]="loginForm" 
+                                            <form [formGroup]="loginForm" (ngSubmit)="login()"
                                                 class="form-horizontal auth-form" novalidate="">
                                                 <div class="form-group">
-                                                    <input required="" name="login[username]" type="email"
+                                                    <input  type="email" formControlName="email"
                                                         class="form-control" placeholder="Username"
-                                                        id="exampleInputEmail1">
+                                                      >
+                                                      <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
+                                                        Ce champ est obligatoire
+                                                      </div>
                                                 </div>
+                                                
                                                 <div class="form-group">
-                                                    <input required="" name="login[password]" type="password"
+                                                    <input formControlName="password" type="password"
                                                         class="form-control" placeholder="Password">
+                                                        <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+                                                            Ce champ est obligatoire
+                                                          </div>
                                                 </div>
+                                               
+                                                  <div class="form-check">
+                                                    <input type="checkbox" formControlName="checkAdmin"  class="form-check-input" id="exampleCheck1">
+                                                    <label class="form-check-label" for="exampleCheck1">Admin</label>
+                                                  </div>
                                                 <div class="form-terms">
                                                     <div class="custom-control custom-checkbox mr-sm-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="customControlAutosizing">
-                                                        <label class="custom-control-label"
-                                                            for="customControlAutosizing">Remember me</label>
-                                                        <a href="javascript:void(0)"
-                                                            class="btn btn-default forgot-pass">lost your
-                                                            password</a>
+                                                        <a href="javascript:void(0)" (click)="forgotPwd()"
+                                                            class="btn btn-default forgot-pass">Mot de passe oublié?</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-button">
                                                     <button class="btn btn-primary" type="submit">Login</button>
-                                                </div>
-                                                <div class="form-footer">
-                                                    <span>Or Login up with social platforms</span>
-                                                    <ul class="social">
-                                                        <li><a class="icon-facebook" href="javascript:void(0)"></a></li>
-                                                        <li><a class="icon-twitter" href="javascript:void(0)"></a></li>
-                                                        <li><a class="icon-instagram" href="javascript:void(0)"></a>
-                                                        </li>
-                                                        <li><a class="icon-pinterest" href="javascript:void(0)"></a>
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </form>
                                         </div>
                                     </ng-template>
                                 </ngb-tab>
                                 <ngb-tab>
-                                    <ng-template ngbTabTitle><i class="icon-unlock mr-2"></i> Register
+                                    <ng-template ngbTabTitle><i class="icon-unlock mr-2"></i> Inscription
                                         <ng-template ngbTabContent>
-                                            <form [formGroup]="registerForm" 
+                                            <form [formGroup]="registerForm" (ngSubmit)="register()"
                                                 class="form-horizontal auth-form" novalidate>
                                                 <div class="form-group">
-                                                    <input required="" name="login[username]" type="email"
-                                                        class="form-control" placeholder="Username"
-                                                        id="exampleInputEmail12">
+                                                    <input  formControlName="name" type="text"
+                                                        class="form-control" placeholder="Nom & prénom">
                                                 </div>
+                                                <div *ngIf="!registerForm.controls.name.valid && registerForm.controls.name.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
                                                 <div class="form-group">
-                                                    <input required="" name="login[password]" type="password"
+                                                    <input  formControlName="email" type="email"
+                                                        class="form-control" placeholder="Email">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.touched">
+                                                    Ce champ est obligatoire et de type email
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input  formControlName="password" type="password"
                                                         class="form-control" placeholder="Password">
                                                 </div>
-                                                <div class="form-terms">
-                                                    <div class="custom-control custom-checkbox mr-sm-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="customControlAutosizing1">
-                                                        <label class="custom-control-label"
-                                                            for="customControlAutosizing1"><span>I agree all statements
-                                                                in <a href="javascript:void(0)" class="pull-right">Terms
-                                                                    &amp;
-                                                                    Conditions</a></span></label>
-                                                    </div>
+                                                <div *ngIf="!registerForm.controls.password.valid && registerForm.controls.password.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                
+                                                <div class="form-group">
+                                                    <input  formControlName="phoneNumber" type="text"
+                                                        class="form-control" placeholder="N° Tél">
                                                 </div>
+                                                <div *ngIf="!registerForm.controls.phoneNumber.valid && registerForm.controls.phoneNumber.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input   formControlName="address" type="text"
+                                                        class="form-control" placeholder="Adresse">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.address.valid && registerForm.controls.address.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input   formControlName="storeName" type="text"
+                                                        class="form-control" placeholder="Nom du boutique">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.storeName.valid && registerForm.controls.storeName.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input   formControlName="typeOfWork" type="text"
+                                                        class="form-control" placeholder="Type du boulot">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.typeOfWork.valid && registerForm.controls.typeOfWork.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input   formControlName="codePostal" type="text"
+                                                        class="form-control" placeholder="Code postal">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.codePostal.valid && registerForm.controls.codePostal.touched" >
+                                                    Ce champ est obligatoire
+                                                  </div>
+                                                <div class="form-group">
+                                                    <input  formControlName="cin" type="text"
+                                                        class="form-control" placeholder="N° Cin">
+                                                </div>
+                                                <div *ngIf="!registerForm.controls.cin.valid && registerForm.controls.cin.touched">
+                                                    Ce champ est obligatoire
+                                                  </div>
                                                 <div class="form-button">
-                                                    <button class="btn btn-primary" type="submit">Register</button>
-                                                </div>
-                                                <div class="form-footer">
-                                                    <span>Or Sign up with social platforms</span>
-                                                    <ul class="social">
-                                                        <li><a href="javascript:void(0)"><i
-                                                                    class="icon-facebook"></i></a></li>
-                                                        <li><a href="javascript:void(0)"><i
-                                                                    class="icon-twitter"></i></a></li>
-                                                        <li><a href="javascript:void(0)"><i
-                                                                    class="icon-instagram"></i></a></li>
-                                                        <li><a href="javascript:void(0)"><i
-                                                                    class="icon-pinterest"></i></a></li>
-                                                    </ul>
+                                                    <button class="btn btn-primary"   type="submit" >S'inscrire</button>
                                                 </div>
                                             </form>
                                         </ng-template>

@@ -3,12 +3,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Artisant } from 'src/app/models/artisant';
 import { Category } from 'src/app/models/category';
-import { Collections } from 'src/app/models/collections';
+// import { Collections } from 'src/app/models/collections';
 import { Marque } from 'src/app/models/marque';
 import { Product } from 'src/app/models/product';
 import { ArtisantService } from 'src/app/shared/services/artisant.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
-import { CollectionService } from 'src/app/shared/services/collection.service';
+// import { CollectionService } from 'src/app/shared/services/collection.service';
 import { MarqueService } from 'src/app/shared/services/marque.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -26,8 +26,8 @@ export class DigitalAddComponent implements OnInit {
  marques = [];
  artisant : Artisant;
  artisantList= [];
- collection:Collections;
- collections= []
+ //collection:Collections;
+// collections= []
  files: File[] = [];
  showMarque:boolean = true;
  checked:boolean = false
@@ -37,7 +37,7 @@ export class DigitalAddComponent implements OnInit {
     private cs: CategoryService, 
     private ms: MarqueService,
      private as:ArtisantService,
-     private collectionService: CollectionService,
+//     private collectionService: CollectionService,
      private productService:ProductService,
      private _snackBar: MatSnackBar,
      private router:Router ) { }
@@ -59,7 +59,7 @@ export class DigitalAddComponent implements OnInit {
   ngOnInit() {
   this.getArtisant()
   this.getCategories()
-  this.getCollections()
+  // this.getCollections()
     this.productForm = new FormGroup({
       name: new FormControl(),
       price: new FormControl(),
@@ -67,7 +67,7 @@ export class DigitalAddComponent implements OnInit {
       quantity: new FormControl(),
       category: new FormControl(),
       marque: new FormControl(),
-      collections: new FormControl(),
+    //  collections: new FormControl(),
       artisant: new FormControl(),
       description: new FormControl(),
       new: new FormControl(),
@@ -93,11 +93,11 @@ this.as.getArtisant().subscribe(res=>{
   this.artisantList = JSON.parse(JSON.stringify(res))
 })
  }
- getCollections(){
-   this.collectionService.getCollection().subscribe(result=>{
-this.collections= JSON.parse(JSON.stringify(result))
-   })
- }
+//  getCollections(){
+//    this.collectionService.getCollection().subscribe(result=>{
+// this.collections= JSON.parse(JSON.stringify(result))
+//    })
+//  }
  getCategories(){
   this.cs.getCategories().subscribe(result=>{
     result.forEach(element=>{
