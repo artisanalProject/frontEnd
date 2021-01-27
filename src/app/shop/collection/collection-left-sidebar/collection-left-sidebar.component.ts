@@ -52,10 +52,12 @@ export class CollectionLeftSidebarComponent implements OnInit {
           // Category Filter
           if(params.category)
             this.products = this.products.filter(item => item.category.name == this.category);
-            console.log(this.products);
+           
             // filter marque
             if(params.marque)
             this.products = this.products.filter(item => item.marque.name == this.marque);
+           
+           
           // Price Filter
           this.products = this.products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice) 
           // Paginate Products

@@ -53,6 +53,10 @@ export class ProductService {
   public updateProduct(id,product){
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
+
+  public getProductByCategory(idCategory) :Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
+  }
   // Get Products By Slug
   // public getProductBySlug(slug: string): Observable<Product> {
   //   return this.products.pipe(map(items => { 
@@ -174,19 +178,19 @@ export class ProductService {
   }
 
   // Update Cart Quantity
-  // public updateCartQuantity(product: Product, quantity: number): Product | boolean {
-  //   return state.cart.find((items, index) => {
-  //     if (items.id === product.id) {
-  //       const qty = state.cart[index].quantity + quantity
-  //       const stock = this.calculateStockCounts(state.cart[index], quantity)
-  //       if (qty !== 0 && stock) {
-  //         state.cart[index].quantity = qty
-  //       }
-  //       localStorage.setItem("cartItems", JSON.stringify(state.cart));
-  //       return true
-  //     }
-  //   })
-  // }
+  public updateCartQuantity(product: Product, quantity: number): Product | boolean {
+    return state.cart.find((items, index) => {
+      if (items.id === product._id) {
+        const qty = state.cart[index].quantity + quantity
+        const stock = this.calculateStockCounts(state.cart[index], quantity)
+        if (qty !== 0 && stock) {
+          state.cart[index].quantity = qty
+        }
+        localStorage.setItem("cartItems", JSON.stringify(state.cart));
+        return true
+      }
+    })
+  }
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
@@ -208,17 +212,17 @@ export class ProductService {
   }
 
   // Total amount 
-  // public cartTotalAmount(): Observable<number> {
-  //   return this.cartItems.pipe(map((product: Product[]) => {
-  //     return product.reduce((prev, curr: Product) => {
-  //       let price = curr.price;
-  //       if(curr.discount) {
-  //         price = curr.price - (curr.price * curr.discount / 100)
-  //       }
-  //       return (prev + price * curr.quantity) * this.Currency.price;
-  //     }, 0);
-  //   }));
-  // }
+  public cartTotalAmount(): Observable<number> {
+    return this.cartItems.pipe(map((product: Product[]) => {
+      return product.reduce((prev, curr: Product) => {
+        let price = curr.price;
+        if(curr.remise) {
+          price = curr.price - (curr.price * curr.remise / 100)
+        }
+        return (prev + price * curr.quantity) * this.Currency.price;
+      }, 0);
+    }));
+  }
 
   /*
     ---------------------------------------------
