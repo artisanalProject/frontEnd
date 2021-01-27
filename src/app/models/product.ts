@@ -19,6 +19,7 @@ export class Product {
     collections: Collections;
     artisant:Artisant;
     new : boolean;
+    sellingNumber:number;
     public Product (name:string, price:number,remise:number, quantity:number,images:string,status:string,createdByAdmin:boolean,creationDate:Date,category: Category,
         marque:Marque,
         collections: Collections,

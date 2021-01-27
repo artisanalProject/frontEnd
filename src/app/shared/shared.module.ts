@@ -54,6 +54,7 @@ import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component'
 // Pipes
 import { DiscountPipe } from './pipes/discount.pipe';
 import { MarquesComponent } from './components/marques/marques.component';
+import { BestSellerVerticalComponent } from './components/product/best-seller-vertical/best-seller-vertical.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { MarquesComponent } from './components/marques/marques.component';
     LayoutBoxComponent,
     TapToTopComponent,
     DiscountPipe,
-    MarquesComponent
+    MarquesComponent,
+    BestSellerVerticalComponent
   ],
   imports: [
     CommonModule,
@@ -141,7 +143,9 @@ import { MarquesComponent } from './components/marques/marques.component';
     SkeletonProductBoxComponent,
     LayoutBoxComponent,
     TapToTopComponent,
-    DiscountPipe
+    DiscountPipe,
+    BestSellerVerticalComponent
+
   ]
 })
 export class SharedModule { }

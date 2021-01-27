@@ -18,17 +18,12 @@ export class BagsComponent implements OnInit, OnDestroy {
 
   public ProductSliderConfig: any = ProductSlider;
   public ProductSliderOneConfig: any = ProductOneSlider;
-
+  collections=["NEW PRODUCTS","BEST SELLERS"]
   constructor(public productService: ProductService) {
     this.productService.getProducts().subscribe(response => {
-      // this.products = response.filter(item => item.type == 'bags');
-      // Get Product Collection
-      // this.products.filter((item) => {
-      //   item.collection.filter((collection) => {
-      //     const index = this.productCollections.indexOf(collection);
-      //     if (index === -1) this.productCollections.push(collection);
-      //   })
-      // })
+      this.products = JSON.parse(JSON.stringify(response))
+    },err=>{},
+    ()=>{console.log(this.products);
     });
   }
   
@@ -83,14 +78,16 @@ export class BagsComponent implements OnInit, OnDestroy {
     // Remove Color
     document.documentElement.style.removeProperty('--theme-deafult');
   }
-
-  // Product Tab collection
-  // getCollectionProducts(collection) {
-  //   return this.products.filter((item) => {
-  //     if (item.collection.find(i => i === collection)) {
-  //       return item
-  //     }
-  //   })
-  // }
-
+ 
+ // Product Tab collection
+  getCollectionProducts(collection) {
+    if(collection=="NEW PRODUCTS"){
+      return this.products.sort((a,b)=>new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
+    }else{
+      return this.products.sort((a,b)=>b.sellingNumber - a.sellingNumber)
+   
+    }
+   
+  }
+  
 }
