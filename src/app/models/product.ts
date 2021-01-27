@@ -1,6 +1,7 @@
 import { Artisant } from './artisant';
 import { Category } from './category'
 import { Collections } from './collections';
+import { Marque } from './marque';
 export class Product {
     _id :number;
     name: string;
@@ -14,12 +15,12 @@ export class Product {
     creationDate:Date;
     topProduct:boolean;
     category: Category;
-    marque:string;
+    marque:Marque;
     collections: Collections;
     artisant:Artisant;
     new : boolean;
     public Product (name:string, price:number,remise:number, quantity:number,images:string,status:string,createdByAdmin:boolean,creationDate:Date,category: Category,
-        marque:string,
+        marque:Marque,
         collections: Collections,
         artisant:Artisant,
         topProduct:boolean, description:string){

@@ -21,7 +21,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public minPrice: number = 0;
   public maxPrice: number = 1200;
   public tags: any[] = [];
-  public category: Category;
+  public category: string;
+  public marque : string;
   public pageNo: number = 1;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
@@ -50,7 +51,11 @@ export class CollectionLeftSidebarComponent implements OnInit {
           this.products = this.productService.sortProducts(response, this.sortBy);
           // Category Filter
           if(params.category)
-            this.products = this.products.filter(item => item.category == this.category);
+            this.products = this.products.filter(item => item.category.name == this.category);
+            console.log(this.products);
+            // filter marque
+            if(params.marque)
+            this.products = this.products.filter(item => item.marque.name == this.marque);
           // Price Filter
           this.products = this.products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice) 
           // Paginate Products
