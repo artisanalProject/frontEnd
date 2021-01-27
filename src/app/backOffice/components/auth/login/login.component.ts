@@ -105,10 +105,13 @@ export class LoginComponent implements OnInit {
       })
     }
     else {
+      console.log("xxx");
       
       this.adminService.login(this.loginForm.value).subscribe(res=>{this.responseLogin=JSON.parse(JSON.stringify(res))},
       err=>{},
       ()=>{
+        console.log(this.responseLogin);
+        
         if(this.responseLogin=="verify email or password"){
           this._snackBar.open('Vérifiez email ou mot de passe','ok',{
             duration: 10000,

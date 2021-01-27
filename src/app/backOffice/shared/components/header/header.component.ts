@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   public openNav: boolean = false;
   public isOpenMobile : boolean;
   notActivated;
-  nbNotActivated;
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
   constructor(public navServices: NavService,private artisanService:artisanService) { }
@@ -37,10 +36,6 @@ export class HeaderComponent implements OnInit {
     err=>{},
     ()=>{
       console.log(this.notActivated);
-      if(this.notActivated!="No pending requests!")
-      this.nbNotActivated=this.notActivated.length
-      else 
-      this.nbNotActivated=0
     })
    }
 
