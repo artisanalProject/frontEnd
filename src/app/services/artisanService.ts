@@ -32,4 +32,7 @@ activateAccount(idArtisant){
   return this.http.get(this.baseUrl+"/artisant/activateAccount/"+idArtisant,this.options);
 
 }
+public RequestProduct(product){
+  return this.http.post(this.baseUrl +"/artisant/RequestProduct", product)
+ }
 }

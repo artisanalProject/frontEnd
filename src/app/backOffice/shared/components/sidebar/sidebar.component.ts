@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NavService, Menu } from '../../service/nav.service';
 
@@ -8,11 +8,13 @@ import { NavService, Menu } from '../../service/nav.service';
   styleUrls: ['./sidebar.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
+  
 
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
+
 
   constructor(private router: Router, public navServices: NavService) {
     this.navServices.items.subscribe(menuItems => {
@@ -36,6 +38,27 @@ export class SidebarComponent {
         }
       })
     })
+  }
+
+  ngOnInit(): void {
+    if(JSON.parse(localStorage.getItem('connectedUser')).admin){
+     this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='My products'),1)
+   }
+   else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Dashboard'),1)
+     this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Produits'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Sales'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Coupons'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Pages'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Media'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Menus'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Reports'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Users'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Vendors'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Localization'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Settings'),1)
+    this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Invoice'),1)
+   }
   }
 
   // Active Nave state

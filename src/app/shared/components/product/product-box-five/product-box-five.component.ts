@@ -36,7 +36,7 @@ export class ProductBoxFiveComponent implements OnInit {
   //     }
   //   }
   //   return uniqColor
-  // }
+  // } 
 
   // Change Variants
   ChangeVariants(color, product) {

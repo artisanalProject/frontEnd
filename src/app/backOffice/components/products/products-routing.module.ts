@@ -10,6 +10,7 @@ import { DigitalListComponent } from './digital/digital-list/digital-list.compon
 import { DigitalAddComponent } from './digital/digital-add/digital-add.component';
 import { ProductDetailComponent } from './physical/product-detail/product-detail.component';
 import { UpdateProductComponent } from './digital/update-product/update-product.component';
+import { AddProductArtisanComponent } from './digital/add-product-artisan/add-product-artisan.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,14 @@ const routes: Routes = [
         }
       },
       {
+        path: 'addProductArtisan',
+        component: AddProductArtisanComponent,
+        data: {
+          title: "New Product",
+          breadcrumb: "New Product"
+        }
+      },
+      {
         path: 'marque',
         component: DigitalSubCategoryComponent,
         data: {
@@ -79,6 +88,7 @@ const routes: Routes = [
           breadcrumb: "Listes des produits"
         }
       },
+      
       {
         path: 'add-product',
         component: DigitalAddComponent,

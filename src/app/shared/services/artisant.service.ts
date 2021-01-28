@@ -12,4 +12,5 @@ export class ArtisantService {
   public getArtisant(): Observable<Artisant[]> {
     return this.http.get<Artisant[]>(this.baseUrl+"/artisant/getArtisant")
   }
+  
 }
