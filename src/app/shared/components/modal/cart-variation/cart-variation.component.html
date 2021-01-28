@@ -13,11 +13,11 @@
             <ul class="cart_product">
                 <li *ngFor="let product of products">
                     <div class="media">
-                        <a [routerLink]="['/shop/product/left/sidebar/', product.name.replace(' ', '-')]">
+                        <a [routerLink]="['/shop/product/left/sidebar/', product._id]">
                             <img class="mr-3" [src]="product.images[0]" [alt]="product.images[0]">
                         </a>
                         <div class="media-body">
-                            <a [routerLink]="['/shop/product/left/sidebar/', product.name.replace(' ', '-')]">
+                            <a [routerLink]="['/shop/product/left/sidebar/', product._id]">
                                 <h4>{{ product?.name | titlecase }}</h4>
                             </a>
                             <h4>
@@ -40,7 +40,7 @@
                     <div class="total">
                         <h5>
                             subtotal :
-                            <!-- <span>{{ getTotal | async | currency:productService?.Currency.currency:'symbol' }}</span> -->
+                            <span>{{ getTotal | async | currency:productService?.Currency.currency:'symbol' }}</span>
                         </h5>
                     </div>
                 </li>

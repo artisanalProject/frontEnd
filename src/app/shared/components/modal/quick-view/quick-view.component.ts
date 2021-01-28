@@ -56,26 +56,26 @@ export class QuickViewComponent implements OnInit, OnDestroy  {
   }
 
   // Get Product Color
-  Color(variants) {
-    const uniqColor = []
-    for (let i = 0; i < Object.keys(variants).length; i++) {
-      if (uniqColor.indexOf(variants[i].color) === -1 && variants[i].color) {
-        uniqColor.push(variants[i].color)
-      }
-    }
-    return uniqColor
-  }
+  // Color(variants) {
+  //   const uniqColor = []
+  //   for (let i = 0; i < Object.keys(variants).length; i++) {
+  //     if (uniqColor.indexOf(variants[i].color) === -1 && variants[i].color) {
+  //       uniqColor.push(variants[i].color)
+  //     }
+  //   }
+  //   return uniqColor
+  // }
 
   // Get Product Size
-  Size(variants) {
-    const uniqSize = []
-    for (let i = 0; i < Object.keys(variants).length; i++) {
-      if (uniqSize.indexOf(variants[i].size) === -1 && variants[i].size) {
-        uniqSize.push(variants[i].size)
-      }
-    }
-    return uniqSize
-  }
+  // Size(variants) {
+  //   const uniqSize = []
+  //   for (let i = 0; i < Object.keys(variants).length; i++) {
+  //     if (uniqSize.indexOf(variants[i].size) === -1 && variants[i].size) {
+  //       uniqSize.push(variants[i].size)
+  //     }
+  //   }
+  //   return uniqSize
+  // }
 
   // Change Variants
   ChangeVariants(color, product) {
