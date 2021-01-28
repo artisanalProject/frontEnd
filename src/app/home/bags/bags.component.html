@@ -22,11 +22,11 @@
       <div class="col">
         <div class="theme-tab">
           <ngb-tabset [justify]="'center'" [type]="'pills'" class="tabs tab-title">
-            <ngb-tab *ngFor="let collection of productCollections">
+            <ngb-tab *ngFor="let collection of collections">
               <ng-template ngbTabTitle>{{collection}}</ng-template>
               <ng-template ngbTabContent>
                 <div class="no-slider row">
-                  <!-- <ng-container *ngFor="let product of getCollectionProducts(collection) | slice:0:4">
+                  <ng-container *ngFor="let product of getCollectionProducts(collection) | slice:0:4">
                     <div class="product-box">
                       <app-product-box-five 
                         [product]="product" 
@@ -36,7 +36,7 @@
                         [cartModal]="true">
                       </app-product-box-five>
                     </div>
-                  </ng-container> -->
+                  </ng-container>
                 </div>
               </ng-template>
             </ngb-tab>
@@ -94,7 +94,7 @@
           <div class="col-lg-4">
             <div class="theme-card card-border">
               <app-product-box-vertical-slider 
-                [title]="'New product'"
+                [title]="'New products'"
                 [type]="'bags'">    
               </app-product-box-vertical-slider>
             </div>
@@ -126,10 +126,10 @@
           </div>
           <div class="col-lg-4">
             <div class="theme-card card-border">
-              <app-product-box-vertical-slider 
-                [title]="'Feature product'"
+              <app-best-seller-vertical
+                [title]="'Feature products'"
                 [type]="'bags'">    
-              </app-product-box-vertical-slider>
+              </app-best-seller-vertical>
             </div>
           </div>
       </div>
