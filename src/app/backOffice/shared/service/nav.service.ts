@@ -53,9 +53,9 @@ export class NavService {
 		{
 			title: 'My products', icon: 'box', type: 'sub', active: false, children: [
 				
-						{ path: '/products/addProductArtisan', title: 'Add new prodcut', type: 'link' },
-						{ path: '/products/productsArtisanInShop', title: 'Product list in shop', type: 'link' },
-						{ path: '/products/productsArtisanRefused', title: 'Product list refused', type: 'link' },
+						{ path: '/products/add-request-product', title: 'Add new prodcut', type: 'link' },
+						{ path: '/products/pending-products', title: 'Produits en attente', type: 'link' },
+						{ path: '/products/refused-requests-product', title: 'Produits réfusés', type: 'link' },
 			]
 		},
 		{
@@ -115,9 +115,9 @@ export class NavService {
 		{
 			title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
 		},
-		{
-			title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
-		},
+		// {
+		// 	title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
+		// },
 		
 	]
 

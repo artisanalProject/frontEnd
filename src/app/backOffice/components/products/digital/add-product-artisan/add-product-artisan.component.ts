@@ -14,6 +14,7 @@ import { MarqueService } from 'src/app/shared/services/marque.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { artisanService } from 'src/app/services/artisanService';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-add-product-artisan',
@@ -34,11 +35,13 @@ export class AddProductArtisanComponent implements OnInit {
   showMarque:boolean = true;
   checked:boolean = false
   formData: FormData = new FormData();
-  product : Product = new Product()
+  product : Product = new Product();
+  nbNotif;
    constructor(private fb: FormBuilder, 
      private cs: CategoryService, 
      private ms: MarqueService,
       private as:artisanService,
+      private productServive : ProductService,
  //     private collectionService: CollectionService,
       private _snackBar: MatSnackBar,
       private router:Router ) { }
@@ -172,8 +175,14 @@ export class AddProductArtisanComponent implements OnInit {
            verticalPosition: 'top',
            duration        : 2000
        });
+       this.productServive.getProducts().subscribe(res=>{
+         this.nbNotif=JSON.parse(JSON.stringify(res)).filter(e=>e.status=="Requested").length;
+       },err=>{},
+       ()=>{
+         this.productServive.notifProducts.next(this.nbNotif)
+       })
        // // Change the location with new one
-       this.router.navigateByUrl('/products/product-list')
+       this.router.navigateByUrl('/products/pending-products')
       }
     )
  }

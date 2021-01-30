@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavService } from '../../service/nav.service';
 import { artisanService } from 'src/app/services/artisanService';
+import { Router } from '@angular/router';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,10 @@ export class HeaderComponent implements OnInit {
   notActivated;
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
-  constructor(public navServices: NavService,private artisanService:artisanService) { }
+  constructor(public navServices: NavService,private artisanService:artisanService,
+    private router : Router,
+    private productService : ProductService
+    ) { }
 
   collapseSidebar() {
     this.open = !this.open;
@@ -32,11 +37,18 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit() { 
+    this.productService.nbNotifProducts();
     this.artisanService.NotActivatedAccounts().subscribe(res=>{this.notActivated=JSON.parse(JSON.stringify(res))},
     err=>{},
     ()=>{
       console.log(this.notActivated);
     })
    }
+
+   logout(){
+    localStorage.removeItem('connectedUser')
+    this.router.navigateByUrl('/auth/login')
+   }
+   
 
 }

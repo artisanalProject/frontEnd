@@ -57,6 +57,7 @@ export class DigitalAddComponent implements OnInit {
   public onUploadSuccess(args: any): void { }
 
   ngOnInit() {
+ 
   this.getArtisant()
   this.getCategories()
   // this.getCollections()

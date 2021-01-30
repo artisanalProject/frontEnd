@@ -1,0 +1,69 @@
+<div *ngIf="products.length==0">Aucun produit en attente de confirmation est envoyé.</div>
+<div *ngIf="products.length>0">
+<div class="header" >
+
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)"  #input>
+      </mat-form-field>
+      <button mat-raised-button [routerLink]="'/products/addProductArtisan'"
+      color="primary">Demander un autre produit</button>
+    </div>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> référence </th>
+            <td mat-cell *matCellDef="let row"> {{row.ref}} </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}}</td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          
+      
+          <!-- Color Column -->
+          
+          <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'envoie </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.creationDate  | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+       
+          <ng-container matColumnDef="buttons">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                <button mat-icon-button color="warn" (click)="$event.stopPropagation();delete(row)"  aria-label="Example icon button with a delete icon">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="editbutton">
+          <th  mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color">
+              <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+      </ng-container> -->
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr> 
+         
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+</div>

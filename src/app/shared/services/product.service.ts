@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../../models/product';
@@ -20,6 +20,10 @@ export class ProductService {
   public Currency = { name: 'Dollar', currency: 'USD', price: 1 } // Default Currency
   public OpenCart: boolean = false;
   public Products : Product []
+  public notifProducts = new BehaviorSubject(0);
+
+  
+  nbNotif;
 
   constructor(private http: HttpClient,
     private toastrService: ToastrService) { }
@@ -34,6 +38,16 @@ export class ProductService {
   private get products(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/allProduct")
   }
+
+  public  nbNotifProducts() {
+  return  this.getProducts().subscribe(res=>{
+      this.nbNotif=JSON.parse(JSON.stringify(res)).filter(x=>x.status=="Requested").length
+    },err=>{},()=>{
+      this.notifProducts.next(this.nbNotif)
+    })
+   }
+
+
   public addProduct(product){
    return this.http.post(this.baseUrl +"/product/addProduct", product)
   }
@@ -347,3 +361,15 @@ export class ProductService {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
