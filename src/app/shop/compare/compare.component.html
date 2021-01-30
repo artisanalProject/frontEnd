@@ -50,7 +50,7 @@
                             <tr>
                                 <th class="product-name"> Availability </th>
                                 <td class="available-stock" *ngFor="let product of products">
-                                    <p> {{ product.stock > 0 ? 'In stock' : 'Out of stock' }} </p>
+                                    <p> {{ product.quantity > 0 ? 'In stock' : 'Out of stock' }} </p>
                                 </td>
                             </tr>
                             </tbody>

@@ -24,10 +24,15 @@ export class ProductBoxVerticalSliderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    
     if(this.title=="New products") {
       this.productService.getProducts().subscribe(response => {
+        response.splice(10)
         this.products = response.sort((a,b)=>new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
+       
       });
+      console.log(this.products);
     }
   }
 

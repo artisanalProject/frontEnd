@@ -84,7 +84,7 @@ export class ProductService {
 
   // Add to Wishlist
   public addToWishlist(product): any {
-    const wishlistItem = state.wishlist.find(item => item.id === product.id)
+    const wishlistItem = state.wishlist.find(item => item.id === product._id)
     if (!wishlistItem) {
       state.wishlist.push({
         ...product
@@ -120,7 +120,7 @@ export class ProductService {
 
   // Add to Compare
   public addToCompare(product): any {
-    const compareItem = state.compare.find(item => item.id === product.id)
+    const compareItem = state.compare.find(item => item.id === product._id)
     if (!compareItem) {
       state.compare.push({
         ...product
