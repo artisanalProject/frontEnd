@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
         else {
           localStorage.setItem('connectedUser',JSON.stringify(this.responseLogin))
           console.log("artisaaan "+this.responseLogin);
-          
+          this.router.navigateByUrl('/admin/dashboard/default');
         }
       })
     }

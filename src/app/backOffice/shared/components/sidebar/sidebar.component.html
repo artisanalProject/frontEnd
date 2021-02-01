@@ -21,7 +21,7 @@
       </a>
       <!-- Link -->
       <a [routerLink]="!menuItem.type ? null : [menuItem.path]" routerLinkActive="active" class="sidebar-header"
-        *ngIf="menuItem.type === 'link'">
+        *ngIf="menuItem.type === 'link' ">
         <app-feather-icons [icon]="menuItem.icon"></app-feather-icons><span>{{menuItem.title}}<span
             class="badge badge-{{menuItem.badgeType}} ml-3"
             *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span></span>
@@ -108,5 +108,6 @@
         </li>
       </ul>
     </li>
+    <li></li>
   </ul>
 </div>
