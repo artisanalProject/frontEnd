@@ -19,6 +19,9 @@ export class SidebarComponent implements OnInit{
   constructor(private router: Router, public navServices: NavService) {
     console.log(JSON.parse(localStorage.getItem('connectedUser')));
     
+   
+   console.log(this.menuItems);
+    if(JSON.parse(localStorage.getItem('connectedUser')).admin){
     this.navServices.items.subscribe(menuItems => {
       this.menuItems = menuItems;
       this.router.events.subscribe((event) => {
@@ -29,10 +32,10 @@ export class SidebarComponent implements OnInit{
             if (!items.children) return false
             items.children.filter(subItems => {
               if (subItems.path === event.url)
-                this.setNavActive(subItems)
+                this.setNavActive(subItems) 
               if (!subItems.children) return false
               subItems.children.filter(subSubItems => {
-                if (subSubItems.path === event.url)
+                if (subSubItems.path === event.url)    
                   this.setNavActive(subSubItems)
               })
             })
@@ -40,35 +43,30 @@ export class SidebarComponent implements OnInit{
         }
       })
     })
-   console.log(this.menuItems);
-  //   if(JSON.parse(localStorage.getItem('connectedUser')).admin){
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='My products'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Coupons'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Pages'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Media'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Menus'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Reports'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Users'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Vendors'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Localization'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Settings'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Invoice'),1)
-  //  }
-  //  else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Dashboard'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Produits'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Sales'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Coupons'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Pages'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Media'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Menus'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Reports'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Users'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Vendors'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Localization'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Settings'),1)
-  //   this.menuItems.splice(this.menuItems.findIndex(x=>x.title=='Invoice'),1)
-  //  }
+   }
+   else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+    this.navServices.itemsArtisan.subscribe(menuItems => {
+      this.menuItems = menuItems;
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          menuItems.filter(items => {
+            if (items.path === event.url)
+              this.setNavActive(items)
+            if (!items.children) return false
+            items.children.filter(subItems => {
+              if (subItems.path === event.url)
+                this.setNavActive(subItems) 
+              if (!subItems.children) return false
+              subItems.children.filter(subSubItems => {
+                if (subSubItems.path === event.url)    
+                  this.setNavActive(subSubItems)
+              })
+            })
+          })
+        }
+      })
+    })
+   }
 
    
   }
