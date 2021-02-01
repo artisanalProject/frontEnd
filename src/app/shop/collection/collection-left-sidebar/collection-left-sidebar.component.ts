@@ -44,7 +44,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.category = params.category ? params.category : null;
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
         this.pageNo = params.page ? params.page : this.pageNo;
-
+        this.marque = params.marque ? params.marque : null;
         // Get Filtered Products..
         this.productService.filterProducts(this.tags).subscribe(response => {         
           // Sorting Filter
@@ -70,7 +70,10 @@ export class CollectionLeftSidebarComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products=>{
       this.products = products
-    })
+    },err=>{},()=> console.log(this.products));
+    
+  ;
+    
   }
 
 

@@ -38,13 +38,13 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.cartItems.subscribe(response => this.products = response);
-    // this.getTotal.subscribe(amount => this.amount = amount);
+   this.getTotal.subscribe(amount => this.amount = amount);
     this.initConfig();
   }
 
-  // public get getTotal(): Observable<number> {
-  //   return this.productService.cartTotalAmount();
-  // }
+  public get getTotal(): Observable<number> {
+    return this.productService.cartTotalAmount();
+  }
 
   // Stripe Payment Gateway
   stripeCheckout() {
@@ -92,13 +92,13 @@ export class CheckoutComponent implements OnInit {
             size:  'small', // small | medium | large | responsive
             shape: 'rect', // pill | rect
         },
-        // onApprove: (data, actions) => {
-        //     this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal);
-        //     console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        //     actions.order.get().then(details => {
-        //         console.log('onApprove - you can get full order details inside onApprove: ', details);
-        //     });
-        // },
+        onApprove: (data, actions) => {
+            this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal);
+            console.log('onApprove - transaction was approved, but not authorized', data, actions);
+            actions.order.get().then(details => {
+                console.log('onApprove - you can get full order details inside onApprove: ', details);
+            });
+        },
         onClientAuthorization: (data) => {
             console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         },

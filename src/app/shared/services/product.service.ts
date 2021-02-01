@@ -183,6 +183,8 @@ export class ProductService {
       if (items.id === product._id) {
         const qty = state.cart[index].quantity + quantity
         const stock = this.calculateStockCounts(state.cart[index], quantity)
+       
+        
         if (qty !== 0 && stock) {
           state.cart[index].quantity = qty
         }
@@ -194,8 +196,13 @@ export class ProductService {
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
+    
     const qty = product.quantity + quantity
     const stock = product.stock
+    console.log(qty);
+    console.log(stock);
+    
+    
     if (stock < qty || stock == 0) {
       this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
       return false
