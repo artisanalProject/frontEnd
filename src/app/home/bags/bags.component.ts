@@ -83,7 +83,7 @@ export class BagsComponent implements OnInit, OnDestroy {
   getCollectionProducts(collection) {
     if(collection=="NEW PRODUCTS"){
       return this.products.sort((a,b)=>new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
-    }else{
+    }else{  
       return this.products.sort((a,b)=>b.sellingNumber - a.sellingNumber)
    
     }
