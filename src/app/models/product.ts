@@ -6,7 +6,8 @@ export class Product {
     _id :number;
     name: string;
     price: number;
-    quantity: number;
+    stock: number;
+    quantity:number;
     images: string;
     status: string;
     createdByAdmin: boolean;

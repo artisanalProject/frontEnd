@@ -98,7 +98,7 @@ export class ProductService {
 
   // Add to Wishlist
   public addToWishlist(product): any {
-    const wishlistItem = state.wishlist.find(item => item.id === product._id)
+    const wishlistItem = state.wishlist.find(item => item._id === product._id)
     if (!wishlistItem) {
       state.wishlist.push({
         ...product
@@ -134,7 +134,7 @@ export class ProductService {
 
   // Add to Compare
   public addToCompare(product): any {
-    const compareItem = state.compare.find(item => item.id === product._id)
+    const compareItem = state.compare.find(item => item._id === product._id)
     if (!compareItem) {
       state.compare.push({
         ...product
@@ -170,7 +170,7 @@ export class ProductService {
 
   // Add to Cart
   public addToCart(product): any {
-    const cartItem = state.cart.find(item => item.id === product._id);
+    const cartItem = state.cart.find(item => item._id === product._id);
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
     const stock = this.calculateStockCounts(items, qty);
@@ -194,7 +194,7 @@ export class ProductService {
   // Update Cart Quantity
   public updateCartQuantity(product: Product, quantity: number): Product | boolean {
     return state.cart.find((items, index) => {
-      if (items.id === product._id) {
+      if (items._id === product._id) {
         const qty = state.cart[index].quantity + quantity
         const stock = this.calculateStockCounts(state.cart[index], quantity)
        
@@ -210,8 +210,11 @@ export class ProductService {
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
+    console.log(product);
     
-    const qty = product.quantity + quantity
+    console.log(product.quantity);
+    
+    const qty = product.quantity+quantity
     const stock = product.stock
     console.log(qty);
     console.log(stock);
