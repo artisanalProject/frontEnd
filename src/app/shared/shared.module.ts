@@ -24,6 +24,7 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { MarquesComponent } from './components/marques/marques.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ProductBoxOneComponent } from './components/product/product-box-one/product-box-one.component';
 import { ProductBoxTwoComponent } from './components/product/product-box-two/product-box-two.component';
@@ -53,7 +54,6 @@ import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component'
 
 // Pipes
 import { DiscountPipe } from './pipes/discount.pipe';
-import { MarquesComponent } from './components/marques/marques.component';
 import { BestSellerVerticalComponent } from './components/product/best-seller-vertical/best-seller-vertical.component';
 
 @NgModule({
@@ -144,6 +144,7 @@ import { BestSellerVerticalComponent } from './components/product/best-seller-ve
     LayoutBoxComponent,
     TapToTopComponent,
     DiscountPipe,
+    MarquesComponent,
     BestSellerVerticalComponent
 
   ]

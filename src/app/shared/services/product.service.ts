@@ -67,6 +67,10 @@ export class ProductService {
   public updateProduct(id,product){
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
+
+  public getProductByCategory(idCategory) :Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
+  }
   // Get Products By Slug
   // public getProductBySlug(slug: string): Observable<Product> {
   //   return this.products.pipe(map(items => { 
@@ -94,7 +98,7 @@ export class ProductService {
 
   // Add to Wishlist
   public addToWishlist(product): any {
-    const wishlistItem = state.wishlist.find(item => item.id === product.id)
+    const wishlistItem = state.wishlist.find(item => item._id === product._id)
     if (!wishlistItem) {
       state.wishlist.push({
         ...product
@@ -130,7 +134,7 @@ export class ProductService {
 
   // Add to Compare
   public addToCompare(product): any {
-    const compareItem = state.compare.find(item => item.id === product.id)
+    const compareItem = state.compare.find(item => item._id === product._id)
     if (!compareItem) {
       state.compare.push({
         ...product
@@ -166,7 +170,7 @@ export class ProductService {
 
   // Add to Cart
   public addToCart(product): any {
-    const cartItem = state.cart.find(item => item.id === product.id);
+    const cartItem = state.cart.find(item => item._id === product._id);
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
     const stock = this.calculateStockCounts(items, qty);
@@ -188,24 +192,34 @@ export class ProductService {
   }
 
   // Update Cart Quantity
-  // public updateCartQuantity(product: Product, quantity: number): Product | boolean {
-  //   return state.cart.find((items, index) => {
-  //     if (items.id === product.id) {
-  //       const qty = state.cart[index].quantity + quantity
-  //       const stock = this.calculateStockCounts(state.cart[index], quantity)
-  //       if (qty !== 0 && stock) {
-  //         state.cart[index].quantity = qty
-  //       }
-  //       localStorage.setItem("cartItems", JSON.stringify(state.cart));
-  //       return true
-  //     }
-  //   })
-  // }
+  public updateCartQuantity(product: Product, quantity: number): Product | boolean {
+    return state.cart.find((items, index) => {
+      if (items._id === product._id) {
+        const qty = state.cart[index].quantity + quantity
+        const stock = this.calculateStockCounts(state.cart[index], quantity)
+       
+        
+        if (qty !== 0 && stock) {
+          state.cart[index].quantity = qty
+        }
+        localStorage.setItem("cartItems", JSON.stringify(state.cart));
+        return true
+      }
+    })
+  }
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
-    const qty = product.quantity + quantity
+    console.log(product);
+    
+    console.log(product.quantity);
+    
+    const qty = product.quantity+quantity
     const stock = product.stock
+    console.log(qty);
+    console.log(stock);
+    
+    
     if (stock < qty || stock == 0) {
       this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
       return false
@@ -222,17 +236,17 @@ export class ProductService {
   }
 
   // Total amount 
-  // public cartTotalAmount(): Observable<number> {
-  //   return this.cartItems.pipe(map((product: Product[]) => {
-  //     return product.reduce((prev, curr: Product) => {
-  //       let price = curr.price;
-  //       if(curr.discount) {
-  //         price = curr.price - (curr.price * curr.discount / 100)
-  //       }
-  //       return (prev + price * curr.quantity) * this.Currency.price;
-  //     }, 0);
-  //   }));
-  // }
+  public cartTotalAmount(): Observable<number> {
+    return this.cartItems.pipe(map((product: Product[]) => {
+      return product.reduce((prev, curr: Product) => {
+        let price = curr.price;
+        if(curr.remise) {
+          price = curr.price - (curr.price * curr.remise / 100)
+        }
+        return (prev + price * curr.quantity) * this.Currency.price;
+      }, 0);
+    }));
+  }
 
   /*
     ---------------------------------------------

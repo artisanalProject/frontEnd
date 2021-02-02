@@ -11,27 +11,27 @@ import { Product } from "../../models/product";
 export class CartComponent implements OnInit {
 
   public products: Product[] = [];
-
   constructor(public productService: ProductService) {
-    this.productService.cartItems.subscribe(response => this.products = response);
+   
   }
 
   ngOnInit(): void {
+    this.productService.cartItems.subscribe(response => this.products = response);
   }
 
-  // public get getTotal(): Observable<number> {
-  //   return this.productService.cartTotalAmount();
-  // }
+  public get getTotal(): Observable<number> {
+    return this.productService.cartTotalAmount();
+  }
 
   // Increament
-  // increment(product, qty = 1) {
-  //   this.productService.updateCartQuantity(product, qty);
-  // }
+  increment(product, qty = 1) {
+    this.productService.updateCartQuantity(product, qty);
+  }
 
   // Decrement
-  // decrement(product, qty = -1) {
-  //   this.productService.updateCartQuantity(product, qty);
-  // }
+  decrement(product, qty = -1) {
+    this.productService.updateCartQuantity(product, qty);
+  }
 
   public removeItem(product: any) {
     this.productService.removeCartItem(product);

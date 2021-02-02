@@ -48,14 +48,15 @@
   </div>
   <div class="product-detail">
     <div>
-      <bar-rating [rate]="5" [readOnly]="true"></bar-rating>
+      <!-- <bar-rating [rate]="5" [readOnly]="true"></bar-rating> -->
       <a [routerLink]="['/shop/product/left/sidebar/,product?._id']">
         <h6>{{ product?.name | titlecase }}</h6>
       </a>
       <p>{{ product?.description }}</p>
+       
       <h4>
-        {{ product?.price * currency?.price | discount:product | currency:currency?.currency:'symbol' }}
-        <del *ngIf="product?.remise"><span class="money"> {{ product?.price * currency?.price | currency:currency?.currency:'symbol' }}</span></del>
+        {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency:currency?.currency:'symbol'}}
+        <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency:currency?.currency:'symbol' }}</span></del>
       </h4>
       <!-- I comment this section -->
       <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">

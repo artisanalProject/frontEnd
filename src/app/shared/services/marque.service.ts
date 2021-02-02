@@ -15,8 +15,8 @@ export class MarqueService {
   public addMarque(marque){
     return this.http.post(this.baseUrl+"/marque/addMarque",marque)
   }
-  public getMarques(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrl+"/marque/getMarques")
+  public getMarques(): Observable<Marque[]> {
+    return this.http.get<Marque[]>(this.baseUrl+"/marque/getMarques")
   }
   public deleteMarque(id){
     return this.http.delete(this.baseUrl+"/marque/deletMarque/"+id)

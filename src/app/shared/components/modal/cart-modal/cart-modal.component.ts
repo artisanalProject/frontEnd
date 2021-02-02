@@ -63,6 +63,7 @@ export class CartModalComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+
   ngOnDestroy() {
     if(this.modalOpen){
       this.modalService.dismissAll();

@@ -15,7 +15,7 @@
                     <div class="media-body align-self-center">
                       <!-- <bar-rating [rate]="5" [readOnly]="true"></bar-rating> -->
                       <a [routerLink]="['/shop/product/left/sidebar/', product._id]">
-                      <h6>{{ product.title | titlecase }}</h6></a>
+                      <h6>{{ product.name | titlecase }}</h6></a>
                       <h4>
                         {{ product?.price * productService.Currency?.price | discount:product | currency:productService.Currency?.currency:'symbol' }}
                         <del *ngIf="product?.remise">
@@ -39,7 +39,7 @@
                     <div class="media-body align-self-center">
                       <!-- <bar-rating [rate]="5" [readOnly]="true"></bar-rating> -->
                       <a [routerLink]="['/shop/product/left/sidebar/', product._id]">
-                      <h6>{{ product.title | titlecase }}</h6></a>
+                      <h6>{{ product.name | titlecase }}</h6></a>
                       <h4>
                         {{ product?.price * productService.Currency?.price | discount:product | currency:productService.Currency?.currency:'symbol' }}
                         <del *ngIf="product?.remise">

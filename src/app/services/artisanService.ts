@@ -11,11 +11,14 @@ connectedUser;
 httpHeaders;
 options;
     constructor(private http:HttpClient) { 
-      this.connectedUser=JSON.parse(localStorage.getItem('connectedUser'));
+      if(JSON.parse(localStorage.getItem('connectedUser'))){
+        this.connectedUser=JSON.parse(localStorage.getItem('connectedUser'));
         this.httpHeaders= new HttpHeaders({
             'Authorization':'Bearer '+this.connectedUser.token
         });
          this.options={headers:this.httpHeaders}
+      }
+   
     }
 
 register(body){

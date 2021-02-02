@@ -65,7 +65,7 @@ export class DigitalAddComponent implements OnInit {
       name: new FormControl(),
       price: new FormControl(),
       reference: new FormControl(),
-      quantity: new FormControl(),
+      stock: new FormControl(),
       category: new FormControl(),
       marque: new FormControl(),
     //  collections: new FormControl(),
@@ -135,7 +135,7 @@ addProduct():void{
     this.formData.set('reference',data.reference)
     this.formData.set('category',data.category)
     this.formData.set('artisant',data.artisant)
-    this.formData.set('quantity',data.quantity)
+    this.formData.set('stock',data.stock)
     this.formData.set('marque',data.marque)
     this.formData.set('collections',data.collections)
     this.formData.set('description',data.description)

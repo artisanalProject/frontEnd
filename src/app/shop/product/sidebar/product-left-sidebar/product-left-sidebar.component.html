@@ -12,15 +12,12 @@
                     <i class="fa fa-angle-left" aria-hidden="true"></i> back
                   </span>
                 </div>
-                <app-categories></app-categories>
             </div>
             <div class="collection-filter-block">
                 <app-services></app-services>
             </div>
-                <!-- <app-product-box-vertical-slider 
-                  [title]="'New product'" 
-                  [type]="product?.type">
-                </app-product-box-vertical-slider> -->
+            <app-product-box-vertical-slider [title]="'New products'">
+            </app-product-box-vertical-slider>
           </div>
         </div>
         <div class="col-lg-9 col-sm-12 col-xs-12">
@@ -99,8 +96,8 @@
                           </li>
                       </ul>
                     </div> -->
-                    <h5 class="avalibility" *ngIf="counter <= product?.quantity"><span>In Stock</span></h5>
-                    <h5 class="avalibility" *ngIf="counter > product?.quantity"><span>Out of Stock</span></h5>
+                    <h5 class="avalibility" *ngIf="counter <= product?.stock"><span>In Stock</span></h5>
+                    <h5 class="avalibility" *ngIf="counter > product?.stock"><span>Out of Stock</span></h5>
                     <h6 class="product-title">quantity</h6>
                     <div class="qty-box">
                       <div class="input-group">
@@ -119,8 +116,8 @@
                     </div>
                   </div>
                   <div class="product-buttons">
-                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.quantity" (click)="addToCart(product)">add to cart</a>
-                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.quantity" (click)="buyNow(product)">buy now</a>
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.stock" (click)="addToCart(product)">add to cart</a>
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.stock" (click)="buyNow(product)">buy now</a>
                   </div>
                   <div class="border-product">
                     <h6 class="product-title">product details</h6>
@@ -138,9 +135,9 @@
                       </form>
                     </div>
                   </div>
-                  <div class="border-product">
+                  <!-- <div class="border-product">
                     <app-countdown [date]="'Apr 21 2021'"></app-countdown>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -163,7 +160,7 @@
                           </div>
                         </ng-template>
                     </ngb-tab>
-                    <ngb-tab>
+                    <!-- <ngb-tab>
                         <ng-template ngbTabTitle>Write Review</ng-template>
                         <ng-template ngbTabContent>
                           <form class="theme-form">
@@ -204,7 +201,7 @@
                             </div>
                           </form>
                         </ng-template>
-                    </ngb-tab>
+                    </ngb-tab> -->
                 </ngb-tabset>
               </div>
             </div>
@@ -213,7 +210,7 @@
       </div>
     </div>
   </div>
-  <!-- <app-related-product [type]="product?.type"></app-related-product> -->
+  <app-related-product [type]="product?.category.name"></app-related-product>
 </section>
 <app-size-modal #sizeChart [product]="product"></app-size-modal>
 <!-- Section ends -->
