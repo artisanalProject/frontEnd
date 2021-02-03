@@ -31,7 +31,7 @@ export class BagsComponent implements OnInit, OnDestroy {
   public sliders = [{
     title: 'Artisanal',
     subTitle: 'Welcome',
-    image: 'assets/images/slider/banner5.jpg'
+    image: 'assets/images/slider/banner2.jpg'
   }, {
     title: 'Artisanal',
     subTitle: 'Welcome',
