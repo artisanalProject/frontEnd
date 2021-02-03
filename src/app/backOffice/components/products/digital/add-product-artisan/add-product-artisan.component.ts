@@ -141,7 +141,7 @@ export class AddProductArtisanComponent implements OnInit {
      this.formData.set('reference',data.reference)
      this.formData.set('category',data.category)
      this.formData.set('artisan',data.artisan)
-     this.formData.set('quantity',data.quantity)
+     this.formData.set('stock',data.quantity)
      this.formData.set('marque',data.marque)
      this.formData.set('collections',data.collections)
      this.formData.set('description',data.description)

@@ -74,19 +74,7 @@
       <mat-error>Ce champs est obligatoire!</mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" floatLabel="always">
-    <mat-label>Artisant</mat-label>
-    <mat-select formControlName="artisant" [(ngModel)]="artisant"  >
-            <ng-container *ngFor="let a of artisantList ">
-                <mat-option [value]="a._id">
-                   {{a.name}}
-                </mat-option>
-            </ng-container>
-            
-    </mat-select>
-   
-    <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field>
+
 <!-- <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
   <mat-select formControlName="collections" [(ngModel)]="collection" >
@@ -100,7 +88,6 @@
  
   <mat-error>Ce champs est obligatoire!</mat-error>
 </mat-form-field> -->
-<mat-checkbox color="primary"formControlName="new"  [(ngModel)]="checked" value="true" >nouveau produit</mat-checkbox>
 
 
 <ngx-dropzone (change)="onSelect($event)">

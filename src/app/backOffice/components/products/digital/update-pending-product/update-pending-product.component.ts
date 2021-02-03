@@ -112,7 +112,7 @@ export class UpdatePendingProductComponent implements OnInit {
           price: new FormControl(this.product.price),
           remise: new FormControl(this.product.remise),
           reference: new FormControl(this.product.ref),
-          quantity: new FormControl(this.product.quantity),
+          quantity: new FormControl(this.product.stock),
           category: new FormControl(this.product.category),
           marque: new FormControl(this.product.marque),
           // collections: new FormControl(this.product.collections),
@@ -136,7 +136,7 @@ export class UpdatePendingProductComponent implements OnInit {
        this.formData.set('reference',data.reference)
        this.formData.set('category',data.category)
        this.formData.set('artisan',data.artisan)
-       this.formData.set('quantity',data.quantity)
+       this.formData.set('stock',data.quantity)
        this.formData.set('marque',data.marque)
        this.formData.set('collections',data.collections)
        this.formData.set('description',data.description)
@@ -168,7 +168,7 @@ this.ps.updateProduct(this.route.snapshot.params.id,this.formData).subscribe(
         duration        : 2000
     });
     // // Change the location with new one
-    this.router.navigateByUrl('/products/productsArtisanInShop')
+    this.router.navigateByUrl('/products/pending-products')
     }
     else {
       this._snackBar.open('Réessayez', 'OK', {
