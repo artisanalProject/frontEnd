@@ -213,7 +213,7 @@ export class ProductService {
     console.log(product);
     
     console.log(product.quantity);
-    
+     
     const qty = product.quantity+quantity
     const stock = product.stock
     console.log(qty);

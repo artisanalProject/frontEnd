@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public navServices: NavService,private artisanService:artisanService,
     private router : Router,
-    private productService : ProductService
+    public productService : ProductService
     ) { }
 
   collapseSidebar() {

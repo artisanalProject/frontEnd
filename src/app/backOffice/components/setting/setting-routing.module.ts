@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { PendingRegistrationComponent } from './pending-registration/pending-registration.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,13 @@ const routes: Routes = [
     component: PendingRegistrationComponent,
     data: {
       title: "En attente d'activation",
+    }
+  },
+  {
+    path: 'Notifications',
+    component: NotificationsComponent,
+    data: {
+      title: "Notifications",
     }
   },
   
