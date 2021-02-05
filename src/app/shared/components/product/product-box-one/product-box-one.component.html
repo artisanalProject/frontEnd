@@ -1,8 +1,8 @@
 <div *ngIf="!loader">
   <div class="img-wrapper">
     <div class="lable-block">
-      <span class="lable3" *ngIf="product.topProduct">new</span>
-      <span class="lable4" *ngIf="product.status=='en stock'">on sale</span>
+      <span class="lable3" *ngIf="product.topProduct">Top</span>
+      <span class="lable4" *ngIf="product.stock>0">on sale</span>
     </div>
     <div class="front">
       <a [routerLink]="['/shop/product/left/sidebar/',product._id]">
@@ -48,7 +48,7 @@
   </div>
   <div class="product-detail">
     <div>
-      <!-- <bar-rating [rate]="5" [readOnly]="true"></bar-rating> -->
+      <bar-rating [rate]="5" [readOnly]="true"></bar-rating>
       <a [routerLink]="['/shop/product/left/sidebar/,product?._id']">
         <h6>{{ product?.name | titlecase }}</h6>
       </a>

@@ -58,12 +58,18 @@ export class NavService {
 		// 				{ path: '/products/refused-requests-product', title: 'Produits réfusés', type: 'link' },
 		// 	]
 		// },
-		// {
-		// 	title: 'Sales', icon: 'dollar-sign', type: 'sub', active: false, children: [
-		// 		{ path: '/sales/orders', title: 'Orders', type: 'link' },
-		// 		{ path: '/sales/transactions', title: 'Transactions', type: 'link' },
-		// 	]
-		// },
+		{
+			title: 'Sales', icon: 'dollar-sign', type: 'sub', active: false, children: [
+				{ path: '/sales/orders', title: 'Orders', type: 'link' },
+				{ path: '/sales/transactions', title: 'Transactions', type: 'link' },
+			]
+		},
+		{
+		
+			
+				 path: '/sales/transactions', title: 'contacts', type: 'link' 
+		
+		},
 		// {
 		// 	title: 'Coupons', icon: 'tag', type: 'sub', active: false, children: [
 		// 		{ path: '/coupons/list-coupons', title: 'List Coupons', type: 'link' },
@@ -206,8 +212,8 @@ export class NavService {
 
 
 	// Array
-	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
-	itemsArtisan = new BehaviorSubject<Menu[]>(this.MENUITEMSARTISAN);
+	items = new BehaviorSubject<Menu[]>(this.MENUITEMS); // admin
+	itemsArtisan = new BehaviorSubject<Menu[]>(this.MENUITEMSARTISAN); // artisan
 	
 
 

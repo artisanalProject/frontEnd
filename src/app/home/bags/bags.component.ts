@@ -21,7 +21,7 @@ export class BagsComponent implements OnInit, OnDestroy {
   collections=["NEW PRODUCTS","BEST SELLERS"]
   constructor(public productService: ProductService) {
     this.productService.getProducts().subscribe(response => {
-      this.products = JSON.parse(JSON.stringify(response))
+      this.products = JSON.parse(JSON.stringify(response)).filter(x=>x.status=="en stock")
     },err=>{},
     ()=>{console.log(this.products);
     });
@@ -31,7 +31,7 @@ export class BagsComponent implements OnInit, OnDestroy {
   public sliders = [{
     title: 'Artisanal',
     subTitle: 'Welcome',
-    image: 'assets/images/slider/banner5.jpg'
+    image: 'assets/images/slider/banner2.jpg'
   }, {
     title: 'Artisanal',
     subTitle: 'Welcome',
