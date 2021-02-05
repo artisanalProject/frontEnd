@@ -21,7 +21,7 @@ export class BagsComponent implements OnInit, OnDestroy {
   collections=["NEW PRODUCTS","BEST SELLERS"]
   constructor(public productService: ProductService) {
     this.productService.getProducts().subscribe(response => {
-      this.products = JSON.parse(JSON.stringify(response))
+      this.products = JSON.parse(JSON.stringify(response)).filter(x=>x.status=="en stock")
     },err=>{},
     ()=>{console.log(this.products);
     });
