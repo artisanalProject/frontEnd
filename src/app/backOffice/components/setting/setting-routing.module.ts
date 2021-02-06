@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { PendingRegistrationComponent } from './pending-registration/pending-registration.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { DetailRequestedProductComponent } from './detail-requested-product/detail-requested-product.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,13 @@ const routes: Routes = [
     component: NotificationsComponent,
     data: {
       title: "Notifications",
+    }
+  },
+  {
+    path: 'details-product/:id',
+    component: DetailRequestedProductComponent,
+    data: {
+      title: "Product Details",
     }
   },
   

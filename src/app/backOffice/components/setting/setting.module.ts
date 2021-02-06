@@ -24,9 +24,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DetailRequestedProductComponent } from './detail-requested-product/detail-requested-product.component';
 
 @NgModule({
-  declarations: [ProfileComponent, PendingRegistrationComponent, NotificationsComponent],
+  declarations: [ProfileComponent, PendingRegistrationComponent, NotificationsComponent, DetailRequestedProductComponent],
   imports: [
     CommonModule,
     NgbModule,
