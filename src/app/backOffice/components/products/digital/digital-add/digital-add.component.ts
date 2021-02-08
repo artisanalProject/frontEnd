@@ -69,7 +69,7 @@ export class DigitalAddComponent implements OnInit {
       category: new FormControl(),
       marque: new FormControl(),
     //  collections: new FormControl(),
-   //   artisant: new FormControl(),
+      artisant: new FormControl(),
       description: new FormControl(),
     //  new: new FormControl(),
       remise: new FormControl()

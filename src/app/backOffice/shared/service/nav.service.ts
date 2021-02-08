@@ -64,6 +64,7 @@ export class NavService {
 				{ path: '/sales/transactions', title: 'Transactions', type: 'link' },
 			]
 		},
+		{  path: '/vendors/list-vendors', icon: 'users', title: 'Artisant', type: 'link' },
 		{
 		
 			

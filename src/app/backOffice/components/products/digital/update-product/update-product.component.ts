@@ -59,7 +59,9 @@ export class UpdateProductComponent implements OnInit {
      
       },
       err=>{},
-      ()=>{              
+      ()=>{      
+        console.log(this.product);
+                
         this.categorie = this.product.category
      
         this.createProductForm()})  

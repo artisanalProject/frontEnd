@@ -75,19 +75,19 @@
   </mat-form-field>
 
 
-<!-- <mat-form-field appearance="outline" floatLabel="always">
-  <mat-label>Collection</mat-label>
-  <mat-select formControlName="collections" [(ngModel)]="collection" >
-          <ng-container *ngFor="let c of collections ">
-              <mat-option [value]="c._id">
-                 {{c.name}}
+<mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>Artisant</mat-label>
+  <mat-select formControlName="artisant" [(ngModel)]="artisant" >
+          <ng-container *ngFor="let a of artisantList ">
+              <mat-option [value]="a._id">
+                 {{a.name}}
               </mat-option>
           </ng-container>
           
   </mat-select>
  
   <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field> -->
+</mat-form-field>
 
 
 <ngx-dropzone (change)="onSelect($event)">
