@@ -21,6 +21,13 @@ export class Product {
     artisant:Artisant;
     new : boolean;
     sellingNumber:number;
+    rating: [{
+        rateNumber:number,
+        name:string,
+        email:string,
+        subject:string,
+        description:string
+      }]
     public Product (name:string, price:number,remise:number, quantity:number,images:string,status:string,createdByAdmin:boolean,creationDate:Date,category: Category,
         marque:Marque,
         collections: Collections,

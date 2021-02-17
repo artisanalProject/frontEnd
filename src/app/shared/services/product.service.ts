@@ -61,6 +61,9 @@ export class ProductService {
   public deleteProduct(id){
     return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
+  public postReview(id,review){
+    return this.http.post(this.baseUrl+"/product/updateReviews/"+id,review)
+  }
   public getProductById(id) : Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/getProductById/"+id)
   }

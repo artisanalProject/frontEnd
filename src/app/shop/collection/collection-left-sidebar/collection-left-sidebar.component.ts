@@ -23,6 +23,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public tags: any[] = [];
   public category: string;
   public marque : string;
+  public artisant : string;
+
   public pageNo: number = 1;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
@@ -45,6 +47,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
         this.pageNo = params.page ? params.page : this.pageNo;
         this.marque = params.marque ? params.marque : null;
+        this.artisant = params.artisant ? params.artisant : null;
         // Get Filtered Products..
         this.productService.filterProducts(this.tags).subscribe(response => {         
           // Sorting Filter
@@ -56,6 +59,10 @@ export class CollectionLeftSidebarComponent implements OnInit {
             // filter marque
             if(params.marque)
             this.products = this.products.filter(item => item.marque.name == this.marque);
+             
+            // filter artisant
+            if(params.artisant)
+            this.products = this.products.filter(item => item.artisant.name == this.artisant);
            
            
           // Price Filter

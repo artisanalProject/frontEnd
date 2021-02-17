@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-xs-3">
                       <h2 class="td-color">
-                          {{ (product.price | discount:product) * productService?.Currency.price | currency:productService?.Currency.currency:'symbol' }}
+                          {{ (product.price | discount:product) * productService?.Currency.price | currency }}
                       </h2>
                     </div>
                     <div class="col-xs-3">
@@ -52,8 +52,8 @@
               <td>
                   <h2>
                    
-                      {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency:currency?.currency:'symbol'}}
-                      <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency:currency?.currency:'symbol' }}</span></del>
+                      {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency}}
+                      <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency }}</span></del>
                               </h2>
               </td>
               <td>
