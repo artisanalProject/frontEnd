@@ -21,6 +21,7 @@ export class Product {
     artisant:Artisant;
     new : boolean;
     sellingNumber:number;
+    ratingMoyenne: number;
     rating: [{
         rateNumber:number,
         name:string,

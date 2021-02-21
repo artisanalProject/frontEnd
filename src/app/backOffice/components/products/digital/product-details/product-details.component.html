@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="row product-page-main card-body">
+            <div class="col-xl-4">
+                <section>
+                    <ks-carousel [id]="100" [images]="imagesRect" [dotsConfig]="{visible: false}"
+                        [carouselConfig]="{maxHeight: '600px', keyboardEnable: true}"
+                        [previewConfig]="{maxHeight: '125px'}">
+                    </ks-carousel>
+                </section>
+            </div>
+            <div class="col-xl-8">
+                <div class="product-page-details product-right mb-0">
+                    <h2>{{product?.name}}</h2>
+                    <ngb-rating [rate]="ratingValue" [readOnly]="true" class="rating-size-product"></ngb-rating>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Référence du produit: </h6>
+                        <h7 class="mb-0">{{product?.ref}}</h7>
+                    </div>
+                  <hr>
+                  <div>
+                    <h6 class="product-title">Détail du produit</h6>
+                    <h7>{{product?.description}}</h7>
+                  </div>
+                   
+                    <hr>
+                    <div class="product-price digits mt-2">
+                        <h4> Prix :  
+                            {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency:currency?.currency:'symbol'}}
+                            <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency:currency?.currency:'symbol' }}</span></del>
+                          </h4>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Nombre de vente</h6>
+                        <h7>{{product?.sellingNumber}}</h7>
+                    </div>
+                    
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Stock</h6>
+                        <h7>{{product?.stock}}</h7>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Top produit</h6>
+
+                        <h7 *ngIf="product?.topProduct">oui</h7>
+                        <h7 *ngIf="!product?.topProduct">non</h7>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Categorie: </h6>  
+                        <h7>{{product?.category.name}}</h7>
+                    </div>
+                   
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Sous-category   </h6>
+                         <h7>{{product?.marque.name}}</h7>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Date de création  </h6>
+                         <h7>{{product?.creationDate | date }}</h7>
+                    </div>
+                    
+                   
+                   
+                
+                   
+                    <div class="m-t-15">
+                        <button class="btn btn-warning m-r-10" type="button" (click)="update(product)">Modifier</button>
+                        <button type="button" class="btn btn-danger  m-r-10" (click)="delete(product)">supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
