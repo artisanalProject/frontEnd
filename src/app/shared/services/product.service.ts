@@ -70,7 +70,12 @@ export class ProductService {
   public updateProduct(id,product){
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
-
+  public addToFavoris(id){
+    return this.http.get(this.baseUrl+"/product/addToFavoris/"+id)
+  }
+  public removeFromFavoris(id){
+    return this.http.get(this.baseUrl+"/product/removeFromFavoris/"+id)
+  }
   public getProductByCategory(idCategory) :Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
   }

@@ -55,6 +55,16 @@
               <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
                 <mat-icon>edit</mat-icon>
               </button>
+             
+                <button *ngIf="row.topProduct==true" mat-icon-button color="primary" (click)="$event.stopPropagation();removeFromFavoris(row)" >
+                  <mat-icon>star</mat-icon>
+                </button>
+             
+                <button *ngIf="row.topProduct==false" mat-icon-button color="Accent" (click)="$event.stopPropagation();addToFavoris(row)" >
+                  <mat-icon>star_border</mat-icon>
+                </button>
+            
+              
             </td>
     </ng-container>
     <!-- <ng-container matColumnDef="editbutton">
