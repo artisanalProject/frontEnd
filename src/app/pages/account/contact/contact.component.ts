@@ -9,7 +9,7 @@ import { ContactService } from 'src/app/shared/services/contact.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-
+  showSnackBar = false
   constructor(private cs : ContactService,private snackbarService: SnackbarService) { }
   contactForm: FormGroup
   ngOnInit(): void {
@@ -23,7 +23,9 @@ export class ContactComponent implements OnInit {
   }
   sendMessage(){
    this.cs.addContact(this.contactForm.value).subscribe(res=>{},err=>{},()=>{
-    
+     setTimeout(()=>{ this.showSnackBar=true}, 3000)
+     this.showSnackBar=false
+     
    })
     
   }

@@ -8,7 +8,7 @@ export class Product {
     price: number;
     stock: number;
     quantity:number;
-    images: string;
+    images: string[];
     status: string;
     createdByAdmin: boolean;
     description:string;
@@ -38,7 +38,6 @@ export class Product {
             this.name= name;
             this.price= price;
             this.quantity = quantity;
-            this.images = images;
             this.status = status;
             this.creationDate=creationDate;
             this.createdByAdmin = createdByAdmin;

@@ -15,18 +15,19 @@ import { DialogContentExampleDialogComponent } from '../dialog-content-example-d
 export class ProductDetailsComponent implements OnInit {
   product_id:string;
   product : Product
-  ratingValue : number
+  ratingValue : number;
+  public ImageSrc : string
   //old one 
   public closeResult: string;
   public counter: number = 1;
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
-
-  public imagesRect: Image[] = [
-    new Image(0, { img: 'assets/images/pro3/2.jpg' }, { img: 'assets/images/pro3/1.jpg' }),
-    new Image(1, { img: 'assets/images/pro3/27.jpg' }, { img: 'assets/images/pro3/27.jpg' }),
-    new Image(2, { img: 'assets/images/pro3/1.jpg' }, { img: 'assets/images/pro3/1.jpg' }),
-    new Image(3, { img: 'assets/images/pro3/2.jpg' }, { img: 'assets/images/pro3/2.jpg' })]
+ 
+  public imagesRect: Image[] = []
+    // new Image(0, { img: 'assets/images/pro3/2.jpg' }, { img: 'assets/images/pro3/1.jpg' }),
+    // new Image(1, { img: 'assets/images/pro3/27.jpg' }, { img: 'assets/images/pro3/27.jpg' }),
+    // new Image(2, { img: 'assets/images/pro3/1.jpg' }, { img: 'assets/images/pro3/1.jpg' }),
+    // new Image(3, { img: 'assets/images/pro3/2.jpg' }, { img: 'assets/images/pro3/2.jpg' })]
 //end of 
   
   constructor(private route: ActivatedRoute,public dialog: MatDialog,
@@ -44,7 +45,11 @@ export class ProductDetailsComponent implements OnInit {
       },
       err=>{},
       ()=>{   
-        console.log(this.product);
+       this.product.images.forEach((element,i)=> {
+         console.log(element);
+         
+         this.imagesRect.push(new Image(i, { img: '/api/'+element}, { img: '/api/'+element}))
+       });
            
        this.ratingValue = this.product.ratingMoyenne
        console.log(this.ratingValue);

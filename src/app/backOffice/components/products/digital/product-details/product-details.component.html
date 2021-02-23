@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row product-page-main card-body">
             <div class="col-xl-4">
-                <section>
+                <section *ngIf="imagesRect.length != 0">
                     <ks-carousel [id]="100" [images]="imagesRect" [dotsConfig]="{visible: false}"
                         [carouselConfig]="{maxHeight: '600px', keyboardEnable: true}"
                         [previewConfig]="{maxHeight: '125px'}">
