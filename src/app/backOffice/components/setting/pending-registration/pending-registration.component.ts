@@ -25,7 +25,7 @@ export class PendingRegistrationComponent implements OnInit {
     this.artisanService.activateAccount(id).subscribe(res=>{},err=>{},()=>{
       this._snackBar.open('Compte Activé, un mail est envoyé à '+name,'ok',{
         duration: 10000,
-        verticalPosition: 'top',
+        verticalPosition: 'top',  
         horizontalPosition: 'center',
       });
       this.ngOnInit()

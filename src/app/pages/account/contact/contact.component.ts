@@ -23,7 +23,7 @@ export class ContactComponent implements OnInit {
   }
   sendMessage(){
    this.cs.addContact(this.contactForm.value).subscribe(res=>{},err=>{},()=>{
-    
+    this.cs.nbNotifEmails(); 
    })
     
   }

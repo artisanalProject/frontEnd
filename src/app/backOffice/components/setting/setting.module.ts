@@ -25,9 +25,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DetailRequestedProductComponent } from './detail-requested-product/detail-requested-product.component';
+import { IncomingMessagesComponent } from './incoming-messages/incoming-messages.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
-  declarations: [ProfileComponent, PendingRegistrationComponent, NotificationsComponent, DetailRequestedProductComponent],
+  declarations: [ProfileComponent, PendingRegistrationComponent, NotificationsComponent, DetailRequestedProductComponent, IncomingMessagesComponent, MessageComponent],
   imports: [
     CommonModule,
     NgbModule,

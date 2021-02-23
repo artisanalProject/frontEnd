@@ -51,13 +51,14 @@
                         <app-feather-icons [routerLink]="'/settings/pendingRegistration'" [icon]="'user-plus'"></app-feather-icons><span class="dot"></span>
                 </li>
                 <li class="onhover-dropdown">
-                    <span class="badge badge-pill badge-primary pull-right notification-badge" [routerLink]="'/settings/Notifications'">{{productService.notifProducts.value}}</span>
-                    <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
+                    <span class="badge badge-pill badge-primary pull-right notification-badge" >{{productService.notifProducts.value}}</span>
+                    <app-feather-icons [icon]="'bell'" [routerLink]="'/settings/Notifications'"></app-feather-icons><span class="dot"></span>
                      
                 </li>
-                <li><a>
+                <li class="onhover-dropdown"><a>
+                        <span class="badge badge-pill badge-primary pull-right notification-badge">{{contactService.notifEmails.value}}</span>
                         <app-feather-icons class="right_side_toggle" [icon]="'message-square'"
-                            (click)="right_side_bar()">
+                            [routerLink]="'/settings/messages'">
                         </app-feather-icons><span class="dot"></span>
                     </a></li>
                 <li class="onhover-dropdown">

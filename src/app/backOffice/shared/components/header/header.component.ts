@@ -3,6 +3,7 @@ import { NavService } from '../../service/nav.service';
 import { artisanService } from 'src/app/services/artisanService';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ContactService } from 'src/app/shared/services/contact.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public navServices: NavService,private artisanService:artisanService,
     private router : Router,
-    public productService : ProductService
+    public productService : ProductService,
+    public contactService : ContactService
     ) { }
 
   collapseSidebar() {
@@ -38,6 +40,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() { 
     this.productService.nbNotifProducts();
+    this.contactService.nbNotifEmails();
     this.artisanService.NotActivatedAccounts().subscribe(res=>{this.notActivated=JSON.parse(JSON.stringify(res))},
     err=>{},
     ()=>{
