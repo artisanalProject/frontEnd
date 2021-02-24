@@ -4,6 +4,7 @@ import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../..
 import { Product } from '../../../../models/product';
 import { ProductService } from '../../../../shared/services/product.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -17,17 +18,26 @@ export class ProductLeftSidebarComponent implements OnInit {
   public activeSlide: any = 0;
   public selectedSize: any;
   public mobileSidebar: boolean = false;
-
+  public Product : Product
+  starRating = 0
   @ViewChild("sizeChart") SizeChart: SizeModalComponent;
   
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
   idProduct;
+  ReviewForm : FormGroup
   constructor(private route: ActivatedRoute, private router: Router,
     public productService: ProductService) { 
     }
 
   ngOnInit(): void {
+    this.ReviewForm = new FormGroup({
+      name : new FormControl(),
+      email:new FormControl(),
+      description: new FormControl(),
+      subject: new FormControl(),
+      rateNumber : new FormControl(this.starRating)
+    })
    
     this.idProduct = this.route.snapshot.params['id'];
     this.productService.getProductById(this.idProduct).subscribe(product=>{
@@ -41,7 +51,10 @@ export class ProductLeftSidebarComponent implements OnInit {
 
    
   }
-
+  showRate(){
+    
+    
+  }
   // Get Product Color
   // Color(variants) {
   //   const uniqColor = []
@@ -69,7 +82,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   // }
   
   // Increament
-  increment() {
+  increment(p) {
     this.counter++ ;
   }
 
@@ -103,5 +116,18 @@ export class ProductLeftSidebarComponent implements OnInit {
   toggleMobileSidebar() {
     this.mobileSidebar = !this.mobileSidebar;
   }
-
+  submitReview(){
+    console.log(this.ReviewForm.value);
+    
+  this.productService.postReview(this.idProduct,this.ReviewForm.value).subscribe(
+    result=>{console.log(result);
+    },
+    err=>{},
+    ()=>{
+      this.ngOnInit()
+    }
+  )
+    
+  }
+  
 }

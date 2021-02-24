@@ -67,13 +67,21 @@ export class ProductService {
   public acceptProduct(id){
     return this.http.delete(this.baseUrl+"/product/acceptProduct/"+id)
   }
+  public postReview(id,review){
+    return this.http.post(this.baseUrl+"/product/updateReviews/"+id,review)
+  }
   public getProductById(id) : Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/getProductById/"+id)
   }
   public updateProduct(id,product){
     return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
   }
-
+  public addToFavoris(id){
+    return this.http.get(this.baseUrl+"/product/addToFavoris/"+id)
+  }
+  public removeFromFavoris(id){
+    return this.http.get(this.baseUrl+"/product/removeFromFavoris/"+id)
+  }
   public getProductByCategory(idCategory) :Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
   }

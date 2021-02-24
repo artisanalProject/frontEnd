@@ -14,7 +14,7 @@ import { AddProductArtisanComponent } from './digital/add-product-artisan/add-pr
 import { ArtisanPendingRequestsComponent } from './digital/artisan-pending-requests/artisan-pending-requests.component';
 import { UpdatePendingProductComponent } from './digital/update-pending-product/update-pending-product.component';
 import { ArtisanRefusedRequestsComponent } from './digital/artisan-refused-requests/artisan-refused-requests.component';
-
+import {ProductDetailsComponent} from './digital/product-details/product-details.component'
 const routes: Routes = [
   {
     path: '',
@@ -114,6 +114,14 @@ const routes: Routes = [
         data: {
           title: "modifier Produit",
           breadcrumb: "modifier Produit"
+        }
+      },
+      {
+        path: 'product-details/:id',
+        component: ProductDetailsComponent,
+        data: {
+          title: "product details",
+          breadcrumb: "product details"
         }
       },
       {

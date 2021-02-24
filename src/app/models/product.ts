@@ -8,7 +8,7 @@ export class Product {
     price: number;
     stock: number;
     quantity:number;
-    images: string;
+    images: string[];
     status: string;
     createdByAdmin: boolean;
     description:string;
@@ -21,6 +21,14 @@ export class Product {
     artisant:Artisant;
     new : boolean;
     sellingNumber:number;
+    ratingMoyenne: number;
+    rating: [{
+        rateNumber:number,
+        name:string,
+        email:string,
+        subject:string,
+        description:string
+      }]
     public Product (name:string, price:number,remise:number, quantity:number,images:string,status:string,createdByAdmin:boolean,creationDate:Date,category: Category,
         marque:Marque,
         collections: Collections,
@@ -30,7 +38,6 @@ export class Product {
             this.name= name;
             this.price= price;
             this.quantity = quantity;
-            this.images = images;
             this.status = status;
             this.creationDate=creationDate;
             this.createdByAdmin = createdByAdmin;

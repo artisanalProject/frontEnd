@@ -22,10 +22,12 @@ export class ProductBoxOneComponent implements OnInit {
   @ViewChild("cartModal") CartModal: CartModalComponent;
 
   public ImageSrc : string
-
+  products: Product[]
+  ratingSum = 0
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+   
     if(this.loader) {
       setTimeout(() => { this.loader = false; }, 2000); // Skeleton Loader
     }
@@ -54,6 +56,7 @@ export class ProductBoxOneComponent implements OnInit {
       }
     })
   }
+  
 
   // Change Variants Image
   ChangeVariantsImage(src) {

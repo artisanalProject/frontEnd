@@ -1,5 +1,7 @@
-import { Injectable, HostListener } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, HostListener, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Category } from 'src/app/models/category';
 
 // Menu
 export interface Menu {
@@ -12,15 +14,23 @@ export interface Menu {
 	badge?: boolean;
 	badgeText?: string;
 	children?: Menu[];
+	queryParams?:string;
 }
 
 @Injectable({
 	providedIn: 'root'
 })
 
-export class NavService {
-
-	constructor() { }
+export class NavService implements OnInit{
+	categorie: any
+	baseUrl="/api";
+	constructor(private http: HttpClient) { }
+	ngOnInit(): void {
+		this.getCategories().subscribe(res=>{this.categorie=res})
+	}
+	public getCategories(): Observable<Category[]> {
+	  return this.http.get<Category[]>(this.baseUrl+"/category/getCategories")
+	}
 
 	public screenWidth: any;
 	public leftMenuToggle: boolean = false;
@@ -45,12 +55,14 @@ export class NavService {
 		
 	];
 
-	LEFTMENUITEMS: Menu[] = [
+	LEFTMENUITEMS: Menu[] =
+	
+	[
 		{
-			title: 'clothing', type: 'sub', megaMenu: true, active: false, children: [
+			title: 'Coutue', type: 'sub', megaMenu: true, active: false, children: [
 			  {
-				  title: 'mens fashion',  type: 'link', active: false, children: [
-					  { path: '/home/fashion', title: 'sports wear',  type: 'link' },
+				  title: 'Sous-categorie',  type: 'link', active: false, children: [
+					  { path: 'shop/collection/left/sidebar', title: 'tapis',  type: 'link' },
 					  { path: '/home/fashion', title: 'top',  type: 'link' },
 					  { path: '/home/fashion', title: 'bottom',  type: 'link' },
 					  { path: '/home/fashion', title: 'ethic wear',  type: 'link' },
@@ -61,100 +73,22 @@ export class NavService {
 					  { path: '/home/fashion', title: 'sports wear',  type: 'link' }
 				  ]
 			  },
-			  {
-				  title: 'women fashion',  type: 'link', active: false, children: [
-					  { path: '/home/fashion', title: 'dresses',  type: 'link' },
-					  { path: '/home/fashion', title: 'skirts',  type: 'link' },
-					  { path: '/home/fashion', title: 'westarn wear',  type: 'link' },
-					  { path: '/home/fashion', title: 'ethic wear',  type: 'link' },
-					  { path: '/home/fashion', title: 'bottom',  type: 'link' },
-					  { path: '/home/fashion', title: 'ethic wear',  type: 'link' },
-					  { path: '/home/fashion', title: 'sports wear',  type: 'link' },
-					  { path: '/home/fashion', title: 'sports wear',  type: 'link' },
-					  { path: '/home/fashion', title: 'bottom wear',  type: 'link' }
-				  ]
-			  },
+			//   {
+			// 	  title: 'women fashion',  type: 'link', active: false, children: [
+			// 		  { path: '/home/fashion', title: 'dresses',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'skirts',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'westarn wear',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'ethic wear',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'bottom',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'ethic wear',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'sports wear',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'sports wear',  type: 'link' },
+			// 		  { path: '/home/fashion', title: 'bottom wear',  type: 'link' }
+			// 	  ]
+			//   },
 			]
 		},
-		{
-			title: 'bags', type: 'sub', active: false, children: [
-			  { path: '/home/fashion', title: 'shopper bags', type: 'link' },
-			  { path: '/home/fashion', title: 'laptop bags', type: 'link' },
-			  { path: '/home/fashion', title: 'clutches', type: 'link' },
-			  {
-				  path: '/home/fashion', title: 'purses', type: 'link', active: false, children: [
-					  { path: '/home/fashion', title: 'purses',  type: 'link' },
-					  { path: '/home/fashion', title: 'wallets',  type: 'link' },
-					  { path: '/home/fashion', title: 'leathers',  type: 'link' },
-					  { path: '/home/fashion', title: 'satchels',  type: 'link' }
-				  ]
-			  },
-			]
-		},
-		{
-			title: 'footwear', type: 'sub', active: false, children: [
-			  { path: '/home/fashion', title: 'sport shoes', type: 'link' },
-			  { path: '/home/fashion', title: 'formal shoes', type: 'link' },
-			  { path: '/home/fashion', title: 'casual shoes', type: 'link' }
-			]
-		},
-		{
-			path: '/home/fashion', title: 'watches', type: 'link'
-		},
-		{
-			title: 'Accessories', type: 'sub', active: false, children: [
-			  { path: '/home/fashion', title: 'fashion jewellery', type: 'link' },
-			  { path: '/home/fashion', title: 'caps and hats', type: 'link' },
-			  { path: '/home/fashion', title: 'precious jewellery', type: 'link' },
-			  {
-				  path: '/home/fashion', title: 'more..', type: 'link', active: false, children: [
-					  { path: '/home/fashion', title: 'necklaces',  type: 'link' },
-					  { path: '/home/fashion', title: 'earrings',  type: 'link' },
-					  { path: '/home/fashion', title: 'rings & wrist wear',  type: 'link' },
-					  {
-						  path: '/home/fashion', title: 'more...',  type: 'link', active: false, children: [
-							  { path: '/home/fashion', title: 'ties',  type: 'link' },
-							  { path: '/home/fashion', title: 'cufflinks',  type: 'link' },
-							  { path: '/home/fashion', title: 'pockets squares',  type: 'link' },
-							  { path: '/home/fashion', title: 'helmets',  type: 'link' },
-							  { path: '/home/fashion', title: 'scarves',  type: 'link' },
-							  {
-								  path: '/home/fashion', title: 'more...',  type: 'link', active: false, children: [
-									  { path: '/home/fashion', title: 'accessory gift sets',  type: 'link' },
-									  { path: '/home/fashion', title: 'travel accessories',  type: 'link' },
-									  { path: '/home/fashion', title: 'phone cases',  type: 'link' }
-								  ]
-							  },
-						]
-					  }
-				  ]
-			  },
-			]
-		},
-		{
-			path: '/home/fashion', title: 'house of design', type: 'link'
-		},
-		{
-			title: 'beauty & personal care', type: 'sub', active: false, children: [
-			  { path: '/home/fashion', title: 'makeup', type: 'link' },
-			  { path: '/home/fashion', title: 'skincare', type: 'link' },
-			  { path: '/home/fashion', title: 'premium beaty', type: 'link' },
-			  {
-				  path: '/home/fashion', title: 'more..', type: 'link', active: false, children: [
-					  { path: '/home/fashion', title: 'fragrances',  type: 'link' },
-					  { path: '/home/fashion', title: 'luxury beauty',  type: 'link' },
-					  { path: '/home/fashion', title: 'hair care',  type: 'link' },
-					  { path: '/home/fashion', title: 'tools & brushes',  type: 'link' }
-				  ]
-			  },
-			]
-		},
-		{
-			path: '/home/fashion', title: 'home & decor', type: 'link'
-		},
-		{
-			path: '/home/fashion', title: 'kitchen', type: 'link'
-		}
+	
 	];
 
 	// Array

@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-digital-list',
   templateUrl: './digital-list.component.html',
@@ -18,7 +19,7 @@ export class DigitalListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['ref', 'name', 'active','topProduct','creationDate','category','buttons'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private ps:ProductService,public dialog: MatDialog, private router: Router) {
+  constructor(private ps:ProductService,public dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router) {
     // this.digital_list = digitalListDB.digital_list;
    
   }
@@ -77,6 +78,28 @@ this.dataSource.sort = this.sort;
     console.log(product);
     this.router.navigateByUrl("products/update-product/"+product._id)
     
+  }
+  removeFromFavoris(product){
+   
+    this.ps.removeFromFavoris(product._id).subscribe(res=>{
+    },err=>{},()=>{
+      this._snackBar.open('produit retiré de la liste des favoris', 'OK', {
+        verticalPosition: 'top',
+        duration        : 2000
+    });
+      this.getAllProduct()})
+  }
+
+
+  addToFavoris(product){
+  
+    this.ps.addToFavoris(product._id).subscribe(res=>{
+    },err=>{},()=>{
+      this._snackBar.open('produit aujouté à la liste des favoris', 'OK', {
+        verticalPosition: 'top',
+        duration        : 2000
+    });
+      this.getAllProduct()})
   }
 }
 

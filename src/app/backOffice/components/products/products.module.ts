@@ -43,6 +43,7 @@ import { AddProductArtisanComponent } from './digital/add-product-artisan/add-pr
 import { ArtisanPendingRequestsComponent } from './digital/artisan-pending-requests/artisan-pending-requests.component';
 import { UpdatePendingProductComponent } from './digital/update-pending-product/update-pending-product.component';
 import { ArtisanRefusedRequestsComponent } from './digital/artisan-refused-requests/artisan-refused-requests.component';
+import { ProductDetailsComponent } from './digital/product-details/product-details.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',
@@ -51,7 +52,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent, ModalUpdateComponent, ModalUpdateMarqueComponent, AddProductArtisanComponent, ArtisanPendingRequestsComponent, UpdatePendingProductComponent, ArtisanRefusedRequestsComponent],
+  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalListComponent, DigitalAddComponent, ProductDetailComponent, DialogContentExampleDialogComponent, UpdateProductComponent, ModalUpdateComponent, ModalUpdateMarqueComponent, AddProductArtisanComponent, ArtisanPendingRequestsComponent, UpdatePendingProductComponent, ArtisanRefusedRequestsComponent, ProductDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

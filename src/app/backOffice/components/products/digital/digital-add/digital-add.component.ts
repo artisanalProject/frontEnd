@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Artisant } from 'src/app/models/artisant';
 import { Category } from 'src/app/models/category';
@@ -62,14 +62,14 @@ export class DigitalAddComponent implements OnInit {
   this.getCategories()
   // this.getCollections()
     this.productForm = new FormGroup({
-      name: new FormControl(),
-      price: new FormControl(),
+      name: new FormControl('',Validators.required),
+      price: new FormControl('',Validators.required),
       reference: new FormControl(),
-      stock: new FormControl(),
-      category: new FormControl(),
+      stock: new FormControl('',Validators.required),
+      category: new FormControl('',Validators.required),
       marque: new FormControl(),
     //  collections: new FormControl(),
-   //   artisant: new FormControl(),
+      artisant: new FormControl(),
       description: new FormControl(),
     //  new: new FormControl(),
       remise: new FormControl()
