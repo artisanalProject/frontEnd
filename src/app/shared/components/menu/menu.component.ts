@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
     this.catService.getCategories().subscribe(res=>{this.categories=JSON.parse(JSON.stringify(res))},
     err=>{console.log(err)},
     ()=>{
-
+  
       
       console.log(this.categories);
            
