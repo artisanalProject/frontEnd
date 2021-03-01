@@ -176,21 +176,36 @@
                               <div class="col-md-6">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your name" required>
+                                <div *ngIf="ReviewForm.controls.name.errors?.required && ReviewForm.controls.name.touched" class="text-danger">
+                                  <small>name is required</small>
+                                </div>
+
                               </div>
                               <div class="col-md-6">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email"  formControlName="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email"  formControlName="email" placeholder="Email" required>
+                                <div *ngIf="ReviewForm.controls.email.errors?.email" class="text-danger">
+                                  <span>it must be an email format</span>
+                                </div>
+                                <div *ngIf="ReviewForm.controls.email.errors?.required && ReviewForm.controls.email.touched" class="text-danger">
+                                  <span> email is required</span>
+                                </div>
+
                               </div>
                               <div class="col-md-12">
                                 <label for="review">Title</label>
-                                <input type="text" class="form-control" id="review"  formControlName="subject" placeholder="Enter your Review Subjects" required>
+                                <input type="text" class="form-control" id="review"  formControlName="subject" placeholder="Enter your Review Subjects" >
                               </div>
                               <div class="col-md-12">
                                 <label for="review">Description</label>
                                 <textarea class="form-control" placeholder="Wrire Your Testimonial Here"  formControlName="description" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                <div *ngIf="ReviewForm.controls.description.errors?.required && ReviewForm.controls.description.touched" class="text-danger">
+                                  <span> description is required</span>
+                                </div>
+                              
                               </div>
                               <div class="col-md-12">
-                                <button class="btn btn-solid" (click)="submitReview()">Submit YOur Review</button>
+                                <button class="btn btn-solid" [disabled]="ReviewForm.status=='INVALID'"  type="submit"   (click)="submitReview()">Submit YOur Review</button>
                               </div>
                             </div>
                           </form>

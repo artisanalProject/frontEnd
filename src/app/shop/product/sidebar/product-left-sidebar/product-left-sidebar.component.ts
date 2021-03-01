@@ -4,7 +4,8 @@ import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../..
 import { Product } from '../../../../models/product';
 import { ProductService } from '../../../../shared/services/product.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -27,15 +28,15 @@ export class ProductLeftSidebarComponent implements OnInit {
   idProduct;
   ReviewForm : FormGroup
   constructor(private route: ActivatedRoute, private router: Router,
-    public productService: ProductService) { 
+    public productService: ProductService,   private toastr: ToastrService) { 
     }
 
   ngOnInit(): void {
     this.ReviewForm = new FormGroup({
-      name : new FormControl(),
-      email:new FormControl(),
-      description: new FormControl(),
-      subject: new FormControl(),
+      name : new FormControl('',Validators.required),
+      email:new FormControl('',[Validators.email , Validators.required]),
+      description: new FormControl('',Validators.required),
+      subject: new FormControl(''),
       rateNumber : new FormControl(this.starRating)
     })
    
@@ -124,7 +125,10 @@ export class ProductLeftSidebarComponent implements OnInit {
     },
     err=>{},
     ()=>{
-      this.ngOnInit()
+      this.toastr.success('your review is sended successefully', 'Review sended!');
+      this.ReviewForm.reset()
+      // this.ngOnInit()
+
     }
   )
     

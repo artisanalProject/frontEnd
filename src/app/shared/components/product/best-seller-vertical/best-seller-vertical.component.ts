@@ -23,7 +23,7 @@ export class BestSellerVerticalComponent implements OnInit {
   ngOnInit(): void {
     console.log("hahahah");
     
-    if(this.title=="Feature products") {
+    if(this.title=="Top products") {
       this.productService.getProducts().subscribe(response => {
         this.products = response.filter((x)=>x.topProduct==true)
       });

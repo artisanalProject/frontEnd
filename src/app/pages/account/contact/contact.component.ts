@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from 'ngx-snackbar';
+import { ToastrService } from 'ngx-toastr';
 import { ContactService } from 'src/app/shared/services/contact.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { ContactService } from 'src/app/shared/services/contact.service';
 })
 export class ContactComponent implements OnInit {
   showSnackBar = false
-  constructor(private cs : ContactService,private snackbarService: SnackbarService) { }
+  constructor(private cs : ContactService,private snackbarService: SnackbarService,
+    private toastr: ToastrService) { }
   contactForm: FormGroup
   ngOnInit(): void {
     this.contactForm = new FormGroup({
@@ -21,11 +23,10 @@ export class ContactComponent implements OnInit {
       message: new FormControl('', Validators.required)
     })
   }
-  sendMessage(){
+  sendMessage(){ 
    this.cs.addContact(this.contactForm.value).subscribe(res=>{},err=>{},()=>{
-     setTimeout(()=>{ this.showSnackBar=true}, 3000)
-     this.showSnackBar=false
-     
+    this.toastr.success('your message is sended successefully', 'Message sended!');
+    this.contactForm.reset()
    })
     
   }
