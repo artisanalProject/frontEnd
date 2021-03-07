@@ -21,6 +21,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   public mobileSidebar: boolean = false;
   public Product : Product
   starRating = 0
+  emailStatus;
   @ViewChild("sizeChart") SizeChart: SizeModalComponent;
   
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
@@ -118,19 +119,34 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.mobileSidebar = !this.mobileSidebar;
   }
   submitReview(){
-    console.log(this.ReviewForm.value);
+   console.log(this.ReviewForm.value.email);
     
-  this.productService.postReview(this.idProduct,this.ReviewForm.value).subscribe(
-    result=>{console.log(result);
+    this.productService.verifEmailReview(this.idProduct,this.ReviewForm.value.email)
+    .subscribe(res=>{
+      console.log(res);
+      
+      this.emailStatus = res
     },
     err=>{},
     ()=>{
-      this.toastr.success('your review is sended successefully', 'Review sended!');
-      this.ReviewForm.reset()
-      // this.ngOnInit()
-
-    }
-  )
+      if(this.emailStatus ==false){
+        this.productService.postReview(this.idProduct,this.ReviewForm.value).subscribe(
+          result=>{
+          },
+          err=>{},
+          ()=>{
+            this.toastr.success('your review is sended successefully', 'Review sended!');
+            this.ReviewForm.reset()
+          }
+        )
+      }
+      else{
+        this.toastr.warning('you already sent a review with this email for this product', 'oops!');
+        
+      }
+    })
+    
+ 
     
   }
   
