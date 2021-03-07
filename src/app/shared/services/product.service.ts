@@ -79,6 +79,10 @@ export class ProductService {
   public getProductByCategory(idCategory) :Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
   }
+  public verifEmailReview(productId,email) :Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/verifExistEmailOnReviews/"+productId+"/"+email)
+  }
+
   // Get Products By Slug
   // public getProductBySlug(slug: string): Observable<Product> {
   //   return this.products.pipe(map(items => { 

@@ -41,10 +41,10 @@
           <ng-container matColumnDef="buttons">
             <th  mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let row" [style.color]="row.color">
-                <button mat-icon-button color="warn" (click)="$event.stopPropagation();delete(row)"  aria-label="Example icon button with a delete icon">
+                <button mat-icon-button color="warn"   aria-label="Example icon button with a delete icon">
                     <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button color="primary" (click)="$event.stopPropagation();update(row)" >
+                  <button mat-icon-button color="primary"  >
                     <mat-icon>edit</mat-icon>
                   </button>
                 </td>
