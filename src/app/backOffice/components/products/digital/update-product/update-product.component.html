@@ -68,7 +68,7 @@
 
 
 
-  <mat-form-field appearance="outline" floatLabel="always">
+  <mat-form-field *ngIf="product.artisant" appearance="outline" floatLabel="always">
     <mat-label>Artisant</mat-label>
     <mat-select formControlName="artisant" [(ngModel)]="product.artisant._id">
             <ng-container *ngFor="let a of artisantList">
