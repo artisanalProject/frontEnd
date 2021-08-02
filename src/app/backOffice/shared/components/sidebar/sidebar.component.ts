@@ -21,53 +21,56 @@ export class SidebarComponent implements OnInit{
     
    
    console.log(this.menuItems);
+   if(JSON.parse(localStorage.getItem('connectedUser'))){
     if(JSON.parse(localStorage.getItem('connectedUser')).admin){
-    this.navServices.items.subscribe(menuItems => {
-      this.menuItems = menuItems;
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          menuItems.filter(items => {
-            if (items.path === event.url)
-              this.setNavActive(items)
-            if (!items.children) return false
-            items.children.filter(subItems => {
-              if (subItems.path === event.url)
-                this.setNavActive(subItems) 
-              if (!subItems.children) return false
-              subItems.children.filter(subSubItems => {
-                if (subSubItems.path === event.url)    
-                  this.setNavActive(subSubItems)
+      this.navServices.items.subscribe(menuItems => {
+        this.menuItems = menuItems;
+        this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            menuItems.filter(items => {
+              if (items.path === event.url)
+                this.setNavActive(items)
+              if (!items.children) return false
+              items.children.filter(subItems => {
+                if (subItems.path === event.url)
+                  this.setNavActive(subItems) 
+                if (!subItems.children) return false
+                subItems.children.filter(subSubItems => {
+                  if (subSubItems.path === event.url)    
+                    this.setNavActive(subSubItems)
+                })
               })
             })
-          })
-        }
+          }
+        })
       })
-    })
-   }
-   else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
-    this.navServices.itemsArtisan.subscribe(menuItems => {
-      this.menuItems = menuItems;
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          menuItems.filter(items => {
-            if (items.path === event.url)
-              this.setNavActive(items)
-            if (!items.children) return false
-            items.children.filter(subItems => {
-              if (subItems.path === event.url)
-                this.setNavActive(subItems) 
-              if (!subItems.children) return false
-              subItems.children.filter(subSubItems => {
-                if (subSubItems.path === event.url)    
-                  this.setNavActive(subSubItems)
+     }
+     else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+      this.navServices.itemsArtisan.subscribe(menuItems => {
+        this.menuItems = menuItems;
+        this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            menuItems.filter(items => {
+              if (items.path === event.url)
+                this.setNavActive(items)
+              if (!items.children) return false
+              items.children.filter(subItems => {
+                if (subItems.path === event.url)
+                  this.setNavActive(subItems) 
+                if (!subItems.children) return false
+                subItems.children.filter(subSubItems => {
+                  if (subSubItems.path === event.url)    
+                    this.setNavActive(subSubItems)
+                })
               })
             })
-          })
-        }
+          }
+        })
       })
-    })
+     }
+  
    }
-
+    
    
   }
 
