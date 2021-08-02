@@ -118,6 +118,7 @@ export class UpdateProductComponent implements OnInit {
           quantity: new FormControl(this.product.stock),
           category: new FormControl(this.product.category),
           marque: new FormControl(this.product.marque),
+          description: new FormControl(this.product.description),
           // collections: new FormControl(this.product.collections),
           artisant: new FormControl(this.product.artisant)
         });
@@ -130,14 +131,14 @@ export class UpdateProductComponent implements OnInit {
       
          
        this.formData.set('name',data.name)
-       this.formData.set('prix',data.price)
+       this.formData.set('price',data.price)
        this.formData.set('reference',data.reference)
        this.formData.set('category',data.category)
-       this.formData.set('artisan',data.artisan)
+       this.formData.set('artisan',data.artisant)
        this.formData.set('quantity',data.quantity)
        this.formData.set('marque',data.marque)
        this.formData.set('collections',data.collections)
-       this.formData.set('description',data.description)
+      //  this.formData.set('description',data.description)
       // this.formData.set('new',data.new)
        this.formData.set('remise',data.remise)
        this.formData.set('oldImages',JSON.stringify(this.Oldimages))
