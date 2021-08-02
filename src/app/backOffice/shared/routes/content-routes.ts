@@ -1,86 +1,105 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
 export const content: Routes = [
   {
-    path: 'dashboard',
-    loadChildren: () => import('../../components/dashboard/dashboard.module').then(m => m.DashboardModule),
+    path: "dashboard",
+    loadChildren: () =>
+      import("../../components/dashboard/dashboard.module").then(
+        (m) => m.DashboardModule
+      ),
   },
   {
-    path: 'products',
-    loadChildren: () => import('../../components/products/products.module').then(m => m.ProductsModule),
+    path: "products",
+    loadChildren: () =>
+      import("../../components/products/products.module").then(
+        (m) => m.ProductsModule
+      ),
     data: {
-      breadcrumb: "Products"
-    }
+      breadcrumb: "Products",
+    },
   },
   {
-    path: 'sales',
-    loadChildren: () => import('../../components/sales/sales.module').then(m => m.SalesModule),
+    path: "sales",
+    loadChildren: () =>
+      import("../../components/sales/sales.module").then((m) => m.SalesModule),
     data: {
-      breadcrumb: "Sales"
-    }
+      breadcrumb: "Sales",
+    },
   },
   {
-    path: 'coupons',
-    loadChildren: () => import('../../components/coupons/coupons.module').then(m => m.CouponsModule),
+    path: "pages",
+    loadChildren: () =>
+      import("../../components/pages/pages.module").then((m) => m.PagesModule),
     data: {
-      breadcrumb: "Coupons"
-    }
+      breadcrumb: "Pages",
+    },
   },
   {
-    path: 'pages',
-    loadChildren: () => import('../../components/pages/pages.module').then(m => m.PagesModule),
+    path: "media",
+    loadChildren: () =>
+      import("../../components/media/media.module").then((m) => m.MediaModule),
+  },
+  {
+    path: "menus",
+    loadChildren: () =>
+      import("../../components/menus/menus.module").then((m) => m.MenusModule),
     data: {
-      breadcrumb: "Pages"
-    }
+      breadcrumb: "Menus",
+    },
   },
   {
-    path: 'media',
-    loadChildren: () => import('../../components/media/media.module').then(m => m.MediaModule),
-  },
-  {
-    path: 'menus',
-    loadChildren: () => import('../../components/menus/menus.module').then(m => m.MenusModule),
+    path: "users",
+    loadChildren: () =>
+      import("../../components/users/users.module").then((m) => m.UsersModule),
     data: {
-      breadcrumb: "Menus"
-    }
+      breadcrumb: "Users",
+    },
   },
   {
-    path: 'users',
-    loadChildren: () => import('../../components/users/users.module').then(m => m.UsersModule),
+    path: "vendors",
+    loadChildren: () =>
+      import("../../components/vendors/vendors.module").then(
+        (m) => m.VendorsModule
+      ),
     data: {
-      breadcrumb: "Users"
-    }
+      breadcrumb: "Vendors",
+    },
   },
   {
-    path: 'vendors',
-    loadChildren: () => import('../../components/vendors/vendors.module').then(m => m.VendorsModule),
+    path: "localization",
+    loadChildren: () =>
+      import("../../components/localization/localization.module").then(
+        (m) => m.LocalizationModule
+      ),
     data: {
-      breadcrumb: "Vendors"
-    }
+      breadcrumb: "Localization",
+    },
   },
   {
-    path: 'localization',
-    loadChildren: () => import('../../components/localization/localization.module').then(m => m.LocalizationModule),
+    path: "reports",
+    loadChildren: () =>
+      import("../../components/reports/reports.module").then(
+        (m) => m.ReportsModule
+      ),
+  },
+  {
+    path: "settings",
+    loadChildren: () =>
+      import("../../components/setting/setting.module").then(
+        (m) => m.SettingModule
+      ),
     data: {
-      breadcrumb: "Localization"
-    }
+      breadcrumb: "Settings",
+    },
   },
   {
-    path: 'reports',
-    loadChildren: () => import('../../components/reports/reports.module').then(m => m.ReportsModule),
-  },
-  {
-    path: 'settings',
-    loadChildren: () => import('../../components/setting/setting.module').then(m => m.SettingModule),
+    path: "invoice",
+    loadChildren: () =>
+      import("../../components/invoice/invoice.module").then(
+        (m) => m.InvoiceModule
+      ),
     data: {
-      breadcrumb: "Settings"
-    }
+      breadcrumb: "Invoice",
+    },
   },
-  {
-    path: 'invoice',
-    loadChildren: () => import('../../components/invoice/invoice.module').then(m => m.InvoiceModule),
-    data: {
-      breadcrumb: "Invoice"
-    }
-  }
 ];

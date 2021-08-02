@@ -68,7 +68,7 @@
                   </mat-option>
               </ng-container>
       </mat-select>
-     
+      <mat-error>Ce champs est obligatoire!</mat-error>
      
   </mat-form-field>
 
@@ -94,6 +94,7 @@
       <ngx-dropzone-label></ngx-dropzone-label>
   </ngx-dropzone-preview>
 </ngx-dropzone>
+<span *ngIf="files.length == 0 && submitted ">les images sont obligatoires!</span>
 <br>
   <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="addProduct()">ajouter</button>
 </form>
