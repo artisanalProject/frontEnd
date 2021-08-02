@@ -9,18 +9,23 @@
      
     </mat-form-field>
   </p>
+
   <p>
     <mat-form-field appearance="outline">
       <mat-label>référence</mat-label>
-      <input matInput placeholder="référence" type="text" formControlName="reference" required>
-     
-      <mat-error>Ce champs est obligatoire!</mat-error>
+      <input matInput placeholder="référence" type="text" formControlName="reference">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
-      <mat-label>quantité</mat-label>
-      <input matInput placeholder="quantité" type="number" formControlName="quantity" required>
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="description" type="text" formControlName="description" required></textarea>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>stock</mat-label>
+      <input matInput placeholder="stock" type="number" formControlName="stock" required>
      
       <mat-error>Ce champs est obligatoire!</mat-error>
     </mat-form-field>
@@ -32,11 +37,17 @@
         <input  matInput  placeholder="prix" type="number" name="price" formControlName="price" required>
         <mat-error>Ce champs est obligatoire!</mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>prix avec remise</mat-label>
+        <input  matInput  placeholder="remise" type="number" name="remise" formControlName="remise">
+      </mat-form-field>
    
       </div>
+     
+
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>categorie</mat-label>
-        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)" required>
+        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)" >
                 <ng-container *ngFor="let c of categories">
                     <mat-option [value]="c._id">
                        {{c.name}}
@@ -50,7 +61,7 @@
 
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" required>
+      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" >
               <ng-container *ngFor="let m of marques">
                   <mat-option [value]="m._id">
                      {{m.name}}
@@ -58,28 +69,16 @@
               </ng-container>
       </mat-select>
      
-      <mat-error>Ce champs est obligatoire!</mat-error>
+     
   </mat-form-field>
 
-  <mat-form-field appearance="outline" floatLabel="always">
-    <mat-label>Artisant</mat-label>
-    <mat-select formControlName="artisant" [(ngModel)]="artisant"  required>
-            <ng-container *ngFor="let a of artisantList ">
-                <mat-option [value]="a._id">
-                   {{a.name}}
-                </mat-option>
-            </ng-container>
-            
-    </mat-select>
-   
-    <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field>
+
 <mat-form-field appearance="outline" floatLabel="always">
-  <mat-label>Collection</mat-label>
-  <mat-select formControlName="collections" [(ngModel)]="collection"  required>
-          <ng-container *ngFor="let c of collections ">
-              <mat-option [value]="c._id">
-                 {{c.name}}
+  <mat-label>Artisant</mat-label>
+  <mat-select formControlName="artisant" [(ngModel)]="artisant" >
+          <ng-container *ngFor="let a of artisantList ">
+              <mat-option [value]="a._id">
+                 {{a.name}}
               </mat-option>
           </ng-container>
           

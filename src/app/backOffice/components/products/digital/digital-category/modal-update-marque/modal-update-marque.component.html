@@ -1,0 +1,40 @@
+<div class="x">
+    <div class="add-title">
+      <h4 class="primary">Modifier categorie</h4>
+    </div>
+    <div>
+      <form [formGroup]="marqueForm">
+        <mat-grid-list cols="2" [cols]="breakpoint"  >
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field appearance="outline" floatLabel="always">
+                <input matInput placeholder="nom du catégorie"  formControlName="name" required>
+                <mat-error>
+                  ce champs est obligatoire
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>categorie</mat-label>
+                <mat-select formControlName="category" [(ngModel)]="marque.category._id"  required>
+                        <ng-container *ngFor="let c of categories">
+                            <mat-option [value]="c._id">
+                               {{c.name}}
+                            </mat-option>
+                        </ng-container>
+                        
+                </mat-select>
+               
+                <mat-error>Ce champs est obligatoire!</mat-error>
+            </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+  
+        <div class="btn-sec">
+          <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="updateMarque()">Save</button>
+          <button mat-raised-button  mat-button mat-dialog-close mat-dialog-close="false" >Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

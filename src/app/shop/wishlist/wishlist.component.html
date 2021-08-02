@@ -22,19 +22,19 @@
           <tbody *ngFor="let product of products">
             <tr>
               <td>
-                  <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
-                    <img [src]="product.images[0].src" [alt]="product.images[0].alt">
+                  <a [routerLink]="['/shop/product/left/sidebar/', product._id]">
+                    <img [src]="'/api/'+product.images[0]" [alt]="product.images[0].alt">
                   </a>
               </td>
               <td>
-                  <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">{{ product.title | titlecase }}</a>
+                  <a [routerLink]="['/shop/product/left/sidebar/', product._id]">{{ product.name | titlecase }}</a>
                   <div class="mobile-cart-content row">
                     <div class="col-xs-3">
                       <p>{{ product.stock > 0 ? 'in stock' : 'out of stock' }}</p>
                     </div>
                     <div class="col-xs-3">
                       <h2 class="td-color">
-                          {{ (product.price | discount:product) * productService?.Currency.price | currency:productService?.Currency.currency:'symbol' }}
+                          {{ (product.price | discount:product) * productService?.Currency.price | currency }}
                       </h2>
                     </div>
                     <div class="col-xs-3">
@@ -51,8 +51,10 @@
               </td>
               <td>
                   <h2>
-                    {{ (product.price | discount:product) * productService?.Currency.price | currency:productService?.Currency.currency:'symbol' }}
-                  </h2>
+                   
+                      {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency}}
+                      <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency }}</span></del>
+                              </h2>
               </td>
               <td>
                   <p>{{ product.stock > 0 ? 'in stock' : 'out of stock' }}</p>

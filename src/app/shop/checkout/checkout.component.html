@@ -162,9 +162,9 @@
                                         <li class="empty-checkout"> There are no products in cart </li>
                                     </ul>
                                     <ul class="sub-total">
-                                        <!-- <li>
+                                        <li>
                                         	Subtotal <span class="count">{{ getTotal | async | currency:productService?.Currency.currency:'symbol'}}</span>
-                                        </li> -->
+                                        </li>
                                         <li *ngIf='products.length'>
                                         	Shipping
                                          <div class="shipping">
@@ -179,9 +179,9 @@
                                          </div>
                                         </li>
                                     </ul>
-                                    <!-- <ul class="total">
+                                    <ul class="total">
                                         <li>Total <span class="count">{{ getTotal | async | currency:productService?.Currency.currency:'symbol'}}</span></li>
-                                    </ul> -->
+                                    </ul>
                                 </div>
 
                                 <div class="payment-box" *ngIf='products.length'>

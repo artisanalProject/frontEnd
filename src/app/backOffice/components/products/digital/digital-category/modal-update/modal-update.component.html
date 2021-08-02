@@ -1,0 +1,27 @@
+<div class="x">
+    <div class="add-title">
+      <h4 class="primary">Modifier categorie</h4>
+    </div>
+    <div>
+      <form [formGroup]="categoryForm">
+        <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" >
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="nom du catégorie"  formControlName="name" required>
+                <mat-error>
+                  ce champs est obligatoire
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+  
+        <div class="btn-sec">
+          <button mat-raised-button type="submit" color="primary" class="Update-btn" (click)="updateCategory()">Save</button>
+          <button mat-raised-button  mat-button mat-dialog-close mat-dialog-close="false" >Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

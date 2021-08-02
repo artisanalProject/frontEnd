@@ -25,15 +25,18 @@
                             <!-- Product Name -->
                             <tr>
                                 <th class="product-name">Product Name</th>
-                                <td class="grid-link__title" *ngFor="let product of products">{{ product.title | titlecase }}</td>
+                                <td class="grid-link__title" *ngFor="let product of products">{{ product.name | titlecase }}</td>
                             </tr>
                             <!-- Product Image -->
                             <tr>
                                 <th class="product-name ">Product Image</th>
                                 <td class="item-row" *ngFor="let product of products">
-                                    <img [src]="product.images[0].src" [alt]="product.images[0].alt" width="185" class="featured-image">
+                                    <img [src]="'/api/'+product.images[0]" [alt]="product.images[0].alt" width="185" class="featured-image">
                                     <div class="product-price product_price"> 
-                                    <strong>On Sale: </strong><span> {{ (product.price | discount:product) * productService?.Currency.price | currency:productService?.Currency.currency:'symbol' }}</span></div>
+                                    <strong>On Sale: </strong><span>   <h4>
+                                        {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency}}
+                                        <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency}}</span></del>
+                                      </h4></span></div>
                                     <form class="variants clearfix">
                                       <button title="Add to Cart" (click)="addToCart(product)" class="add-to-cart btn btn-solid">Add to Cart</button>
                                     </form>
@@ -43,7 +46,7 @@
                             <tr>
                                 <th class="product-name">Product Description</th>
                                 <td class="item-row" *ngFor="let product of products">
-                                    <p class="description-compare">{{ product.description.substring(0, 200)+'...' }}</p>
+                                    <p class="description-compare">{{ product.description}}</p>
                                 </td>
                             </tr>
                             <!-- Product Availability -->

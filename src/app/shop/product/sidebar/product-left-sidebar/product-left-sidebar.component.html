@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="product?.title" [breadcrumb]="'Product'"></app-breadcrumb>
+<app-breadcrumb [title]="product?.name" [breadcrumb]="'Product'"></app-breadcrumb>
 <!-- section start -->
 <section class="section-b-space">
   <div class="collection-wrapper">
@@ -12,15 +12,12 @@
                     <i class="fa fa-angle-left" aria-hidden="true"></i> back
                   </span>
                 </div>
-                <app-categories></app-categories>
             </div>
             <div class="collection-filter-block">
                 <app-services></app-services>
             </div>
-                <app-product-box-vertical-slider 
-                  [title]="'New product'" 
-                  [type]="product?.type">
-                </app-product-box-vertical-slider>
+            <app-product-box-vertical-slider [title]="'New products'">
+            </app-product-box-vertical-slider>
           </div>
         </div>
         <div class="col-lg-9 col-sm-12 col-xs-12">
@@ -41,7 +38,7 @@
                         <ng-template carouselSlide [id]="i">
                             <div>
                               <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
-                                   [lazyLoad]="image.src" 
+                                   [lazyLoad]="'/api/'+image" 
                                    [alt]="image.alt" class="img-fluid">
                             </div>
                         </ng-template>
@@ -54,7 +51,7 @@
                                 <ng-template carouselSlide [id]="i">
                                     <div class="owl-thumb" [class.active]="i == activeSlide">
                                       <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
-                                           [lazyLoad]="image.src" 
+                                           [lazyLoad]="'/api/'+image" 
                                            [alt]="image.alt" class="img-fluid" 
                                            (click)="owlCar.to(activeSlide = i.toString())">
                                     </div>
@@ -66,30 +63,32 @@
               </div>
               <div class="col-lg-6 rtl-text">
                 <div class="product-right">
-                  <h2>{{ product?.title }}</h2>
-                  <h4>
-                      <del *ngIf="product?.discount">{{ product?.price * productService.Currency?.price | currency: productService.Currency?.currency:'symbol' }}</del>
-                      <span>{{ product?.discount }}% off</span>
-                  </h4>
+                  <h2>{{ product?.name }}</h2>
+                  
+                    <h4>
+                      <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency }}</span></del>
+                      <span>{{ product?.remise }}% off</span>
+                    </h4>
+                
                   <h3>
-                      {{ (product?.price | discount:product) * productService.Currency?.price | currency: productService.Currency?.currency:'symbol' }}
+                    {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency}}
                   </h3>
-                  <ul class="color-variant" *ngIf="Color(product?.variants).length">
+                  <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">
                     <li [class]="color" [class.active]="activeSlide == i.toString()" 
                         *ngFor="let color of Color(product?.variants); index as i" 
                         [ngStyle]="{'background-color': color}"
                         (click)="owlCar.to(activeSlide = i.toString())">
                     </li>
-                  </ul>
+                  </ul> -->
                   <app-stock-inventory [stock]="product?.stock"></app-stock-inventory>
                   <div class="product-description border-product">
-                    <h6 class="product-title size-text" *ngIf="Size(product.variants).length">
+                    <!-- <h6 class="product-title size-text" *ngIf="Size(product.variants).length">
                         select size
                         <span>
                           <a href="javascrip:void(0)" (click)="SizeChart.openModal()">size chart</a>
                         </span>
-                    </h6>
-                    <div class="size-box" *ngIf="Size(product.variants).length">
+                    </h6> -->
+                    <!-- <div class="size-box" *ngIf="Size(product.variants).length">
                       <ul>
                           <li [class.active]="selectedSize == size" 
                               *ngFor="let size of Size(product.variants)">
@@ -98,9 +97,9 @@
                               </a>
                           </li>
                       </ul>
-                    </div>
-                    <h5 class="avalibility" *ngIf="counter <= product.stock"><span>In Stock</span></h5>
-                    <h5 class="avalibility" *ngIf="counter > product.stock"><span>Out of Stock</span></h5>
+                    </div> -->
+                    <h5 class="avalibility" *ngIf="counter <= product?.stock"><span>In Stock</span></h5>
+                    <h5 class="avalibility" *ngIf="counter > product?.stock"><span>Out of Stock</span></h5>
                     <h6 class="product-title">quantity</h6>
                     <div class="qty-box">
                       <div class="input-group">
@@ -111,7 +110,7 @@
                         </span>
                         <input type="text" name="quantity" class="form-control input-number" [value]="counter" disabled/>
                         <span class="input-group-prepend">
-                          <button type="button" class="btn quantity-right-plus" data-type="plus" (click)="increment()">
+                          <button type="button" class="btn quantity-right-plus" data-type="plus" (click)="increment(product)">
                             <i class="ti-angle-right"></i>
                           </button>
                         </span>
@@ -119,12 +118,12 @@
                     </div>
                   </div>
                   <div class="product-buttons">
-                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="addToCart(product)">add to cart</a>
-                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="buyNow(product)">buy now</a>
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.stock" (click)="addToCart(product)">add to cart</a>
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product?.stock" (click)="buyNow(product)">buy now</a>
                   </div>
                   <div class="border-product">
                     <h6 class="product-title">product details</h6>
-                    <p>{{ product.description.substring(0, 200)+'...' }}</p>
+                    <p>{{ product?.description.substring(0, 200)+'...' }}</p>
                   </div>
                   <div class="border-product">
                     <h6 class="product-title">share it</h6>
@@ -138,9 +137,9 @@
                       </form>
                     </div>
                   </div>
-                  <div class="border-product">
+                  <!-- <div class="border-product">
                     <app-countdown [date]="'Apr 21 2021'"></app-countdown>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -152,7 +151,7 @@
                     <ngb-tab>
                         <ng-template ngbTabTitle>Description</ng-template>
                         <ng-template ngbTabContent>
-                          <p>{{ product.description }}</p>
+                          <p>{{ product?.description }}</p>
                         </ng-template>
                     </ngb-tab>
                     <ngb-tab>
@@ -166,40 +165,47 @@
                     <ngb-tab>
                         <ng-template ngbTabTitle>Write Review</ng-template>
                         <ng-template ngbTabContent>
-                          <form class="theme-form">
+                          <form class="theme-form" [formGroup]="ReviewForm">
                             <div class="form-row">
                               <div class="col-md-12 ">
                                 <div class="media">
-                                  <label>Rating</label>
-                                  <div class="media-body ml-3">
-                                    <div class="rating three-star">
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                    </div>
-                                  </div>
+                                  <label>Rating: </label>
+                                  <ngb-rating [max]="5"  [(rate)]="starRating" (rateChange)="showRate()" formControlName="rateNumber" [readonly]="false"></ngb-rating>
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Your name" required>
+                                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your name" required>
+                                <div *ngIf="ReviewForm.controls.name.errors?.required && ReviewForm.controls.name.touched" class="text-danger">
+                                  <small>name is required</small>
+                                </div>
+
                               </div>
                               <div class="col-md-6">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email"  formControlName="email" placeholder="Email" required>
+                                <div *ngIf="ReviewForm.controls.email.errors?.email" class="text-danger">
+                                  <span>it must be an email format</span>
+                                </div>
+                                <div *ngIf="ReviewForm.controls.email.errors?.required && ReviewForm.controls.email.touched" class="text-danger">
+                                  <span> email is required</span>
+                                </div>
+
                               </div>
                               <div class="col-md-12">
-                                <label for="review">Review Title</label>
-                                <input type="text" class="form-control" id="review" placeholder="Enter your Review Subjects" required>
+                                <label for="review">Title</label>
+                                <input type="text" class="form-control" id="review"  formControlName="subject" placeholder="Enter your Review Subjects" >
                               </div>
                               <div class="col-md-12">
-                                <label for="review">Review Title</label>
-                                <textarea class="form-control" placeholder="Wrire Your Testimonial Here" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                <label for="review">Description</label>
+                                <textarea class="form-control" placeholder="Wrire Your Testimonial Here"  formControlName="description" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                <div *ngIf="ReviewForm.controls.description.errors?.required && ReviewForm.controls.description.touched" class="text-danger">
+                                  <span> description is required</span>
+                                </div>
+                              
                               </div>
                               <div class="col-md-12">
-                                <button class="btn btn-solid" type="submit">Submit YOur Review</button>
+                                <button class="btn btn-solid" [disabled]="ReviewForm.status=='INVALID'"  type="submit"   (click)="submitReview()">Submit YOur Review</button>
                               </div>
                             </div>
                           </form>
@@ -213,7 +219,7 @@
       </div>
     </div>
   </div>
-  <app-related-product [type]="product?.type"></app-related-product>
+  <app-related-product [type]="product?.category.name"></app-related-product>
 </section>
 <app-size-modal #sizeChart [product]="product"></app-size-modal>
 <!-- Section ends -->

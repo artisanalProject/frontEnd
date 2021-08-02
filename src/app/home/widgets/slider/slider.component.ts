@@ -16,8 +16,8 @@ export class SliderComponent implements OnInit {
   @Input() buttonClass: string;
 
   constructor() { }
-
   ngOnInit(): void {
+  
   }
 
   public HomeSliderConfig: any = HomeSlider;

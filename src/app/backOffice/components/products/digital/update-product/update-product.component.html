@@ -32,11 +32,16 @@
         <input  matInput  placeholder="prix" type="number" name="price" formControlName="price" required>
         <mat-error>Ce champs est obligatoire!</mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>remise</mat-label>
+        <input  matInput  placeholder="prix" type="number" name="price" formControlName="remise" required>
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
    
       </div>
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>categorie</mat-label>
-        <mat-select formControlName="category" [(ngModel)]="product.category"   (ngModelChange)="show($event)" required>
+        <mat-select formControlName="category" [(ngModel)]="product.category._id"   (ngModelChange)="show($event)" required>
                 <ng-container *ngFor="let c of categories">
                     <mat-option [value]="c._id">
                        {{c.name}}
@@ -50,7 +55,7 @@
 
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" required>
+      <mat-select formControlName="marque" [(ngModel)]="product.marque._id" [disabled]="showMarque" required>
               <ng-container *ngFor="let m of marques">
                   <mat-option [value]="m._id">
                      {{m.name}}
@@ -61,22 +66,41 @@
       <mat-error>Ce champs est obligatoire!</mat-error>
   </mat-form-field>
 
+
+
   <mat-form-field appearance="outline" floatLabel="always">
     <mat-label>Artisant</mat-label>
-    <mat-select formControlName="artisant" [(ngModel)]="artisant"  required>
-            <ng-container *ngFor="let a of artisantList ">
+    <mat-select formControlName="artisant" [(ngModel)]="product.artisant._id">
+            <ng-container *ngFor="let a of artisantList">
                 <mat-option [value]="a._id">
                    {{a.name}}
                 </mat-option>
             </ng-container>
-            
     </mat-select>
    
     <mat-error>Ce champs est obligatoire!</mat-error>
 </mat-form-field>
-<mat-form-field appearance="outline" floatLabel="always">
+
+  <section class="products">
+
+    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+        <div *ngFor="let i of Oldimages">
+            <div class="product-card">
+                <div class="product-image">
+                  <img class="imgTemplate" [src]="'/api/'+i">
+                </div>
+                <div class="product-info" (click)="close(i)">
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                </div>
+              </div>
+        </div>
+  </section>
+
+<!-- <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
-  <mat-select formControlName="collections" [(ngModel)]="collection"  required>
+  <mat-select formControlName="collections" [(ngModel)]="product.collections._id"  required>
           <ng-container *ngFor="let c of collections ">
               <mat-option [value]="c._id">
                  {{c.name}}
@@ -86,7 +110,7 @@
   </mat-select>
  
   <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field>
+</mat-form-field> -->
 
 
 <ngx-dropzone (change)="onSelect($event)">
@@ -96,7 +120,7 @@
   </ngx-dropzone-preview>
 </ngx-dropzone>
 <br>
-  <button class="buttonSubmit" mat-raised-button color="primary" type="submit" >ajouter</button>
+  <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="updateProduct()" >enregistrer</button>
 </form>
 </div>
 </mat-card>

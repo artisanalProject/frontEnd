@@ -1,0 +1,16 @@
+<!-- Start Categories List -->
+<div class="collection-collapse-block border-0" [class.open]="collapse">
+    <h3 class="collapse-block-title" (click)="collapse = !collapse">Marque</h3>
+    <div class="collection-collapse-block-content">
+        <div class="collection-brand-filter">
+            <ul class="category-list">
+                <li *ngFor="let marque of marques">
+                        <a routerLink="/shop/collection/left/sidebarx/{{marque.name}}">
+                        {{ marque.name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Categories List -->

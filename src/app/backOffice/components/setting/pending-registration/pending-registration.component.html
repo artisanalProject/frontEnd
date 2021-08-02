@@ -1,0 +1,24 @@
+
+   <div class="header">
+        <div class="row text-center">
+                <div *ngIf="nbNotActivated==0">Aucune demande d'inscription est enregistrée.</div>
+                <!-- item -->
+         <div class="col-xl-3 col-sm-6 mb-5" *ngFor="let u of notActivated">
+                 <div class="bg-white rounded shadow-sm py-5 px-4">
+                     <img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                     <h5 class="mb-0">{{u.name}}</h5>
+                     <span class="small text-uppercase text-muted">{{u.typeOfWork}}</span><br>
+                     <span class="small text-uppercase text-muted">{{u.email}}</span><br>
+                     <span class="small text-uppercase text-muted">Adresse : {{u.address}} / Num tél : {{u.phoneNumber}}</span><br>
+                     <ul class="nav-menus mb-0 list-inline mt-3">
+                             <li class="onhover-dropdown list-inline-item">
+                                     <app-feather-icons (click)="activate(u._id,u.name)" [icon]="'user-check'"></app-feather-icons><span class="dot"></span>
+                             </li>
+                     </ul>
+                 </div>
+             </div>
+             <!-- End -->
+         </div>
+         
+   </div>
+   

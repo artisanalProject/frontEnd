@@ -60,9 +60,9 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  // get getTotal(): Observable<number> {
-  //   return this.productService.cartTotalAmount();
-  // }
+  get getTotal(): Observable<number> {
+    return this.productService.cartTotalAmount();
+  }
 
   removeItem(product: any) {
     this.productService.removeCartItem(product);

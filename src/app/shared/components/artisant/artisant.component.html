@@ -1,0 +1,17 @@
+<!-- Start Categories List -->
+<div class="collection-collapse-block border-0" [class.open]="collapse">
+    <h3 class="collapse-block-title" (click)="collapse = !collapse">Artisant</h3>
+    <div class="collection-collapse-block-content">
+        <div class="collection-brand-filter">
+            <ul class="category-list">
+                <li *ngFor="let artisant of listArtisant">
+                    <a [routerLink]="['/shop/collection/left/sidebar']"
+                       [queryParams]="{ artisant: artisant.name}">
+                        {{ artisant.name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Categories List -->

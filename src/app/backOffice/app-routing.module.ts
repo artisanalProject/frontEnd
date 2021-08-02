@@ -4,6 +4,7 @@ import { content } from './shared/routes/content-routes';
 import { ContentLayoutComponent } from './shared/layout/content-layout/content-layout.component';
 import { LoginComponent } from './components/auth/login/login.component';
 
+
 const routes: Routes = [
   {
     path: 'x',
@@ -18,7 +19,8 @@ const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginComponent,
-  }
+  },
+  
 ];
 
 @NgModule({

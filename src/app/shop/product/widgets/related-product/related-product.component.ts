@@ -14,12 +14,19 @@ export class RelatedProductComponent implements OnInit {
   public products: Product[] = [];
 
   constructor(public productService: ProductService) { 
-    // this.productService.getProducts().subscribe(response => 
-    //   this.products = response.filter(item => item.type == this.type)
-    // );
+  
+    
   }
 
+
   ngOnInit(): void {
+    this.productService.getProducts().subscribe(response => 
+      {
+       this.products = response.filter(item => item.category.name == this.type)
+      }
+      
+    );
+    console.log(this.products);
   }
 
 }

@@ -10,20 +10,30 @@ import { ProductService } from '../../../services/product.service';
 })
 export class ProductBoxVerticalSliderComponent implements OnInit {
 
-  @Input() title: string = 'New Product'; // Default
+  @Input() title: string; // Default
   @Input() type: string = 'fashion'; // Default Fashion
 
   public products : Product[] = [];
 
   public NewProductSliderConfig: any = NewProductSlider;
 
-  constructor(public productService: ProductService) { 
-    // this.productService.getProducts().subscribe(response => 
-    //   this.products = response.filter(item => item.type == this.type)
-    // );
+  constructor(public productService: ProductService) {
+
+
+    
   }
 
   ngOnInit(): void {
+    
+    
+    if(this.title=="New products") {
+      this.productService.getProducts().subscribe(response => {
+        response.splice(10)
+        this.products = response.sort((a,b)=>new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
+       
+      });
+      console.log(this.products);
+    }
   }
 
 }

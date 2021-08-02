@@ -48,50 +48,17 @@
                     </ul>
                 </li>
                 <li class="onhover-dropdown">
-                    <span class="badge badge-pill badge-primary pull-right notification-badge">3</span>
-                    <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
-                    <ul class="notification-dropdown onhover-show-div">
-                        <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0"><span>
-                                            <app-feather-icons class="shopping-color" [icon]="'shopping-bag'">
-                                            </app-feather-icons>
-                                        </span>Your order ready for Ship..!
-                                    </h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-success"><span>
-                                            <app-feather-icons class="download-color font-success" [icon]="'download'">
-                                            </app-feather-icons>
-                                        </span>Download Complete</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-danger"><span>
-                                            <app-feather-icons class="alert-color font-danger" [icon]="'alert-circle'">
-                                            </app-feather-icons>
-                                        </span>250 MB trash files</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="txt-dark"><a href="javascript:void(0)">All</a> notification</li>
-                    </ul>
+                        <app-feather-icons [routerLink]="'/settings/pendingRegistration'" [icon]="'user-plus'"></app-feather-icons><span class="dot"></span>
                 </li>
-                <li><a>
+                <li class="onhover-dropdown">
+                    <span class="badge badge-pill badge-primary pull-right notification-badge" >{{productService.notifProducts.value}}</span>
+                    <app-feather-icons [icon]="'bell'" [routerLink]="'/settings/Notifications'"></app-feather-icons><span class="dot"></span>
+                     
+                </li>
+                <li class="onhover-dropdown"><a>
+                        <span class="badge badge-pill badge-primary pull-right notification-badge">{{contactService.notifEmails.value}}</span>
                         <app-feather-icons class="right_side_toggle" [icon]="'message-square'"
-                            (click)="right_side_bar()">
+                            [routerLink]="'/settings/messages'">
                         </app-feather-icons><span class="dot"></span>
                     </a></li>
                 <li class="onhover-dropdown">
@@ -115,7 +82,7 @@
                         <li><a href="javascript:void(0)">
                                 <app-feather-icons [icon]="'settings'"></app-feather-icons>Settings
                             </a></li>
-                        <li><a [routerLink]="'/auth/login'">
+                        <li><a (click)="logout()">
                                 <app-feather-icons [icon]="'log-out'"></app-feather-icons>Logout
                             </a></li>
                     </ul>

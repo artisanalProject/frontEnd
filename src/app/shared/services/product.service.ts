@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../../models/product';
@@ -20,6 +20,10 @@ export class ProductService {
   public Currency = { name: 'Dollar', currency: 'USD', price: 1 } // Default Currency
   public OpenCart: boolean = false;
   public Products : Product []
+  public notifProducts = new BehaviorSubject(0);
+
+  
+  nbNotif;
 
   constructor(private http: HttpClient,
     private toastrService: ToastrService) { }
@@ -34,6 +38,16 @@ export class ProductService {
   private get products(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl+"/product/allProduct")
   }
+
+  public  nbNotifProducts() {
+  return  this.getProducts().subscribe(res=>{
+      this.nbNotif=JSON.parse(JSON.stringify(res)).filter(x=>x.status=="Requested").length
+    },err=>{},()=>{
+      this.notifProducts.next(this.nbNotif)
+    })
+   }
+
+
   public addProduct(product){
    return this.http.post(this.baseUrl +"/product/addProduct", product)
   }
@@ -47,18 +61,42 @@ export class ProductService {
   public deleteProduct(id){
     return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
-  public getProductById(id){
-    return this.http.get(this.baseUrl+"/product/getProductById/"+id)
+  public refuseProduct(id){
+    return this.http.delete(this.baseUrl+"/product/refuseProduct/"+id)
+  }
+  public acceptProduct(id){
+    return this.http.delete(this.baseUrl+"/product/acceptProduct/"+id)
+  }
+  public postReview(id,review){
+    return this.http.post(this.baseUrl+"/product/updateReviews/"+id,review)
+  }
+  public getProductById(id) : Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/getProductById/"+id)
+  }
+  public updateProduct(id,product){
+    return this.http.put(this.baseUrl+"/product/updateProduct/"+id,product)
+  }
+  public addToFavoris(id){
+    return this.http.get(this.baseUrl+"/product/addToFavoris/"+id)
+  }
+  public removeFromFavoris(id){
+    return this.http.get(this.baseUrl+"/product/removeFromFavoris/"+id)
+  }
+  public getProductByCategory(idCategory) :Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/findProductByCategory/"+idCategory)
+  }
+  public verifEmailReview(productId,email) :Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl+"/product/verifExistEmailOnReviews/"+productId+"/"+email)
   }
 
   // Get Products By Slug
-  public getProductBySlug(slug: string): Observable<Product> {
-    return this.products.pipe(map(items => { 
-      return items.find((item: any) => { 
-        return item.title.replace(' ', '-') === slug; 
-      }); 
-    }));
-  }
+  // public getProductBySlug(slug: string): Observable<Product> {
+  //   return this.products.pipe(map(items => { 
+  //     return items.find((item: any) => { 
+  //       return item.title.replace(' ', '-') === slug; 
+  //     }); 
+  //   }));
+  // }
 
 
   /*
@@ -78,7 +116,7 @@ export class ProductService {
 
   // Add to Wishlist
   public addToWishlist(product): any {
-    const wishlistItem = state.wishlist.find(item => item.id === product.id)
+    const wishlistItem = state.wishlist.find(item => item._id === product._id)
     if (!wishlistItem) {
       state.wishlist.push({
         ...product
@@ -114,7 +152,7 @@ export class ProductService {
 
   // Add to Compare
   public addToCompare(product): any {
-    const compareItem = state.compare.find(item => item.id === product.id)
+    const compareItem = state.compare.find(item => item._id === product._id)
     if (!compareItem) {
       state.compare.push({
         ...product
@@ -150,7 +188,7 @@ export class ProductService {
 
   // Add to Cart
   public addToCart(product): any {
-    const cartItem = state.cart.find(item => item.id === product.id);
+    const cartItem = state.cart.find(item => item._id === product._id);
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
     const stock = this.calculateStockCounts(items, qty);
@@ -172,24 +210,34 @@ export class ProductService {
   }
 
   // Update Cart Quantity
-  // public updateCartQuantity(product: Product, quantity: number): Product | boolean {
-  //   return state.cart.find((items, index) => {
-  //     if (items.id === product.id) {
-  //       const qty = state.cart[index].quantity + quantity
-  //       const stock = this.calculateStockCounts(state.cart[index], quantity)
-  //       if (qty !== 0 && stock) {
-  //         state.cart[index].quantity = qty
-  //       }
-  //       localStorage.setItem("cartItems", JSON.stringify(state.cart));
-  //       return true
-  //     }
-  //   })
-  // }
+  public updateCartQuantity(product: Product, quantity: number): Product | boolean {
+    return state.cart.find((items, index) => {
+      if (items._id === product._id) {
+        const qty = state.cart[index].quantity + quantity
+        const stock = this.calculateStockCounts(state.cart[index], quantity)
+       
+        
+        if (qty !== 0 && stock) {
+          state.cart[index].quantity = qty
+        }
+        localStorage.setItem("cartItems", JSON.stringify(state.cart));
+        return true
+      }
+    }) 
+  }
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
-    const qty = product.quantity + quantity
+    console.log(product);
+    
+    console.log(product.quantity);
+     
+    const qty = product.quantity+quantity
     const stock = product.stock
+    console.log(qty);
+    console.log(stock);
+    
+    
     if (stock < qty || stock == 0) {
       this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
       return false
@@ -206,17 +254,17 @@ export class ProductService {
   }
 
   // Total amount 
-  // public cartTotalAmount(): Observable<number> {
-  //   return this.cartItems.pipe(map((product: Product[]) => {
-  //     return product.reduce((prev, curr: Product) => {
-  //       let price = curr.price;
-  //       if(curr.discount) {
-  //         price = curr.price - (curr.price * curr.discount / 100)
-  //       }
-  //       return (prev + price * curr.quantity) * this.Currency.price;
-  //     }, 0);
-  //   }));
-  // }
+  public cartTotalAmount(): Observable<number> {
+    return this.cartItems.pipe(map((product: Product[]) => {
+      return product.reduce((prev, curr: Product) => {
+        let price = curr.price;
+        if(curr.remise) {
+          price = curr.price - (curr.price * curr.remise / 100)
+        }
+        return (prev + price * curr.quantity) * this.Currency.price;
+      }, 0);
+    }));
+  }
 
   /*
     ---------------------------------------------
@@ -225,72 +273,72 @@ export class ProductService {
   */
 
   // Get Product Filter
-  // public filterProducts(filter: any): Observable<Product[]> {
-  //   return this.products.pipe(map(product => 
-  //     product.filter((item: Product) => {
-  //       if (!filter.length) return true
-  //       const Tags = filter.some((prev) => { // Match Tags
-  //         if (item.tags) {
-  //           if (item.tags.includes(prev)) {
-  //             return prev
-  //           }
-  //         }
-  //       })
-  //       return Tags
-  //     })
-  //   ));
-  // }
+  public filterProducts(filter: any): Observable<Product[]> {
+    return this.products.pipe(map(product => 
+      product.filter((item: Product) => {
+        if (!filter.length) return true
+        const Tags = filter.some((prev) => { // Match Tags
+          if (item.name) {
+            if (item.name.includes(prev)) {
+              return prev
+            }
+          }
+        })
+        return Tags
+      })
+    ));
+  }
 
   // Sorting Filter
-  // public sortProducts(products: Product[], payload: string): any {
+  public sortProducts(products: Product[], payload: string): any {
 
-  //   if(payload === 'ascending') {
-  //     return products.sort((a, b) => {
-  //       if (a.id < b.id) {
-  //         return -1;
-  //       } else if (a.id > b.id) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'a-z') {
-  //     return products.sort((a, b) => {
-  //       if (a.title < b.title) {
-  //         return -1;
-  //       } else if (a.title > b.title) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'z-a') {
-  //     return products.sort((a, b) => {
-  //       if (a.title > b.title) {
-  //         return -1;
-  //       } else if (a.title < b.title) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'low') {
-  //     return products.sort((a, b) => {
-  //       if (a.price < b.price) {
-  //         return -1;
-  //       } else if (a.price > b.price) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } else if (payload === 'high') {
-  //     return products.sort((a, b) => {
-  //       if (a.price > b.price) {
-  //         return -1;
-  //       } else if (a.price < b.price) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     })
-  //   } 
-  // }
+    if(payload === 'ascending') {
+      return products.sort((a, b) => {
+        if (a._id < b._id) {
+          return -1;
+        } else if (a._id > b._id) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'a-z') {
+      return products.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        } else if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'z-a') {
+      return products.sort((a, b) => {
+        if (a.name > b.name) {
+          return -1;
+        } else if (a.name < b.name) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'low') {
+      return products.sort((a, b) => {
+        if (a.price < b.price) {
+          return -1;
+        } else if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
+      })
+    } else if (payload === 'high') {
+      return products.sort((a, b) => {
+        if (a.price > b.price) {
+          return -1;
+        } else if (a.price < b.price) {
+          return 1;
+        }
+        return 0;
+      })
+    } 
+  }
 
   /*
     ---------------------------------------------
@@ -345,3 +393,15 @@ export class ProductService {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

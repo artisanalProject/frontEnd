@@ -1,3 +1,4 @@
+
 <app-breadcrumb [title]="'Contact'" [breadcrumb]="'Contact'"></app-breadcrumb>
 <!--section start-->
 <section class=" contact-page section-b-space">
@@ -55,30 +56,45 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <form class="theme-form">
+                <form [formGroup]="contactForm"  class="theme-form">
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="name">First Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Your name" required="">
+                            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter Your name" >
+                            <div *ngIf="contactForm.controls.name.errors?.required && contactForm.controls.name.touched" class="invalid-feedback">Please choose a username.</div>
+       
+      
+                            
                         </div>
                         <div class="col-md-6">
-                            <label for="email">Last Name</label>
-                            <input type="text" class="form-control" id="last-name" placeholder="Email" required="">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" formControlName="lastName" class="form-control" id="last-name" placeholder="Last Name" required>
+                            <div *ngIf="contactForm.controls.lastName.errors?.required && contactForm.controls.lastName.touched" class="invalid-feedback">Please choose a username.</div>
+
                         </div>
                         <div class="col-md-6">
                             <label for="review">Phone number</label>
-                            <input type="text" class="form-control" id="review" placeholder="Enter your number" required="">
+                            <input type="text" formControlName="phoneNumber" class="form-control" id="review" placeholder="Enter your number">
                         </div>
                         <div class="col-md-6">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                            <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email" >
+                            <div *ngIf="contactForm.controls.email.errors?.email" class="text-danger">
+                                <span>it must be an email format</span>
+                              </div>
+                              <div *ngIf="contactForm.controls.email.errors?.required && contactForm.controls.email.touched" class="text-danger">
+                                <span> email is required</span>
+                              </div>
                         </div>
                         <div class="col-md-12">
                             <label for="review">Write Your Message</label>
-                            <textarea class="form-control" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <textarea class="form-control" formControlName="message" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <div *ngIf="contactForm.controls.message.errors?.required && contactForm.controls.message.touched" class="text-danger">
+                                <span> message is required</span>
+                              </div>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-solid" type="submit">Send Your Message</button>
+                            <button class="btn btn-solid" [disabled]="contactForm.status=='INVALID'"  type="submit" (click)="sendMessage()">Send Your Message</button>
                         </div>
                     </div>
                 </form>
