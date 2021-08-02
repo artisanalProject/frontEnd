@@ -1,0 +1,40 @@
+<div class="container">
+    <div *ngIf="product" class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    
+                    <div class="preview-pic tab-content">
+                      <div class="tab-pane active" id="pic-1"><img src="{{  '/api/'+product.images[0] }}" /></div>
+                      <div class="tab-pane" id="pic-2" *ngFor="let pic of product.images; let i=index"><img src="{{  '/api/'+product.images[i] }}" /></div>
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{  '/api/'+product.images[0] }}" /></a></li>
+                        <li *ngFor="let pic of product.images; let i=index"><a data-target="#pic-2" data-toggle="tab" ><img src="{{  '/api/'+product.images[i] }}" /></a></li>
+                    </ul>
+                    
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">{{product.name}}</h3>
+                    <p class="product-description">{{product.description}}</p>
+                    <h4 class="price">price: <span>${{product.prix}}</span></h4>
+                    <p class="vote"><strong>Discount : {{product.remise}}%</strong> </p>
+                    <p class="vote"><strong>Stock : {{product.stock}}</strong> </p>
+                    <p class="vote"><strong>Category : {{product.category.name}}</strong> </p>
+                    <p class="vote"><strong>Marque : {{product.marque.name}}</strong> </p>
+                    <div class="action">
+                        <button class="add-to-cart btn btn-primary" (click)="$event.stopPropagation();accept(product._id)" type="button">accept</button>
+                        <button class="like btn btn-danger" (click)="$event.stopPropagation();delete(product._id)" type="button"><span class="fa fa-remove"></span></button>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+

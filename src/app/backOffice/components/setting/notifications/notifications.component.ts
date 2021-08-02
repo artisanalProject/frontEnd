@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product';
 import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogContentExampleDialogComponent } from '../../products/digital/dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-notifications',
@@ -21,7 +22,7 @@ export class NotificationsComponent implements OnInit {
   displayedColumns: string[] = ['ref', 'name','creationDate','buttons'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private ps:ProductService,public dialog: MatDialog, private router: Router) {
+  constructor(private ps:ProductService,public dialog: MatDialog, private router: Router,private snackBar: MatSnackBar) {
     // this.digital_list = digitalListDB.digital_list;
    
   }
@@ -49,7 +50,7 @@ this.dataSource.sort = this.sort;
   });
   }
   ngAfterViewInit() {
-    
+     
   }
  
   applyFilter(event: Event) {
@@ -60,28 +61,12 @@ this.dataSource.sort = this.sort;
       this.dataSource.paginator.firstPage();
     }
   }
-  delete(product){
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === "true"){
-        this.ps.deleteProduct(product._id).subscribe(
-          result => {
-          },
-          e => {console.log(e);
-           },
-    
-      ()=>{ 
-      this.getAllProduct()
-      });
-      }
-    });
- 
-  }
-  update(product){
+  view(product){
     console.log(product);
-    this.router.navigateByUrl("products/update-pending-product/"+product._id)
+    this.router.navigateByUrl("settings/details-product/"+product._id)
     
   }
+ 
   
 }

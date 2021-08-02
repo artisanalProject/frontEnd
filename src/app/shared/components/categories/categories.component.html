@@ -5,8 +5,7 @@
         <div class="collection-brand-filter">
             <ul class="category-list">
                 <li *ngFor="let category of cateories">
-                    <a [routerLink]="['/shop/collection/left/sidebar']"
-                       [queryParams]="{ category: category.name}">
+                    <a routerLink="/shop/collection/left/sidebar/{{category.name}}">
                         {{ category.name }}
                     </a>
                 </li>

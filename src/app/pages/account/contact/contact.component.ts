@@ -25,8 +25,9 @@ export class ContactComponent implements OnInit {
   }
   sendMessage(){ 
    this.cs.addContact(this.contactForm.value).subscribe(res=>{},err=>{},()=>{
-    this.toastr.success('your message is sended successefully', 'Message sended!');
-    this.contactForm.reset()
+   this.cs.nbNotifEmails(); 
+   
+     
    })
     
   }

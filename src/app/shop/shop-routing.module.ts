@@ -76,7 +76,15 @@ const routes: Routes = [
     path: 'collection/left/sidebar',
     component: CollectionLeftSidebarComponent
   },
+  {
+    path: 'collection/left/sidebar/:category',
+    component: CollectionLeftSidebarComponent
+  },
   
+  {
+    path: 'collection/left/sidebarx/:marque',
+    component: CollectionLeftSidebarComponent
+  },
   {
     path: 'collection/right/sidebar',
     component: CollectionRightSidebarComponent

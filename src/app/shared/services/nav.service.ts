@@ -14,6 +14,7 @@ export interface Menu {
 	badge?: boolean;
 	badgeText?: string;
 	children?: Menu[];
+	queryParams?:string;
 }
 
 @Injectable({
