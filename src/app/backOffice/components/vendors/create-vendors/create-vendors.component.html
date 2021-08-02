@@ -20,7 +20,7 @@
                                                Nom & prénom</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="name" id="validationCustom0"
                                                 type="text" required>
-                                                <div class="invalid-feedback">
+                                                <div *ngIf="accountForm.controls['name'].errors?.required && (this.accountForm.controls['name'].touched || accountForm.controls['name'].dirty)" class="text-danger">
                                                     ce champs est obligatoir.
                                                   </div>
                                         </div>
@@ -29,33 +29,38 @@
                                             <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
                                                 Email</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="email"  id="validationCustom2"
-                                                type="text" >
-                                              
+                                                type="text" required >
+                                                <div *ngIf="accountForm.controls['email'].errors?.required && this.accountForm.controls['email'].touched" class="text-danger">
+                                                    ce champs est obligatoir.
+                                                  </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="validationCustom3" class="col-xl-3 col-md-4"><span>*</span>
                                                 Password</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="password"  id="validationCustom3"
                                                 type="password" >
+                                                <div *ngIf="accountForm.controls['password'].errors?.required && this.accountForm.controls['password'].touched" class="text-danger">
+                                                    ce champs est obligatoir.
+                                                  </div>
                                                
                                         </div>
                                         <div class="form-group row">
                                             <label for="validationCustom3" class="col-xl-3 col-md-4">
                                                 téléphone</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="phoneNumber"  id="validationCustom3"
-                                                type="text" required="">
+                                                type="number" >
                                         </div>
                                         <div class="form-group row">
                                             <label for="validationCustom3" class="col-xl-3 col-md-4">
                                                 adresse</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="address"  id="validationCustom3"
-                                                type="text" required="">
+                                                type="text" >
                                         </div>
                                         <div class="form-group row">
                                             <label for="validationCustom3" class="col-xl-3 col-md-4">
                                                 boutique</label>
                                             <input class="form-control col-xl-8 col-md-7" formControlName="storeName"  id="validationCustom3"
-                                                type="text" required="">
+                                                type="text" >
                                         </div>
                                        
                                     </form>
