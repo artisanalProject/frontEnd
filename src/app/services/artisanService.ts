@@ -10,6 +10,9 @@ export class artisanService {
   connectedUser;
   httpHeaders;
   options;
+  nbNotif;
+  public notifRequests = new BehaviorSubject(0);
+
   constructor(private http: HttpClient) {
     if (JSON.parse(localStorage.getItem("connectedUser"))) {
       this.connectedUser = JSON.parse(localStorage.getItem("connectedUser"));
@@ -45,5 +48,28 @@ export class artisanService {
   }
   public RequestProduct(product) {
     return this.http.post(this.baseUrl + "/artisant/RequestProduct", product);
+  }
+
+  public nb() {
+    this.NotActivatedAccounts().subscribe(
+      (res) => {
+        this.nbNotif = JSON.parse(JSON.stringify(res)).length;
+      },
+      (err) => {},
+      () => {
+        this.notifRequests.next(this.nbNotif);
+      }
+    );
+  }
+
+  public updateProfile(body) {
+    return this.http.put(this.baseUrl + "/artisant/updateProfile", body);
+  }
+  public changePassword(body) {
+    return this.http.put(this.baseUrl + "/artisant/changePassword", body);
+  }
+
+  public deleteAccount(id) {
+    return this.http.put(this.baseUrl + "/artisant/deleteAccount", id);
   }
 }
