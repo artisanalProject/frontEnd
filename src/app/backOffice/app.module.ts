@@ -1,33 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 
-import { DashboardModule } from './components/dashboard/dashboard.module';
-import { SharedModule } from './shared/shared.module';
-import { ProductsModule } from './components/products/products.module';
-import { SalesModule } from './components/sales/sales.module';
-import { CouponsModule } from './components/coupons/coupons.module';
-import { PagesModule } from './components/pages/pages.module';
-import { MediaModule } from './components/media/media.module';
-import { MenusModule } from './components/menus/menus.module';
-import { VendorsModule } from './components/vendors/vendors.module';
-import { UsersModule } from './components/users/users.module';
-import { LocalizationModule } from './components/localization/localization.module';
-import { InvoiceModule } from './components/invoice/invoice.module';
-import { SettingModule } from './components/setting/setting.module';;
-import { ReportsModule } from './components/reports/reports.module';
-import { AuthModule } from './components/auth/auth.module';
-import { FileRenderComponentComponent } from './file-render-component/file-render-component.component';
-import {MatTableModule} from '@angular/material/table';
+import { DashboardModule } from "./components/dashboard/dashboard.module";
+import { SharedModule } from "./shared/shared.module";
+import { ProductsModule } from "./components/products/products.module";
+import { SalesModule } from "./components/sales/sales.module";
+import { PagesModule } from "./components/pages/pages.module";
+import { MediaModule } from "./components/media/media.module";
+import { MenusModule } from "./components/menus/menus.module";
+import { VendorsModule } from "./components/vendors/vendors.module";
+import { UsersModule } from "./components/users/users.module";
+import { LocalizationModule } from "./components/localization/localization.module";
+import { InvoiceModule } from "./components/invoice/invoice.module";
+import { SettingModule } from "./components/setting/setting.module";
+import { ReportsModule } from "./components/reports/reports.module";
+import { AuthModule } from "./components/auth/auth.module";
+import { FileRenderComponentComponent } from "./file-render-component/file-render-component.component";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FileRenderComponentComponent,
-  ],
+  declarations: [AppComponent, FileRenderComponentComponent],
   imports: [
     MatTableModule,
     DashboardModule,
@@ -40,15 +36,13 @@ import {MatTableModule} from '@angular/material/table';
     ProductsModule,
     SalesModule,
     VendorsModule,
-    CouponsModule,
     PagesModule,
     MediaModule,
     MenusModule,
     UsersModule,
     AppRoutingModule,
-   
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AdminModule { }
+export class AdminModule {}
