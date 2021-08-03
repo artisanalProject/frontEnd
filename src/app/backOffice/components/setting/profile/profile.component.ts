@@ -12,15 +12,20 @@ import { artisanService } from 'src/app/services/artisanService';
 export class ProfileComponent implements OnInit {
   user:any;
   show=true
-  btnName="Enable Form"
+  btnName="Enable Form";
+  role=""
   constructor(private artisanService:artisanService,private _snackBar: MatSnackBar, private router : Router) { }
 
   ngOnInit() { 
     if(JSON.parse(localStorage.getItem('connectedUser'))){
       if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+        this.role="artisan"
         this.user=JSON.parse(localStorage.getItem('connectedUser')).artisan
-      }else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+      }else if(JSON.parse(localStorage.getItem('connectedUser')).admin){
+        this.role="admin"
         this.user=JSON.parse(localStorage.getItem('connectedUser')).admin
+        console.log(this.user);
+         
       }
     }
   }
@@ -30,14 +35,39 @@ export class ProfileComponent implements OnInit {
       this.btnName='Update Profile'
       this.show=false
     }else {
-      this.user.name=name.value
-      this.user.email=email.value
-      this.user.address=address.value
-      this.user.phoneNumber=phoneNumber.value
-      this.user.storeName=storeName.value
+      if(this.role=="artisan"){
+        this.user.name=name.value
+        this.user.email=email.value
+        this.user.address=address.value
+        this.user.phoneNumber=phoneNumber.value
+        this.user.storeName=storeName.value
+      }
+      else {
+        this.user.name=name.value
+        this.user.email=email.value
+        // this.user.address=address.value
+        this.user.phoneNumber=phoneNumber.value
+        // this.user.storeName=storeName.value
+      }
+     
       console.log(this.user);
+      let body={
+        role:this.role,
+        user:this.user
+      }
       
-      this.artisanService.updateProfile(this.user).subscribe(res=>{console.log(res);
+      this.artisanService.updateProfile(body).subscribe(res=>{
+        if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+          let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))      
+          connectedUser.artisan=res
+          localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
+          
+        }else{
+          let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))
+          connectedUser.admin=res
+          localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
+        }
+        this.ngOnInit()
       },err=>{console.log(err);
       },()=>{
         this._snackBar.open('Profile Updated','ok',{
@@ -46,17 +76,7 @@ export class ProfileComponent implements OnInit {
           horizontalPosition: 'center',
         });
 
-        if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
-          let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))      
-          connectedUser.artisan=this.user
-          localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
-          
-        }else{
-          let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))
-          connectedUser.admin=this.user
-          localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
-        }
-        this.ngOnInit()
+      
       }
       )   
       this.btnName='Enable Form'
@@ -66,8 +86,23 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword(newPwd){
-    this.user.password=newPwd
-    this.artisanService.changePassword(this.user).subscribe(res=>{
+    this.user.password=newPwd.value
+    let body={
+      role:this.role,
+      user:this.user
+    }
+    this.artisanService.changePassword(body).subscribe(res=>{
+      if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+        let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))      
+        connectedUser.artisan=res
+        localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
+        
+      }else{
+        let connectedUser=JSON.parse(localStorage.getItem('connectedUser'))
+        connectedUser.admin=res
+        localStorage.setItem('connectedUser',JSON.stringify(connectedUser))
+      }
+      this.ngOnInit()
     },err=>{console.log(err);
     },
     ()=>{
@@ -76,6 +111,7 @@ export class ProfileComponent implements OnInit {
         verticalPosition: 'top',  
         horizontalPosition: 'center',
       });
+      newPwd.value=""
     })
   }
   deleteAccount(){
@@ -88,8 +124,5 @@ export class ProfileComponent implements OnInit {
       this.router.navigateByUrl("/auth/login")
     }) 
   }
-  test(){
-    console.log('e');
-    
-  }
+ 
 }
