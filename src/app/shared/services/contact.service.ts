@@ -20,7 +20,7 @@ export class ContactService {
   }
 
   public  nbNotifEmails() {
-    return  this.getContact().subscribe(res=>{
+      this.getContact().subscribe(res=>{
         this.nbNotif=JSON.parse(JSON.stringify(res)).filter(x=>x.status=="unread").length
       },err=>{},()=>{
         this.notifEmails.next(this.nbNotif)

@@ -14,15 +14,17 @@ export class SidebarComponent implements OnInit{
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
+  user;
 
 
   constructor(private router: Router, public navServices: NavService) {
-    console.log(JSON.parse(localStorage.getItem('connectedUser')));
-    
-   
-   console.log(this.menuItems);
+ 
    if(JSON.parse(localStorage.getItem('connectedUser'))){
+  
+     
     if(JSON.parse(localStorage.getItem('connectedUser')).admin){
+      this.user=JSON.parse(localStorage.getItem('connectedUser')).admin
+      console.log(this.user);
       this.navServices.items.subscribe(menuItems => {
         this.menuItems = menuItems;
         this.router.events.subscribe((event) => {
@@ -46,6 +48,8 @@ export class SidebarComponent implements OnInit{
       })
      }
      else if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+      this.user=JSON.parse(localStorage.getItem('connectedUser')).artisan
+      console.log(this.user);
       this.navServices.itemsArtisan.subscribe(menuItems => {
         this.menuItems = menuItems;
         this.router.events.subscribe((event) => {
