@@ -86,7 +86,10 @@ export class ProfileComponent implements OnInit {
     },
     ()=>{
       this.router.navigateByUrl("/auth/login")
-    })
+    }) 
   }
-  
+  test(){
+    console.log('e');
+    
+  }
 }

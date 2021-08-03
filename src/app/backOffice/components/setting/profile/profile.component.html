@@ -12,7 +12,7 @@
                     </div>
                     <hr>
                     <!-- <div class="project-status">
-                        <h5 class="f-w-600">Employee Status</h5>
+                        <h5 class="f-w-600">Employee Status</h5> 
                         <div class="media">
                             <div class="media-body">
                                 <h6>Performance<span class="pull-right">80%</span></h6>
@@ -115,12 +115,12 @@
                         </ngb-tab>
                         <ngb-tab>
                             <ng-template ngbTabTitle>
-                                <i data-feather="settings"></i> Settings
+                                <i data-feather="settings"></i> Paramètres
                             </ng-template>
                             <ng-template ngbTabContent>
 
                                 <div class="account-setting deactivate-account">
-                                    <h5 class="f-w-600">Change Password</h5>
+                                    <h5 class="f-w-600">Changer Mot De passe</h5>
                                     <div class="row">
                                         <div class="col">
                                             <mat-form-field>
@@ -129,10 +129,20 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary" [disabled]="newPwd.value==''"
-                                        (click)="changePassword(newPwd.value)">Change</button>
+                                        (click)="changePassword(newPwd.value)">Changer</button>
                                 </div>
                                 <div class="account-setting deactivate-account">
-                                    <h5 class="f-w-600">Delete Account</h5>
+                                    <h5 class="f-w-600">Photo Du profile</h5>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input class="form-control form-control-sm" id="formFileLg" type="file" />
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" [disabled]="newPwd.value==''"
+                                        (click)="test()">Upload</button>
+                                </div>
+                                <div class="account-setting deactivate-account">
+                                    <h5 class="f-w-600">Supprimer compte</h5>
                                     <div class="row">
                                         <div class="col">
                                             <label class="d-block" for="edo-ani3">
@@ -152,8 +162,8 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="button" (click)="deleteAccount()" class="btn btn-primary">Delete
-                                        Account</button>
+                                    <button type="button" (click)="deleteAccount()" class="btn btn-primary">Supprimer
+                                        Compte</button>
                                 </div>
                             </ng-template>
                         </ngb-tab>
