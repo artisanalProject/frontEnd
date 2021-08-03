@@ -8,7 +8,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { ProductService } from "src/app/shared/services/product.service";
 import { ArtisantService } from "src/app/shared/services/artisant.service";
-
+import Swal from "sweetalert2";
 @Component({
   selector: "app-list-vendors",
   templateUrl: "./list-vendors.component.html",
@@ -49,8 +49,32 @@ export class ListVendorsComponent implements OnInit {
     );
   }
   delete(id) {
-    this.as.deleteAccount(id).subscribe((res) => {
-      console.log(res);
+    Swal.fire({
+      title: "êtes-vous sûr de vouloir supprimer cet artisant?",
+      text: "Vous ne serez pas en mesure de récupérer cet artisant!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Oui",
+      cancelButtonText: "Non",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.as.deleteAccount(id).subscribe(
+          (result) => {},
+          (e) => {
+            console.log(e);
+          },
+          () => {
+            this.getAllArtisant();
+          }
+        );
+        Swal.fire(
+          "artisant supprimée!",
+          "cet artisant a été supprimer avec succes.",
+          "success"
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("annulé", "cet artisant est en sécurité :)", "error");
+      }
     });
   }
   ngAfterViewInit() {}
