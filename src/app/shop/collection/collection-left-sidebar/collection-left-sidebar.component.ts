@@ -116,6 +116,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
     // this.router.navigate([], { 
     //   relativeTo: this.route,
     //   queryParams: tags,
+    
     //   queryParamsHandling: 'merge', // preserve the existing query params in the route
     //   skipLocationChange: false  // do trigger navigation
     // }).finally(() => {
