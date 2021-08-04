@@ -1,13 +1,8 @@
-
 <app-header-one [themeLogo]="themeLogo"></app-header-one>
 <!-- Home slider start-->
 <section class="p-0">
- 
-  <app-slider 
-    [sliders]="sliders" 
-    [textClass]="'text-center p-center'"
-    [category]="'bags'"
-    [buttonText]="'shop now'"> 
+
+  <app-slider [sliders]="sliders" [textClass]="'text-center p-center'" [category]="'bags'" [buttonText]="'shop now'">
   </app-slider>
 </section>
 <!-- Home slider End -->
@@ -16,8 +11,8 @@
 <section class="section-b-space">
   <div class="container">
     <div class="title2">
-        <h4>new collection</h4>
-        <h2 class="title-inner2">trending products</h2>
+      <h4>new collection</h4>
+      <h2 class="title-inner2">trending products</h2>
     </div>
     <div class="row">
       <div class="col">
@@ -29,12 +24,8 @@
                 <div class="no-slider row">
                   <ng-container *ngFor="let product of getCollectionProducts(collection) | slice:0:4">
                     <div class="product-box">
-                      <app-product-box-five 
-                        [product]="product" 
-                        [currency]="productService?.Currency"
-                        [thumbnail]="false"
-                        [onHowerChangeImage]="true"
-                        [cartModal]="true">
+                      <app-product-box-five [product]="product" [currency]="productService?.Currency"
+                        [thumbnail]="false" [onHowerChangeImage]="true" [cartModal]="true">
                       </app-product-box-five>
                     </div>
                   </ng-container>
@@ -75,9 +66,8 @@
           <div class="banner-contain">
             <h4 class="color pt-0">special offer for you</h4>
             <h3>leather bag</h3>
-            <h4>extra 50% off</h4> 
-            <a [routerLink]="['/shop/collection/left/sidebar']"
-               class="btn btn-solid">
+            <h4>extra 50% off</h4>
+            <a [routerLink]="['/shop/collection/left/sidebar']" class="btn btn-solid">
               shop now
             </a>
           </div>
@@ -91,49 +81,41 @@
 <!-- product slider-->
 <section class="section-b-space">
   <div class="container">
-      <div class="row partition3 partition_3">
-          <div class="col-lg-4">
-            <div class="theme-card card-border">
-              <app-product-box-vertical-slider 
-                [title]="'New products'"
-                [type]="'bags'">    
-              </app-product-box-vertical-slider>
-            </div>
-          </div>
-          <div class="col-lg-4 center-slider border-0">
-            <div>
-                <div class="title2">
-                    <h4>on sale</h4>
-                    <h2 class="title-inner2">season sale</h2>
-                </div>
-                <owl-carousel-o class="offer-slider slide-1" [options]="ProductSliderOneConfig">
-                  <ng-container *ngFor="let product of products | slice:0:8">
-                    <ng-template carouselSlide>
-                      <div>
-                        <div class="product-box product-wrap">
-                          <app-product-box-five 
-                            [product]="product" 
-                            [currency]="productService?.Currency"
-                            [thumbnail]="false"
-                            [onHowerChangeImage]="false"
-                            [cartModal]="true">
-                          </app-product-box-five>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-container>
-                </owl-carousel-o>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="theme-card card-border">
-              <app-best-seller-vertical
-                [title]="'Top products'"
-                [type]="'bags'">    
-              </app-best-seller-vertical>
-            </div>
-          </div>
+    <div class="row partition3 partition_3">
+      <div class="col-lg-4">
+        <div class="theme-card card-border">
+          <app-product-box-vertical-slider [title]="'New products'" [type]="'bags'">
+          </app-product-box-vertical-slider>
+        </div>
       </div>
+      <div class="col-lg-4 center-slider border-0">
+        <div>
+          <div class="title2">
+            <h4>on sale</h4>
+            <h2 class="title-inner2">season sale</h2>
+          </div>
+          <owl-carousel-o class="offer-slider slide-1" [options]="ProductSliderOneConfig">
+            <ng-container *ngFor="let product of products | slice:0:8">
+              <ng-template carouselSlide>
+                <div>
+                  <div class="product-box product-wrap">
+                    <app-product-box-five [product]="product" [currency]="productService?.Currency" [thumbnail]="false"
+                      [onHowerChangeImage]="false" [cartModal]="true">
+                    </app-product-box-five>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="theme-card card-border">
+          <app-best-seller-vertical [title]="'Top products'" [type]="'bags'">
+          </app-best-seller-vertical>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -154,17 +136,17 @@
 
 <!-- blog section start-->
 <section class="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title2">
-                    <h4>recent story</h4>
-                    <h2 class="title-inner2">latest blog</h2>
-                </div>
-                <app-blog [blogs]="blogs"></app-blog>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title2">
+          <h4>recent story</h4>
+          <h2 class="title-inner2">latest blog</h2>
         </div>
+        <app-blog [blogs]="blogs"></app-blog>
+      </div>
     </div>
+  </div>
 </section>
 <!-- blog section end-->
 

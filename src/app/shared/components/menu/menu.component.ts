@@ -19,9 +19,6 @@ export class MenuComponent implements OnInit {
     err=>{console.log(err)},
     ()=>{
   
-      
-      console.log(this.categories);
-           
        const childrens =[]
        this.categories.forEach(element => {
         const subChildrens=[];
@@ -38,8 +35,12 @@ export class MenuComponent implements OnInit {
             else {
                obj={ path: '/shop/collection/left/sidebar/'+element.name, title: element.name, type: 'link' }
             }
+            console.log(subChildrens);
          childrens.push(obj)
        });
+console.log(childrens);
+
+
 
        const indexShop = this.menuItems.findIndex(e=>e.title=='Shop')
        const path=  {path: '/shop/collection/left/sidebar',title: 'Shop', type: 'link', active: false, children: childrens}

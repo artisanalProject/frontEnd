@@ -107,31 +107,89 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // Append filter value to Url
   updateFilter(tags: any) {
-    this.productService.getProducts().subscribe(
-      (products) => {
-        this.products = products;
-      },
-      (err) => {},
-      () => {
-        console.log(tags);
+    // this.productService.getProducts().subscribe(products=>{
+    //   this.products = products
+    // },err=>{},()=> {
+    //   console.log(tags);
+    
+    // tags.page = null; // Reset Pagination
+    // this.router.navigate([], { 
+    //   relativeTo: this.route,
+    //   queryParams: tags,
+    
+    //   queryParamsHandling: 'merge', // preserve the existing query params in the route
+    //   skipLocationChange: false  // do trigger navigation
+    // }).finally(() => {
+    //   this.viewScroller.setOffset([120, 120]);
+    //   this.viewScroller.scrollToAnchor('products'); // Anchore Link
+    // });
+    // this.products=this.products.filter(e=>tags.minPrice<=e.price && tags.maxPrice >=e.price)
+    // })
 
-        tags.page = null; // Reset Pagination
-        this.router
-          .navigate([], {
-            relativeTo: this.route,
-            queryParams: tags,
-            queryParamsHandling: "merge", // preserve the existing query params in the route
-            skipLocationChange: false, // do trigger navigation
-          })
-          .finally(() => {
-            this.viewScroller.setOffset([120, 120]);
-            this.viewScroller.scrollToAnchor("products"); // Anchore Link
-          });
-        this.products = this.products.filter(
-          (e) => tags.minPrice <= e.price && tags.maxPrice >= e.price
-        );
-      }
+    this.productService.getProducts().subscribe(products=>{
+      this.products = products
+    },err=>{},()=> 
+     // Get Query params..
+     this.route.params.subscribe(params => {
+
+      this.brands = params.brand ? params.brand.split(",") : [];
+      this.colors = params.color ? params.color.split(",") : [];
+      this.size  = params.size ? params.size.split(",")  : [];
+      this.minPrice = params.minPrice ? params.minPrice : this.minPrice;
+      this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
+      this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
+      
+      this.category = params.category ? params.category : null;
+      this.sortBy = params.sortBy ? params.sortBy : 'ascending';
+      this.pageNo = params.page ? params.page : this.pageNo;
+      this.marque = params.marque ? params.marque : null;
+      console.log(this.marque);
+      console.log(this.category);
+      
+      this.artisant = params.artisant ? params.artisant : null;
+      // Get Filtered Products..
+      this.productService.filterProducts(this.tags).subscribe(response => {         
+        // Sorting Filter
+        this.products = this.productService.sortProducts(response, this.sortBy);
+        // Category Filter
+        if(params.category)
+          this.products = this.products.filter(item => item.category.name == this.category);
+         
+          // filter marque
+          if(params.marque)
+          this.products = this.products.filter(item => item.marque.name == this.marque);
+          console.log(this.products);
+          // filter artisant
+          if(params.artisant)
+          this.products = this.products.filter(item => item.artisant.name == this.artisant);
+         
+         
+        // Price Filter
+        this.products = this.products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice) 
+        // Paginate Products
+        this.paginate = this.productService.getPager(this.products.length, +this.pageNo);     // get paginate object from service
+        this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1); // get current page of items
+    
+    
+      
+    tags.page = null; // Reset Pagination
+    this.router.navigate([], { 
+      relativeTo: this.route,
+      queryParams: tags,
+      queryParamsHandling: 'merge', // preserve the existing query params in the route
+      skipLocationChange: false  // do trigger navigation
+    }).finally(() => {
+      this.viewScroller.setOffset([120, 120]);
+      this.viewScroller.scrollToAnchor('products'); // Anchore Link
+    });
+    this.products=this.products.filter(e=>tags.minPrice<=e.price && tags.maxPrice >=e.price)
+      })
+    })
     );
+    
+    
+  ;
+    
   }
 
   // SortBy Filter
