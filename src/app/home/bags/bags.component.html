@@ -121,105 +121,17 @@
 
 
 <!-- category -->
-<div class="category-bg">
-  <div class="container-fluid p-0">
-    <div class="row order-section">
-      <div class="col-sm-4 p-0">
-        <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}" class="image-block">
-          <img src="assets/images/cuir.jpg" class="img-fluid" alt="">
-        </a>
-      </div>
-      <div class="col-sm-4 p-0">
-        <div class="contain-block even">
-          <div>
 
-            <h6>new products</h6>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h2>zipper storage bag</h2>
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}"
-              class="btn btn-solid category-btn">
-              -80% off
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h6><span>shop now</span></h6>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 p-0">
-        <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}" class="image-block">
-          <img src="assets/images/bois.jpg" class="img-fluid" alt="">
-        </a>
-      </div>
-      <div class="col-sm-4 p-0">
-        <div class="contain-block">
-          <div>
-            <h6>on sale</h6>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h2>tucker bag</h2>
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}"
-              class="btn btn-solid category-btn">
-              save 30% off
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h6><span>shop now</span></h6>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 p-0">
-        <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}"
-          class="image-block even">
-          <img src="assets/images/cuivre.jpg" class="img-fluid" alt="">
-        </a>
-      </div>
-      <div class="col-sm-4 p-0">
-        <div class="contain-block">
-          <div>
-            <h6>summer sale</h6>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h2>gate check bag</h2>
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}"
-              class="btn btn-solid category-btn">
-              minimum 50% off
-            </a>
-            <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'bags'}">
-              <h6><span>shop now</span></h6>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- product-box slider -->
+<!-- services start-->
 <div class="container">
-  <section class="section-b-space border-section border-top-0">
-    <div class="row">
-      <div class="col">
-        <div class="title2">
-          <h4>trend</h4>
-          <h2 class="title-inner2">exclusive products</h2>
-        </div>
-        <owl-carousel-o class="product-4 product-m no-arrow" [options]="ProductSliderConfig">
-          <ng-container *ngFor="let product of products | slice:0:8">
-            <ng-template carouselSlide>
-              <div class="product-box product-wrap">
-                <app-product-box-five [product]="product" [currency]="productService?.Currency" [thumbnail]="false"
-                  [onHowerChangeImage]="true" [cartModal]="true">
-                </app-product-box-five>
-              </div>
-            </ng-template>
-          </ng-container>
-        </owl-carousel-o>
-      </div>
-    </div>
+  <section class="service border-section small-section">
+    <app-services></app-services>
   </section>
 </div>
+<!-- services End -->
+<!-- product-box slider -->
+
 <!-- product-box end -->
 
 <!-- blog section start-->
