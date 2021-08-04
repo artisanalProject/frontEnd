@@ -5,7 +5,7 @@ import { Product } from 'src/app/models/product';
 import { DialogContentExampleDialogComponent } from '../../products/digital/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-detail-requested-product',
   templateUrl: './detail-requested-product.component.html',
@@ -20,7 +20,7 @@ export class DetailRequestedProductComponent implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar
               ) {
-
+ 
     
    }
 
@@ -31,54 +31,74 @@ export class DetailRequestedProductComponent implements OnInit {
         this.productService.getProductById(params['id']).subscribe(
           res=>{this.product=JSON.parse(JSON.stringify(res))},
           err=>{},
-          ()=>{ console.log(this.product);})
+          ()=>{ console.log(this.product);
+          })
       }
     );
    
   }
 
-  delete(id ){
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === "true"){
-        this.productService.refuseProduct(id).subscribe(
-          result => {
+  refuse(product){
+    Swal.fire({
+      title: "êtes-vous sûr de vouloir refuser ce produit?",
+      text: "Vous ne serez pas en mesure de récupérer ce produit!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Oui",
+      cancelButtonText: "Non",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.refuseProduct(product).subscribe(
+          (result) => {},
+          (e) => {
+            console.log(e);
           },
-          e => {console.log(e);
-           },
-    
-      ()=>{ 
-        this.snackBar.open('Produit refusé et ne sera pas affiché dans le shop', 'OK', {
-          verticalPosition: 'top',
-          duration        : 2000
-      });
-      this.router.navigateByUrl("settings/Notifications")
-      });
+
+          () => {
+            this.ngOnInit();
+            this.productService.nbNotifProducts()
+          }
+        );
+        Swal.fire(
+          "produit supprimée!",
+          "ce produit a été sypprimer avec succes.",
+          "success"
+        );
       }
+      
     });
  
   }
  
-  accept(id){
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === "true"){
-        this.productService.acceptProduct(id).subscribe(
-          result => {
-          },
-          e => {console.log(e);
-           },
+  accept(product){
     
-      ()=>{ 
-        this.snackBar.open('Produit accepté et sera affiché dans le shop', 'OK', {
-          verticalPosition: 'top',
-          duration        : 2000
-      });
-      this.router.navigateByUrl("settings/Notifications")
-      });
+    
+    Swal.fire({
+      title: "Etes-vous sûr de vouloir accepter ce produit?",
+      text: "Ce produit cera visible pour tous les internautes!",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonText: "Oui",
+      cancelButtonText: "Non",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.acceptProduct(product).subscribe(
+          (result) => {},
+          (e) => {
+            console.log(e);
+          },
+
+          () => {
+            this.ngOnInit();
+            this.productService.nbNotifProducts()
+          }
+        );
+        Swal.fire(
+          "Ce produit a été accepté avec succès.",
+          "success"
+        );
       }
+      
     });
   }
   

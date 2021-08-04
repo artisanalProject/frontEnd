@@ -6,33 +6,29 @@
     </div>
     <div class="front">
       <a [routerLink]="['/shop/product/left/sidebar/',product._id]">
-        <img 
-          [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
-          [lazyLoad]="ImageSrc ? ImageSrc : '/api/'+product.images[0]" 
-          class="img-fluid lazy-loading" 
-          alt="{{  '/api/'+product.images[0] }}"
-         />
+        <img [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'"
+          [lazyLoad]="ImageSrc ? ImageSrc : '/api/'+product.images[0]" class="img-fluid lazy-loading"
+          alt="{{  '/api/'+product.images[0] }}" />
       </a>
     </div>
     <div class="back" *ngIf="onHowerChangeImage">
       <a [routerLink]="['/shop/product/left/sidebar/',product._id]">
-        <img [src]="ImageSrc ? ImageSrc : '/api/'+product.images[1]" class="img-fluid lazy-loading" alt="{{ product.images[1] }}" >
+        <img [src]="ImageSrc ? ImageSrc : '/api/'+product.images[1]" class="img-fluid lazy-loading"
+          alt="{{ product.images[1] }}">
       </a>
     </div>
     <ul class="product-thumb-list" *ngIf="thumbnail">
       <li class="grid_thumb_img" [class.active]="ImageSrc == image" *ngFor="let image of product.images">
         <a href="javascript:void(0)" (mouseover)="ChangeVariantsImage(image)">
-          <img [lazyLoad]="'/api/'+image" >
+          <img [lazyLoad]="'/api/'+image">
         </a>
       </li>
     </ul>
     <div class="cart-info cart-wrap">
-      <a href="javascript:void(0)" title="Add to cart" (click)="CartModal.openModal(product)"
-        *ngIf="cartModal">
+      <a href="javascript:void(0)" title="Add to cart" (click)="CartModal.openModal(product)" *ngIf="cartModal">
         <i class="ti-shopping-cart"></i>
       </a>
-      <a href="javascript:void(0)" title="Add to cart" (click)="addToCart(product)"
-        *ngIf="!cartModal">
+      <a href="javascript:void(0)" title="Add to cart" (click)="addToCart(product)" *ngIf="!cartModal">
         <i class="ti-shopping-cart"></i>
       </a>
       <a href="javascript:void(0)" title="Add to Wishlist" (click)="addToWishlist(product)">
@@ -53,10 +49,11 @@
         <h6>{{ product?.name | titlecase }}</h6>
       </a>
       <p>{{ product?.description }}</p>
-       
+
       <h4>
-        {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency:currency?.currency:'symbol'}}
-        <del *ngIf="product?.remise"><span class="money"> {{ product?.price  | currency:currency?.currency:'symbol' }}</span></del>
+        {{ product?.remise | currency:currency?.currency:'symbol'}}
+        <del *ngIf="product?.remise"><span class="money"> {{ product?.price | currency:currency?.currency:'symbol'
+            }}</span></del>
       </h4>
       <!-- I comment this section -->
       <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">
@@ -70,4 +67,3 @@
 <app-skeleton-product-box *ngIf="loader"></app-skeleton-product-box>
 <app-quick-view #quickView [product]="product" [currency]="currency"></app-quick-view>
 <app-cart-modal #cartModal [product]="product" [currency]="currency" *ngIf="cartModal"></app-cart-modal>
-

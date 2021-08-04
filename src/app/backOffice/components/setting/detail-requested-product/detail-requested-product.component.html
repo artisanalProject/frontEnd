@@ -24,10 +24,10 @@
                     <p class="price"><strong>Stock : {{product.stock}}</strong> </p>
                     <p class="price"><strong>Category : {{product.category.name}}</strong> </p>
                     <p class="price"><strong>Marque : {{product.marque.name}}</strong> </p>
-                    <div class="action">
+                    <div class="action" *ngIf="product.status=='Requested'">
                         <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
-                            (click)="accept(product._id)"> Accepter</button>
-                        <button class="buttonSubmit" mat-raised-button color="warn" (click)="delete(product._id)">
+                            (click)="accept(product)"> Accepter</button>
+                        <button class="buttonSubmit" mat-raised-button color="warn" (click)="refuse(product)">
                             Refuser</button>
                     </div>
                 </div>
