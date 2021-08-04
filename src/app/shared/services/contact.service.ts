@@ -35,7 +35,7 @@ export class ContactService {
     this.getContact().subscribe(
       (res) => {
         this.nbNotif = JSON.parse(JSON.stringify(res)).filter(
-          (x) => x.status == "unread"
+          (x) => x.status == "unreaded"
         ).length;
       },
       (err) => {},
