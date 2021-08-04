@@ -10,6 +10,12 @@
     border: 0 solid transparent;
     border-radius: 0;
 }
+.bg-danger {
+    background-color: rgb(211, 0, 0) !important;
+}
+.bg-success {
+    background-color: rgb(25, 150, 0) !important;
+}
 .row{
     margin: auto;
     padding: 10px;

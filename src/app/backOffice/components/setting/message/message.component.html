@@ -1,28 +1,61 @@
 <div class="col-md-10">
         <div class="row inbox-wrapper">
             <div class="col-lg-12">
+              <h1>Détail du message</h1>
               <div class="card">
                 <div class="card-body">
                   <div class="row">
                     
-                    <div class="col-lg-9 email-content">
-                      <div class="email-head">
-                        <div class="email-head-subject">
-                          <div class="title d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                              <span>New Project</span>
-                            </div>
-                            
+                    <div class="col-md-9">
+                    <div class="block">
+                    <div>
+                      <h6> <b> Nom: </b></h6>
+                    </div>
+                      <div>
+                        <p>{{message.lastName}}</p> 
+                      </div> 
+                    </div>
+                    <div class="block">
+                      <div>
+                        <h6> <b> Prénom: </b></h6>
+                      </div>
+                        <div>
+                          <p>{{message.name}}</p> 
+                        </div> 
+                      </div>
+                      <div class="block">
+                        <div>
+                          <h6> <b> email: </b></h6>
+                        </div>
+                          <div>
+                            <p>{{message.email}}</p> 
+                          </div> 
+                        </div>
+                        <div class="block">
+                          <div>
+                            <h6> <b> téléphone: </b></h6>
                           </div>
-                        </div>
-                        <div class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
-                          <div class="date">Nov 20, 11:20</div>
-                        </div>
-                      </div>
-                      <div class="email-body">
-                        <p> Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, Hello, </p>
-                        
-                      </div>
+                            <div>
+                              <p>{{message.phoneNumber}}</p> 
+                            </div> 
+                          </div>
+
+                          <div class="block">
+                            <div>
+                              <h6> <b> message: </b></h6>
+                            </div>
+                              <div>
+                                <p>{{message.message}}</p> 
+                              </div> 
+                            </div>
+                            <div class="block">
+                              <div>
+                                <h6> <b> date d'envoi: </b></h6>
+                              </div>
+                                <div>
+                                  <p>{{message.createdAt | date}}</p> 
+                                </div> 
+                              </div>
                     
                     </div>
                   </div>
