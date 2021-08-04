@@ -24,7 +24,7 @@
                     <p class="price"><strong>Stock : {{product.stock}}</strong> </p>
                     <p class="price"><strong>Category : {{product.category.name}}</strong> </p>
                     <p class="price"><strong>Marque : {{product.marque.name}}</strong> </p>
-                    <div class="action" *ngIf="product.status=='Requested'">
+                    <div class="action" *ngIf="product.status=='Requested' && user.admin">
                         <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
                             (click)="accept(product)"> Accepter</button>
                         <button class="buttonSubmit" mat-raised-button color="warn" (click)="refuse(product)">

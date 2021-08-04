@@ -149,14 +149,14 @@ export class NavService {
     // 	]
     // },
     {
-      title: "My products",
+      title: "Mes produits",
       icon: "box",
       type: "sub",
       active: false,
       children: [
         {
           path: "/products/add-request-product",
-          title: "Add new prodcut",
+          title: "Ajouter nouveau produit",
           type: "link",
         },
         {

@@ -147,12 +147,14 @@ export class LoginComponent implements OnInit {
         verticalPosition: 'top',
         horizontalPosition: 'center',
       });
+      this.registerForm.reset()
     }else{
       this._snackBar.open('Vous êtes inscri avec succès, vous recevrez un email de confirmation le plutôt possible','ok',{
         duration: 10000,
         verticalPosition: 'top',
         horizontalPosition: 'center',
       });
+      this.registerForm.reset()
     }
     
   })

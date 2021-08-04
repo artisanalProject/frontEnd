@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class DetailRequestedProductComponent implements OnInit {
 
   product : Product
+  user
   constructor(private route: ActivatedRoute,
               private productService : ProductService,
               public dialog: MatDialog,
@@ -25,6 +26,7 @@ export class DetailRequestedProductComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.user=JSON.parse(localStorage.getItem('connectedUser')) 
     this.route.params
     .subscribe(
       (params: Params) => {
