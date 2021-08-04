@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   public openNav: boolean = false;
   public isOpenMobile : boolean;
   notActivated;
+  role=""
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
   constructor(public navServices: NavService,private artisanService:artisanService,
@@ -39,6 +40,13 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit() { 
+    if(JSON.parse(localStorage.getItem('connectedUser'))){
+      if(JSON.parse(localStorage.getItem('connectedUser')).artisan){
+        this.role="artisan"
+      }else if(JSON.parse(localStorage.getItem('connectedUser')).admin){
+        this.role="admin"       
+      }
+    }
     this.productService.nbNotifProducts();
     this.contactService.nbNotifEmails();
     this.artisanService.NotActivatedAccounts().subscribe(res=>{this.notActivated=JSON.parse(JSON.stringify(res))},

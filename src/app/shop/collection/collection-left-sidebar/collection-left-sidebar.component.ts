@@ -107,20 +107,31 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // Append filter value to Url
   updateFilter(tags: any) {
-    console.log(tags);
+    this.productService.getProducts().subscribe(
+      (products) => {
+        this.products = products;
+      },
+      (err) => {},
+      () => {
+        console.log(tags);
 
-    tags.page = null; // Reset Pagination
-    this.router
-      .navigate([], {
-        relativeTo: this.route,
-        queryParams: tags,
-        queryParamsHandling: "merge", // preserve the existing query params in the route
-        skipLocationChange: false, // do trigger navigation
-      })
-      .finally(() => {
-        this.viewScroller.setOffset([120, 120]);
-        this.viewScroller.scrollToAnchor("products"); // Anchore Link
-      });
+        tags.page = null; // Reset Pagination
+        this.router
+          .navigate([], {
+            relativeTo: this.route,
+            queryParams: tags,
+            queryParamsHandling: "merge", // preserve the existing query params in the route
+            skipLocationChange: false, // do trigger navigation
+          })
+          .finally(() => {
+            this.viewScroller.setOffset([120, 120]);
+            this.viewScroller.scrollToAnchor("products"); // Anchore Link
+          });
+        this.products = this.products.filter(
+          (e) => tags.minPrice <= e.price && tags.maxPrice >= e.price
+        );
+      }
+    );
   }
 
   // SortBy Filter

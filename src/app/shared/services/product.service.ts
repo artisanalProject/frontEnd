@@ -61,11 +61,11 @@ export class ProductService {
   public deleteProduct(id){
     return this.http.delete(this.baseUrl+"/product/deleteProduct/"+id)
   }
-  public refuseProduct(id){
-    return this.http.delete(this.baseUrl+"/product/refuseProduct/"+id)
+  public refuseProduct(product){
+    return this.http.put(this.baseUrl+"/product/refuseProduct/",product)
   }
-  public acceptProduct(id){
-    return this.http.delete(this.baseUrl+"/product/acceptProduct/"+id)
+  public acceptProduct(product){
+    return this.http.put(this.baseUrl+"/product/acceptProduct/",product)
   }
   public postReview(id,review){
     return this.http.post(this.baseUrl+"/product/updateReviews/"+id,review)
