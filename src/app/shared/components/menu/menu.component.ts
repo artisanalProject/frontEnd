@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
               }
             }
             else {
-               obj={ path: '/shop/collection/left/sidebar'+element.name, title: element.name, type: 'link' }
+               obj={ path: '/shop/collection/left/sidebar/'+element.name, title: element.name, type: 'link' }
             }
          childrens.push(obj)
        });

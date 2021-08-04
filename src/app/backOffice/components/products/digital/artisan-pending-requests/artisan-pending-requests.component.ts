@@ -59,27 +59,34 @@ this.dataSource.sort = this.sort;
       this.dataSource.paginator.firstPage();
     }
   }
-  delete(product){
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === "true"){
-        this.ps.deleteProduct(product._id).subscribe(
-          result => {
-          },
-          e => {console.log(e);
-           },
-    
-      ()=>{ 
-      this.getAllProduct()
-      });
-      }
-    });
- 
-  }
-  update(product){
+
+  view(product){
     console.log(product);
-    this.router.navigateByUrl("products/update-pending-product/"+product._id)
+    this.router.navigateByUrl("settings/details-product/"+product._id)
     
   }
+  // delete(product){
+  //   const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result === "true"){
+  //       this.ps.deleteProduct(product._id).subscribe(
+  //         result => {
+  //         },
+  //         e => {console.log(e);
+  //          },
+    
+  //     ()=>{ 
+  //     this.getAllProduct()
+  //     });
+  //     }
+  //   });
+ 
+  // }
+  // update(product){
+  //   console.log(product);
+  //   this.router.navigateByUrl("products/update-pending-product/"+product._id)
+    
+  // }
 }

@@ -91,6 +91,11 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // Append filter value to Url
   updateFilter(tags: any) {
+    this.productService.getProducts().subscribe(products=>{
+      this.products = products
+    },err=>{},()=> {
+      console.log(tags);
+    
     tags.page = null; // Reset Pagination
     this.router.navigate([], { 
       relativeTo: this.route,
@@ -101,6 +106,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.viewScroller.setOffset([120, 120]);
       this.viewScroller.scrollToAnchor('products'); // Anchore Link
     });
+    this.products=this.products.filter(e=>tags.minPrice<=e.price && tags.maxPrice >=e.price)
+    })
+    
   }
 
   // SortBy Filter

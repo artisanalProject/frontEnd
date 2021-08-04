@@ -7,8 +7,8 @@
                     <div class="profile-details text-center">
                         <img src="assets/images/dashboard/designer.jpg" alt=""
                             class="img-fluid img-90 rounded-circle blur-up lazyloaded">
-                        <h5 class="f-w-600 mb-0">{{user.name}}</h5>
-                        <span>{{user.email}}</span>
+                        <h5 class="f-w-600 mb-0">{{user?.name}}</h5>
+                        <span>{{user?.email}}</span>
                     </div>
                     <hr>
                     <!-- <div class="project-status">
@@ -65,7 +65,7 @@
                                                         <mat-form-field>
                                                             <mat-label>Full Name</mat-label>
                                                             <input [disabled]="show" #name matInput
-                                                                value="{{user.name}}" type="text" required>
+                                                                value="{{user?.name}}" type="text" required>
                                                         </mat-form-field>
                                                     </td>
                                                 </tr>
@@ -74,7 +74,7 @@
                                                         <mat-form-field>
                                                             <mat-label>Email</mat-label>
                                                             <input [disabled]="show" #email matInput
-                                                                value="{{user.email}}" type="text" required>
+                                                                value="{{user?.email}}" type="text" required>
                                                         </mat-form-field>
                                                     </td>
                                                 </tr>
@@ -83,25 +83,25 @@
                                                         <mat-form-field>
                                                             <mat-label>Phone Number</mat-label>
                                                             <input [disabled]="show" #phN matInput
-                                                                value="{{user.phoneNumber}}" type="text" required>
+                                                                value="{{user?.phoneNumber}}" type="text" required>
                                                         </mat-form-field>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr *ngIf="role=='artisan'">
                                                     <td>
                                                         <mat-form-field>
                                                             <mat-label>Address</mat-label>
                                                             <input [disabled]="show" #adr matInput
-                                                                value="{{user.address}}" type="text" required>
+                                                                value="{{user?.address}}" type="text" required>
                                                         </mat-form-field>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr *ngIf="role=='artisan'">
                                                     <td>
                                                         <mat-form-field>
                                                             <mat-label>Store Name</mat-label>
                                                             <input [disabled]="show" #SN matInput
-                                                                value="{{user.storeName}}" type="text" required>
+                                                                value="{{user?.storeName}}" type="text" required>
                                                         </mat-form-field>
                                                     </td>
                                                 </tr>
@@ -124,12 +124,13 @@
                                     <div class="row">
                                         <div class="col">
                                             <mat-form-field>
-                                                <input placeholder="New password" #newPwd matInput type="text" required>
+                                                <input placeholder="New password" #newPwd matInput type="password"
+                                                    required>
                                             </mat-form-field>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary" [disabled]="newPwd.value==''"
-                                        (click)="changePassword(newPwd.value)">Changer</button>
+                                        (click)="changePassword(newPwd)">Changer</button>
                                 </div>
                                 <div class="account-setting deactivate-account">
                                     <h5 class="f-w-600">Photo Du profile</h5>
