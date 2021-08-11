@@ -21,6 +21,8 @@ import { ReportsModule } from "./components/reports/reports.module";
 import { AuthModule } from "./components/auth/auth.module";
 import { FileRenderComponentComponent } from "./file-render-component/file-render-component.component";
 import { MatTableModule } from "@angular/material/table";
+import { BlogModule } from "./components/blog/blog.module";
+
 
 @NgModule({
   declarations: [AppComponent, FileRenderComponentComponent],
@@ -41,6 +43,7 @@ import { MatTableModule } from "@angular/material/table";
     MenusModule,
     UsersModule,
     AppRoutingModule,
+    BlogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
