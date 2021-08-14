@@ -119,8 +119,7 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.mobileSidebar = !this.mobileSidebar;
   }
   submitReview(){
-   console.log(this.ReviewForm.value.email);
-    
+  
     this.productService.verifEmailReview(this.idProduct,this.ReviewForm.value.email)
     .subscribe(res=>{
       console.log(res);
@@ -135,7 +134,7 @@ export class ProductLeftSidebarComponent implements OnInit {
           },
           err=>{},
           ()=>{
-            this.toastr.success('your review is sended successefully', 'Review sended!');
+            this.toastr.success('your review is sent successefully', 'Review sent!');
             this.ReviewForm.reset()
           }
         )
