@@ -15,10 +15,12 @@ const routes: Routes = [
     component: ContentLayoutComponent,
     children: content,
   },
+  
   {
     path: "auth/login",
     component: LoginComponent,
   },
+  
 ];
 
 @NgModule({

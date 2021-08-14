@@ -65,6 +65,17 @@ export const content: Routes = [
       breadcrumb: "Vendors",
     },
   },
+
+  {
+    path: "blog",
+    loadChildren: () =>
+      import("../../components/blog/blog.module").then(
+        (m) => m.BlogModule
+      ),
+    data: {
+      breadcrumb: "Blog",
+    },
+  },
   {
     path: "localization",
     loadChildren: () =>

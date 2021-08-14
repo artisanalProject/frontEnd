@@ -83,18 +83,19 @@ export class NavService {
       title: "contacts",
       type: "link",
     },
+    
     // {
     // 	title: 'Coupons', icon: 'tag', type: 'sub', active: false, children: [
     // 		{ path: '/coupons/list-coupons', title: 'List Coupons', type: 'link' },
     // 		{ path: '/coupons/create-coupons', title: 'Create Coupons', type: 'link' },
     // 	]
     // },
-    // {
-    // 	title: 'Pages', icon: 'clipboard', type: 'sub', active: false, children: [
-    // 		{ path: '/pages/list-page', title: 'List Page', type: 'link' },
-    // 		{ path: '/pages/create-page', title: 'Create Page', type: 'link' },
-    // 	]
-    // },
+  // {
+  //   	title: 'Pages', icon: 'clipboard', type: 'sub', active: false, children: [
+  //   		{ path: '/pages/list-page', title: 'List Page', type: 'link' },
+  //   		{ path: '/pages/create-page', title: 'Create Page', type: 'link' },
+  //   	]
+  //   },
     // {
     // 	title: 'Media', path: '/media', icon: 'camera', type: 'link', active: false
     // },
