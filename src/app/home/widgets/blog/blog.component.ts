@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BlogService } from 'src/app/services/blog.service';
 import { BlogSlider } from '../../../shared/data/slider';
 
 @Component({
@@ -9,10 +10,13 @@ import { BlogSlider } from '../../../shared/data/slider';
 export class BlogComponent implements OnInit {
   
   @Input() blogs: any[] = [];
-
-  constructor() { }
+  articles = []
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+    this.blogService.getArticles().subscribe(res=>{
+      this.articles = JSON.parse(JSON.stringify(res)) 
+    })
   }
 
   public BlogSliderConfig: any = BlogSlider;
