@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class AuthService{
 
   loggedIn() {
-    return !!localStorage.getItem("connectedUser")
+    return localStorage.getItem("connectedUser")
   }
 }

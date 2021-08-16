@@ -11,10 +11,10 @@ const routes: Routes = [
     {
       path: 'createAticle',
        component: CreateArticleComponent,
-      data: {
-        title: "blog",
-        breadcrumb: "blog"
-      }
+      // data: {
+      //   title: "createAticle",
+      //   breadcrumb: "createAticle"
+      // }
     },
    ]
  }
@@ -22,6 +22,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class BlogRoutingModule { }
