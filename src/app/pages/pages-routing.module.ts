@@ -123,16 +123,16 @@ const routes: Routes = [
     path: 'blog/left/sidebar', 
     component: BlogLeftSidebarComponent 
   },
+  // { 
+  //   path: 'blog', 
+  //   component: BlogRightSidebarComponent 
+  // },
   { 
     path: 'blog', 
-    component: BlogRightSidebarComponent 
-  },
-  { 
-    path: 'blog/no/sidebar', 
     component: BlogNoSidebarComponent 
   },
   { 
-    path: 'blog/details', 
+    path: 'blog/details/:id', 
     component: BlogDetailsComponent 
   },
   { 

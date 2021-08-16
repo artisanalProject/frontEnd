@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { MenusRoutingModule } from '../menus/menus-routing.module';
 
 
 
@@ -8,7 +9,8 @@ import { CreateArticleComponent } from './create-article/create-article.componen
 @NgModule({
   declarations: [CreateArticleComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MenusRoutingModule
   ]
 })
 export class BlogModule { }
