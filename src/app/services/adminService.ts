@@ -18,4 +18,8 @@ login(body){
   forgotPwd(email){
     return this.http.get(this.baseUrl+"/admin/forgotPwd?emailTo="+email);
     }
+
+  loggedIn() {
+    return !!localStorage.getItem("connectedUser")
+  }
 }
