@@ -1,0 +1,48 @@
+<mat-card>
+    <div class="example-container">
+        <div *ngIf="article">
+            <form [formGroup]="blogForm">
+                <p>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Titre</mat-label>
+                      <input type="text" matInput formControlName="title" placeholder="title">
+                             <mat-error>Ce champs est obligatoire!</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field appearance="outline">
+                    <mat-label>contenu</mat-label>
+                    <textarea matInput placeholder="contenu" rows="7" cols="100" type="text" formControlName="content"
+                      required></textarea>
+                      <mat-error>Ce champs est obligatoire!</mat-error>
+                  </mat-form-field>
+                </p>
+                <section *ngIf="image && removeImage==false" class="products">
+
+                    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+                  
+                      <div class="product-card">
+                        <div class="product-image">
+                          <img class="imgTemplate" [src]="'/api/'+image">
+                        </div>
+                        <div class="product-info" (click)="close()">
+                          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                
+                  </section>
+                <ngx-dropzone (change)="onSelect($event)">
+                  <ngx-dropzone-label>juste une photo!</ngx-dropzone-label>
+                  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+              </ngx-dropzone>
+              <br>
+        <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="updateArticle()">modifier</button>
+        </form>
+        </div>
+    
+  </div>
+  </mat-card>

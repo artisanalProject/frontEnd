@@ -17,10 +17,11 @@ import { ReactiveFormsModule }   from '@angular/forms';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { MatIconModule } from "@angular/material/icon";
 import { DetailsComponent } from './details/details.component';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 
 @NgModule({
-  declarations: [CreateArticleComponent, ArticlesListComponent, DetailsComponent],
+  declarations: [CreateArticleComponent, ArticlesListComponent, DetailsComponent, UpdateArticleComponent],
   imports: [
     CommonModule,
     MenusRoutingModule,

@@ -17,7 +17,7 @@
             </mat-form-field>
           </p>
           <ngx-dropzone (change)="onSelect($event)">
-            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-label>juste une photo!!</ngx-dropzone-label>
             <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-preview>

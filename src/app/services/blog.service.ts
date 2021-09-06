@@ -17,9 +17,17 @@ getArticles(){
   getArticleById(id){
     return this.http.get(this.baseUrl+"/article/getArticlesById/"+id);
     }
-    addArticle(article){
+  addArticle(article){
       return this.http.post(this.baseUrl+"/article/addArticle/", article);
       }
+
+      
+ updateArticle(article,id){
+    return this.http.put(this.baseUrl+"/article/updateArticle/"+id, article);
+    }
+
+
+
   addHit(id){
     return this.http.get(this.baseUrl+"/article/addHit/"+id);
     }
