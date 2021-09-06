@@ -1,0 +1,133 @@
+<mat-card>
+  <div class="example-container">
+    <form *ngIf="product" name="productForm" [formGroup]="productForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>nom du produit</mat-label>
+          <input matInput placeholder="nom" type="text" formControlName="name" required>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>référence</mat-label>
+          <input matInput placeholder="référence" type="text" formControlName="reference" required>
+
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <textarea matInput placeholder="description" rows="7" type="text" formControlName="description"
+            required></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>quantité</mat-label>
+          <input matInput placeholder="quantité" type="number" formControlName="quantity" required>
+
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <div class="example-container">
+
+        <mat-form-field appearance="outline">
+          <mat-label>prix</mat-label>
+          <input matInput placeholder="prix" type="number" name="price" formControlName="price" required>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>remise</mat-label>
+          <input matInput placeholder="prix" type="number" name="price" formControlName="remise" required>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+
+      </div>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>categorie</mat-label>
+        <mat-select formControlName="category" [(ngModel)]="product.category._id" (ngModelChange)="show($event)"
+          required>
+          <ng-container *ngFor="let c of categories">
+            <mat-option [value]="c._id">
+              {{c.name}}
+            </mat-option>
+          </ng-container>
+
+        </mat-select>
+
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>marque</mat-label>
+        <mat-select formControlName="marque" [(ngModel)]="product.marque._id" [disabled]="showMarque" required>
+          <ng-container *ngFor="let m of marques">
+            <mat-option [value]="m._id">
+              {{m.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field *ngIf="artisant" appearance="outline" floatLabel="always">
+        <mat-label>Artisant</mat-label>
+        <mat-select formControlName="artisant" [(ngModel)]="product.artisant._id">
+          <ng-container *ngFor="let a of artisantList">
+            <mat-option [value]="a._id">
+              {{a.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
+
+      <section class="products">
+
+        <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+        <div *ngFor="let i of Oldimages">
+          <div class="product-card">
+            <div class="product-image">
+              <img class="imgTemplate" [src]="'/api/'+i">
+            </div>
+            <div class="product-info" (click)="close(i)">
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- <mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>Collection</mat-label>
+  <mat-select formControlName="collections" [(ngModel)]="product.collections._id"  required>
+          <ng-container *ngFor="let c of collections ">
+              <mat-option [value]="c._id">
+                 {{c.name}}
+              </mat-option>
+          </ng-container>
+          
+  </mat-select>
+ 
+  <mat-error>Ce champs est obligatoire!</mat-error>
+</mat-form-field> -->
+
+
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>glissez ici</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <br>
+      <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
+        (click)="updateProduct()">enregistrer</button>
+    </form>
+  </div>
+</mat-card>

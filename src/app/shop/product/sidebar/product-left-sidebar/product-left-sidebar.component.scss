@@ -1,0 +1,16 @@
+.owl-thumb img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+img{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
+   position: relative;
+   bottom: 12px;
+}

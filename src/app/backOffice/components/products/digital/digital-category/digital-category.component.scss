@@ -1,0 +1,39 @@
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+mat-card{
+    width: 500px;
+}
+mat-form-field {
+    display: inline;
+}
+h4{
+   text-align: center;
+}
+.buttonSubmit{
+    margin-left: 180px;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+.marque{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+.buttonSubmit{
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+table {
+    width: 100%;
+  }
+  
+  
+  td, th {
+    width: 10%;
+  }

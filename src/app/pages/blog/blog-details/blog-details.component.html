@@ -1,0 +1,71 @@
+<app-breadcrumb [title]="'Details'" [breadcrumb]="'Details'"></app-breadcrumb>
+<!--section start-->
+<section class="blog-detail-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 blog-detail">
+                <img src="{{ '/api/'+article?.image}}" class="img-fluid" alt=""/>
+                <h3>{{article?.title}}</h3>
+                <ul class="post-social">
+                    <li>{{article?.createdAt | date}}  </li>
+                   
+                    <li><i class="fa fa-heart"></i> {{article?.hits}}  </li>
+                    <li><i class="fa fa-comments"></i> {{article?.comments.length}}</li>
+                </ul>
+               <p class="content">{{article?.content}}</p>
+            </div>
+        </div>
+    
+        <div class="row section-b-space">
+            <div class="col-sm-12">
+                <ul class="comment-section"  *ngFor="let comment of article?.comments">
+                    <li>
+                        <div class="media">
+                            <img src="assets/user.png" alt="Generic placeholder image">
+                            <div class="media-body">
+                                <h6>{{comment?.name}}  <span>({{comment?.date | date}} )</span></h6>
+                                <p> {{comment?.comment}}</p>
+                            </div>
+                        </div>
+                    </li>
+                   
+                   
+                </ul>
+            </div>
+        </div>
+        <div class="row blog-contact">
+            <div class="col-sm-12">
+                <h2>Leave Your Comment</h2>
+                <form class="theme-form"  [formGroup]="ReviewForm">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" formControlName="name"  placeholder="Enter Your name" required="">
+                            <div *ngIf="ReviewForm.controls.name.errors?.required && ReviewForm.controls.name.touched" class="text-danger">
+                                <small>name is required</small>
+                              </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email"  formControlName="email" placeholder="Email" required="">
+                            <div *ngIf="ReviewForm.controls.email.errors?.email" class="text-danger">
+                                <span>it must be an email format</span>
+                              </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="exampleFormControlTextarea1">Comment</label>
+                            <textarea class="form-control" placeholder="Write Your Comment"  formControlName="comment" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <div *ngIf="ReviewForm.controls.comment.errors?.required && ReviewForm.controls.comment.touched" class="text-danger">
+                                <span> comment is required</span>
+                              </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-solid" [disabled]="ReviewForm.status=='INVALID'"  type="submit"   (click)="submitComment()">Post Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

@@ -1,0 +1,22 @@
+<owl-carousel-o [options]="BlogSliderConfig" class="no-arrow">
+  <ng-container *ngFor="let article of articles">
+    <ng-template carouselSlide>
+      <div class="col-md-12">
+        <a  [routerLink]="['/pages/blog/details',article?._id]">
+          <div class="classic-effect">
+            <img src="{{ '/api/'+article.image}}"  class="img-fluid" alt="blog">
+            <span></span>
+          </div>
+        </a>
+        <div class="blog-details">
+          <h4>>{{article?.createdAt | date}}</h4>
+          <a  [routerLink]="['/pages/blog/details',article._id]">
+            <p>{{article?.title}}</p>
+          </a>
+          <hr class="style1">
+  
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

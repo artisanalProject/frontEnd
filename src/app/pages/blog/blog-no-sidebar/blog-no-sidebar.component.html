@@ -1,0 +1,36 @@
+<app-breadcrumb [title]="'Blog'" [breadcrumb]="'Blog'"></app-breadcrumb>
+<!-- section start -->
+<section class="section-b-space  blog-page">
+    <div class="container">
+        <div class="row">
+            <!--Blog List start-->
+            <div class="col-xl-12 col-lg-8 col-md-7 " *ngFor="let article of articles">
+                <div class="row blog-media">
+                    <div class="col-xl-6">
+                        <div class="blog-left">
+                            <a [routerLink]="['/pages/blog/details',article._id]"><img src="{{ '/api/'+article.image}}" class="img-fluid" alt=""/></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="blog-right">
+                            <div>
+                                <h6>{{article.createdAt | date}}</h6>
+                                <a [routerLink]="['/pages/blog/details',article._id]"><h4>{{article.title}}</h4></a>
+                                <ul class="post-social">
+            
+                                    <li><i class="fa fa-heart"></i>  {{article.hits}} </li>
+                                    <li><i class="fa fa-comments"></i>{{article.comments.length}}</li>
+                                </ul>
+                                <p>{{(article.content.length>600)? (article.content | slice:0:600)+'...':(article.content) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             <br>
+            </div>
+            
+            <!--Blog List start-->
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
