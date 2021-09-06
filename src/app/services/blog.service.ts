@@ -17,6 +17,9 @@ getArticles(){
   getArticleById(id){
     return this.http.get(this.baseUrl+"/article/getArticlesById/"+id);
     }
+    addArticle(article){
+      return this.http.post(this.baseUrl+"/article/addArticle/", article);
+      }
   addHit(id){
     return this.http.get(this.baseUrl+"/article/addHit/"+id);
     }

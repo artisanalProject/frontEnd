@@ -60,7 +60,7 @@ export class CreateArticleComponent implements OnInit {
           duration: 2000,
         });
         // // Change the location with new one
-        this.router.navigateByUrl("/blog/createAticle");
+        this.router.navigateByUrl("/blog/listAticle");
       }
     );
   }
