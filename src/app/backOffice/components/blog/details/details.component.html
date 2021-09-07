@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="row product-page-main card-body">
+            <div class="col-xl-4">
+                <section *ngIf="article?.image">
+                    <ks-carousel [id]="100" [images]="imagesRect" [dotsConfig]="{visible: false}"
+                        [carouselConfig]="{maxHeight: '600px', keyboardEnable: true}"
+                        [previewConfig]="{maxHeight: '125px'}">
+                    </ks-carousel>
+                </section>
+            </div>
+            <div class="col-xl-8">
+                <div class="product-page-details product-right mb-0">
+                    <h2>{{article?.title}}</h2>
+                 
+                    <hr>
+                    <div>
+                        <h6 class="product-title">contenu: </h6>
+                        <h6 class="mb-0">{{article?.content}}</h6>
+                    </div>
+                  <hr>
+                  <div>
+                    <h6 class="product-title">Date de création  </h6>
+                    <h6>{{article?.createdAt | date}}</h6>
+                  </div>
+                   
+                    <hr>
+                 
+                    <div>
+                        <h6 class="product-title">Nombre de commentaires</h6>
+                        <h6>{{article?.comments.length}}</h6>
+                    </div>
+                    
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Nombre de vu</h6>
+                        <h6>{{article?.hits}}</h6>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6 class="product-title">Favoris</h6>
+
+                        <h6 *ngIf="article?.topProduct">oui</h6>
+                        <h6 *ngIf="!article?.topProduct">non</h6>
+                    </div>
+                    <hr>
+                
+                   
+                    <div class="m-t-15">
+                        <button class="btn btn-warning m-r-10" type="button" (click)="update(article._id)">Modifier</button>
+                        <button type="button" class="btn btn-danger  m-r-10" (click)="delete(article._id)">supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

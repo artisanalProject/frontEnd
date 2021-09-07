@@ -1,1 +1,30 @@
-<p>create-article works!</p>
+<mat-card>
+  <div class="example-container">
+    <form [formGroup]="blogForm">
+      <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Titre</mat-label>
+          <input type="text" matInput formControlName="title" placeholder="title">
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>contenu</mat-label>
+          <textarea matInput placeholder="contenu" rows="7" cols="100" type="text" formControlName="content"
+            required></textarea>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <br>
+      <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
+        (click)="addArticle()">ajouter</button>
+    </form>
+  </div>
+</mat-card>
