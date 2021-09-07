@@ -29,7 +29,9 @@ public imagesRect: Image[] = []
   })
     
   }
-
+  update(id){
+    this.router.navigateByUrl('/blog/updateArticle/'+id)
+  }
 
   delete(id){
     Swal.fire({

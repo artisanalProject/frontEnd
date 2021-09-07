@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  updateProfile(name,email,address,phoneNumber,storeName){
+  updateProfile(name:any,email:any,address:any,phoneNumber:any,storeName:any){
     if(this.btnName=='Enable Form'){
       this.btnName='Update Profile'
       this.show=false
