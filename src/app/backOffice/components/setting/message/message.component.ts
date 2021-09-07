@@ -9,7 +9,7 @@ import { ContactService } from "src/app/shared/services/contact.service";
 })
 export class MessageComponent implements OnInit {
   id: String;
-  message = "";
+  message : any;
   constructor(private route: ActivatedRoute, private cs: ContactService) {}
 
   ngOnInit(): void {

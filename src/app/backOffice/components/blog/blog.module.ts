@@ -18,6 +18,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { MatIconModule } from "@angular/material/icon";
 import { DetailsComponent } from './details/details.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
     MatTableModule,
     NgxDropzoneModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ],
 
 })

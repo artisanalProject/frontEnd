@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input,
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { Product } from "../../../classes/product";
 import { ProductService } from '../../../../shared/services/product.service';
 
 @Component({
@@ -13,7 +12,7 @@ import { ProductService } from '../../../../shared/services/product.service';
 })
 export class QuickViewComponent implements OnInit, OnDestroy  {
 
-  @Input() product: Product;
+  @Input() product: any;
   @Input() currency: any;  
   @ViewChild("quickView", { static: false }) QuickView: TemplateRef<any>;
 
