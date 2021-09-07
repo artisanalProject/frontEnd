@@ -12,7 +12,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
-
 import { ReactiveFormsModule }   from '@angular/forms';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { MatIconModule } from "@angular/material/icon";
@@ -35,6 +34,6 @@ import { DetailsComponent } from './details/details.component';
     MatButtonModule,
     MatIconModule
   ],
-
+  ]
 })
 export class BlogModule { }
