@@ -51,7 +51,7 @@
       <p>{{ product?.description }}</p>
 
       <h4>
-        {{ product?.remise | currency:currency?.currency:'symbol'}}
+        {{ product?.price-( (product?.price * product?.remise) / 100 ) | currency:currency?.currency:'symbol'}}
         <del *ngIf="product?.remise"><span class="money"> {{ product?.price | currency:currency?.currency:'symbol'
             }}</span></del>
       </h4>
