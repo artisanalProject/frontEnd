@@ -37,6 +37,5 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatPaginatorModule
   ],
-  ]
 })
 export class BlogModule { }
