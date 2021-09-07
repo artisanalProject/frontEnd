@@ -5,7 +5,7 @@ import { ContentLayoutComponent } from "./shared/layout/content-layout/content-l
 import { LoginComponent } from "./components/auth/login/login.component";
 import { AuthGuard } from "./guard/auth.guard";
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
     path: "admin",
     redirectTo: "dashboard/default",

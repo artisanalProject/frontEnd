@@ -22,6 +22,7 @@ import { AuthModule } from "./components/auth/auth.module";
 import { FileRenderComponentComponent } from "./file-render-component/file-render-component.component";
 import { MatTableModule } from "@angular/material/table";
 import { BlogModule } from "./components/blog/blog.module";
+import { AuthGuard } from "./guard/auth.guard";
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { BlogModule } from "./components/blog/blog.module";
     AppRoutingModule,
     BlogModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AdminModule {}

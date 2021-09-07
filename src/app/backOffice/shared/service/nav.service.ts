@@ -54,14 +54,7 @@ export class NavService {
         { path: "/products/product-list", title: "Mes Produits", type: "link" },
       ],
     },
-    // {
-    // 	title: 'My products', icon: 'box', type: 'sub', active: false, children: [
-
-    // 				{ path: '/products/add-request-product', title: 'Add new prodcut', type: 'link' },
-    // 				{ path: '/products/pending-products', title: 'Produits en attente', type: 'link' },
-    // 				{ path: '/products/refused-requests-product', title: 'Produits réfusés', type: 'link' },
-    // 	]
-    // },
+  
     {
       title: "Sales",
       icon: "dollar-sign",
@@ -79,76 +72,17 @@ export class NavService {
       type: "link",
     },
     {
-      path: "/sales/transactions",
-      title: "contacts",
+      path: "/blog/listAticle",
+      title: "blog",
       type: "link",
+      icon: "tag"
     },
     
-    // {
-    // 	title: 'Coupons', icon: 'tag', type: 'sub', active: false, children: [
-    // 		{ path: '/coupons/list-coupons', title: 'List Coupons', type: 'link' },
-    // 		{ path: '/coupons/create-coupons', title: 'Create Coupons', type: 'link' },
-    // 	]
-    // },
-  // {
-  //   	title: 'Pages', icon: 'clipboard', type: 'sub', active: false, children: [
-  //   		{ path: '/pages/list-page', title: 'List Page', type: 'link' },
-  //   		{ path: '/pages/create-page', title: 'Create Page', type: 'link' },
-  //   	]
-  //   },
-    // {
-    // 	title: 'Media', path: '/media', icon: 'camera', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Menus', icon: 'align-left', type: 'sub', active: false, children: [
-    // 		{ path: '/menus/list-menu', title: 'Menu Lists', type: 'link' },
-    // 		{ path: '/menus/create-menu', title: 'Create Menu', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Users', icon: 'user-plus', type: 'sub', active: false, children: [
-    // 		{ path: '/users/list-user', title: 'User List', type: 'link' },
-    // 		{ path: '/users/create-user', title: 'Create User', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
-    // 		{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },
-    // 		{ path: '/vendors/create-vendors', title: 'Create Vendor', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Localization', icon: 'chrome', type: 'sub', children: [
-    // 		{ path: '/localization/translations', title: 'Translations', type: 'link' },
-    // 		{ path: '/localization/currency-rates', title: 'Currency Rates', type: 'link' },
-    // 		{ path: '/localization/taxes', title: 'Taxes', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Reports', path: '/reports', icon: 'bar-chart', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Settings', icon: 'settings', type: 'sub', children: [
-    // 		{ path: '/settings/profile', title: 'Profile', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
-    // },
+    
   ];
 
   MENUITEMSARTISAN: Menu[] = [
-    // {
-    // 	title: 'Produits', icon: 'box', type: 'sub', active: false, children: [
-
-    // 				{ path: '/products/category', title: 'Category', type: 'link' },
-    // 				{ path: '/products/product-list', title: 'Mes Produits', type: 'link' },
-
-    // 	]
-    // },
+  
     {
       title: "Mes produits",
       icon: "box",
@@ -172,66 +106,7 @@ export class NavService {
         },
       ],
     },
-    // {
-    // 	title: 'Sales', icon: 'dollar-sign', type: 'sub', active: false, children: [
-    // 		{ path: '/sales/orders', title: 'Orders', type: 'link' },
-    // 		{ path: '/sales/transactions', title: 'Transactions', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Coupons', icon: 'tag', type: 'sub', active: false, children: [
-    // 		{ path: '/coupons/list-coupons', title: 'List Coupons', type: 'link' },
-    // 		{ path: '/coupons/create-coupons', title: 'Create ', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Pages', icon: 'clipboard', type: 'sub', active: false, children: [
-    // 		{ path: '/pages/list-page', title: 'List Page', type: 'link' },
-    // 		{ path: '/pages/create-page', title: 'Create Page', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Media', path: '/media', icon: 'camera', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Menus', icon: 'align-left', type: 'sub', active: false, children: [
-    // 		{ path: '/menus/list-menu', title: 'Menu Lists', type: 'link' },
-    // 		{ path: '/menus/create-menu', title: 'Create Menu', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Users', icon: 'user-plus', type: 'sub', active: false, children: [
-    // 		{ path: '/users/list-user', title: 'User List', type: 'link' },
-    // 		{ path: '/users/create-user', title: 'Create User', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
-    // 		{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },
-    // 		{ path: '/vendors/create-vendors', title: 'Create Vendor', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Localization', icon: 'chrome', type: 'sub', children: [
-    // 		{ path: '/localization/translations', title: 'Translations', type: 'link' },
-    // 		{ path: '/localization/currency-rates', title: 'Currency Rates', type: 'link' },
-    // 		{ path: '/localization/taxes', title: 'Taxes', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Reports', path: '/reports', icon: 'bar-chart', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Settings', icon: 'settings', type: 'sub', children: [
-    // 		{ path: '/settings/profile', title: 'Profile', type: 'link' },
-    // 	]
-    // },
-    // {
-    // 	title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
-    // },
-    // {
-    // 	title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
-    // },
+   
   ];
 
   // Array
