@@ -14,8 +14,13 @@ const routes: Routes = [
     {
       path: 'createAticle',
        component: CreateArticleComponent,
-     
+      // data: {
+      //   title: "createAticle",
+      //   breadcrumb: "createAticle"
+      // }
     },
+     
+
     {
       path: 'updateArticle/:id',
        component: UpdateArticleComponent,

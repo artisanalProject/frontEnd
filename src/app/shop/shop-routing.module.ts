@@ -24,7 +24,7 @@ import { Resolver } from '../shared/services/resolver.service';
 
 const routes: Routes = [
   {
-    path: 'product/left/sidebar/:id',
+    path: 'product/:id',
     component: ProductLeftSidebarComponent,
     resolve: {
       data: Resolver
@@ -73,16 +73,16 @@ const routes: Routes = [
     }
   },
   {
-    path: 'collection/left/sidebar',
+    path: '',
     component: CollectionLeftSidebarComponent
   },
   {
-    path: 'collection/left/sidebar/:category',
+    path: 'category/:category',
     component: CollectionLeftSidebarComponent
   },
   
   {
-    path: 'collection/left/sidebarx/:marque',
+    path: 'marque/:marque',
     component: CollectionLeftSidebarComponent
   },
   {
