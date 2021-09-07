@@ -4,6 +4,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { DetailsComponent } from './details/details.component';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     },
      
 
+    {
+      path: 'updateArticle/:id',
+       component: UpdateArticleComponent,
+     
+    },
     {
       path: 'listAticle',
        component: ArticlesListComponent,

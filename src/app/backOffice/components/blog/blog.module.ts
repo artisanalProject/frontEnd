@@ -16,10 +16,12 @@ import { ReactiveFormsModule }   from '@angular/forms';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { MatIconModule } from "@angular/material/icon";
 import { DetailsComponent } from './details/details.component';
+import { UpdateArticleComponent } from './update-article/update-article.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
-  declarations: [CreateArticleComponent, ArticlesListComponent, DetailsComponent],
+  declarations: [CreateArticleComponent, ArticlesListComponent, DetailsComponent, UpdateArticleComponent],
   imports: [
     CommonModule,
     MenusRoutingModule,
@@ -32,7 +34,8 @@ import { DetailsComponent } from './details/details.component';
     MatTableModule,
     NgxDropzoneModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ],
   ]
 })

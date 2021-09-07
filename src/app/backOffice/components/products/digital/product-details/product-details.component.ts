@@ -14,7 +14,7 @@ import { DialogContentExampleDialogComponent } from '../dialog-content-example-d
 })
 export class ProductDetailsComponent implements OnInit {
   product_id:string;
-  product : Product
+  product : any
   ratingValue : number;
   public ImageSrc : string
   //old one 

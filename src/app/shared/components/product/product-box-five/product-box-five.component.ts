@@ -11,7 +11,7 @@ import { ProductService } from "../../../services/product.service";
 })
 export class ProductBoxFiveComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() product: any;
   @Input() currency: any = this.productService.Currency; // Default Currency 
   @Input() thumbnail: boolean = false; // Default False 
   @Input() onHowerChangeImage: boolean = false; // Default False
