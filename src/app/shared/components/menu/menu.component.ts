@@ -24,16 +24,16 @@ export class MenuComponent implements OnInit {
         const subChildrens=[];
         element.marque.forEach(e => {
           
-          subChildrens.push({ path: '/shop/collection/left/sidebarx/'+e.name, title: e.name, type: 'link' })
+          subChildrens.push({ path: '/shop/'+e.name, title: e.name, type: 'link' })
         });
         var obj
             if(subChildrens.length!=0){
                obj=      { 
-                title: element.name, type: 'link', path:"/shop/collection/left/sidebar/"+element.name, active: false, children:subChildrens
+                title: element.name, type: 'link', path:"/shop/marque/"+element.name, active: false, children:subChildrens
               }
             }
             else {
-               obj={ path: '/shop/collection/left/sidebar/'+element.name, title: element.name, type: 'link' }
+               obj={ path: '/shop/category/'+element.name, title: element.name, type: 'link' }
             }
             console.log(subChildrens);
          childrens.push(obj)
@@ -43,7 +43,7 @@ console.log(childrens);
 
 
        const indexShop = this.menuItems.findIndex(e=>e.title=='Shop')
-       const path=  {path: '/shop/collection/left/sidebar',title: 'Shop', type: 'link', active: false, children: childrens}
+       const path=  {path: '/shop',title: 'Shop', type: 'link', active: false, children: childrens}
        this.menuItems.splice(indexShop,1,path)
     //     path: '/shop/collection/left/sidebar',title: 'Shop', type: 'link', active: false, children: [
          
