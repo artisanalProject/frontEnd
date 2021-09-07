@@ -1,84 +1,84 @@
 <mat-card>
-    <div class="example-container">
-        <form [formGroup]="productForm">
-<p>
-    <mat-form-field appearance="outline">
-      <mat-label>nom du produit</mat-label>
-      <input matInput placeholder="nom" type="text" formControlName="name" required>
-      <mat-error>Ce champs est obligatoire!</mat-error>
-     
-    </mat-form-field>
-  </p>
-
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>référence</mat-label>
-      <input matInput placeholder="référence" type="text" formControlName="reference" required>
-     
-      <mat-error>Ce champs est obligatoire!</mat-error>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea matInput placeholder="description" type="text" formControlName="description" required></textarea>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>quantité</mat-label>
-      <input matInput placeholder="quantité" type="number" formControlName="quantity" required>
-     
-      <mat-error>Ce champs est obligatoire!</mat-error>
-    </mat-form-field>
-  </p>
   <div class="example-container">
-  
-      <mat-form-field appearance="outline" >
-        <mat-label>prix</mat-label>
-        <input  matInput  placeholder="prix" type="number" name="price" formControlName="price" required>
-        <mat-error>Ce champs est obligatoire!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline" >
-        <mat-label>prix avec remise</mat-label>
-        <input  matInput  placeholder="remise" type="number" name="remise" formControlName="remise">
-      </mat-form-field>
-   
+    <form [formGroup]="productForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>nom du produit</mat-label>
+          <input matInput placeholder="nom" type="text" formControlName="name" required>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>référence</mat-label>
+          <input matInput placeholder="référence" type="text" formControlName="reference" required>
+
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="description" type="text" formControlName="description" required></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>quantité</mat-label>
+          <input matInput placeholder="quantité" type="number" formControlName="quantity" required>
+
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+      </p>
+      <div class="example-container">
+
+        <mat-form-field appearance="outline">
+          <mat-label>prix</mat-label>
+          <input matInput placeholder="prix" type="number" name="price" formControlName="price" required>
+          <mat-error>Ce champs est obligatoire!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>remise (%)</mat-label>
+          <input matInput placeholder="remise" type="number" name="remise" formControlName="remise">
+        </mat-form-field>
+
       </div>
-     
+
 
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>categorie</mat-label>
-        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)" >
-                <ng-container *ngFor="let c of categories">
-                    <mat-option [value]="c._id">
-                       {{c.name}}
-                    </mat-option>
-                </ng-container>
-                
+        <mat-select formControlName="category" [(ngModel)]="categorie" (ngModelChange)="show($event)">
+          <ng-container *ngFor="let c of categories">
+            <mat-option [value]="c._id">
+              {{c.name}}
+            </mat-option>
+          </ng-container>
+
         </mat-select>
-       
+
         <mat-error>Ce champs est obligatoire!</mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" floatLabel="always">
-      <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" >
-              <ng-container *ngFor="let m of marques">
-                  <mat-option [value]="m._id">
-                     {{m.name}}
-                  </mat-option>
-              </ng-container>
-      </mat-select>
-     
-      <mat-error>Ce champs est obligatoire!</mat-error>
-  </mat-form-field>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>marque</mat-label>
+        <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque">
+          <ng-container *ngFor="let m of marques">
+            <mat-option [value]="m._id">
+              {{m.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
 
-  <mat-form-field [hidden]="true"  appearance="outline" floatLabel="always">
-    <input matInput  placeholder="artisan" type="text" name="remise" formControlName="artisan">
-   
-</mat-form-field>
-<!-- <mat-form-field appearance="outline" floatLabel="always">
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field [hidden]="true" appearance="outline" floatLabel="always">
+        <input matInput placeholder="artisan" type="text" name="remise" formControlName="artisan">
+
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline" floatLabel="always">
   <mat-label>Collection</mat-label>
   <mat-select formControlName="collections" [(ngModel)]="collection" >
           <ng-container *ngFor="let c of collections ">
@@ -93,14 +93,15 @@
 </mat-form-field> -->
 
 
-<ngx-dropzone (change)="onSelect($event)">
-  <ngx-dropzone-label>Drop here product images!</ngx-dropzone-label>
-  <ngx-dropzone-preview *ngFor="let f of files"  [removable]="true" (removed)="onRemove(f)">
-      <ngx-dropzone-label></ngx-dropzone-label>
-  </ngx-dropzone-preview>
-</ngx-dropzone>
-<br>
-  <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="addProduct()">ajouter</button>
-</form>
-</div>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop here product images!</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <br>
+      <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
+        (click)="addProduct()">ajouter</button>
+    </form>
+  </div>
 </mat-card>

@@ -39,7 +39,7 @@
           <mat-error>Ce champs est obligatoire!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>prix avec remise</mat-label>
+          <mat-label>remise (%)</mat-label>
           <input matInput placeholder="remise" type="number" name="remise" formControlName="remise">
         </mat-form-field>
 
@@ -58,46 +58,47 @@
         </mat-select>
 
         <mat-error>Ce champs est obligatoire!</mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" floatLabel="always">
-      <mat-label>marque</mat-label>
-      <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque" >
-              <ng-container *ngFor="let m of marques">
-                  <mat-option [value]="m._id">
-                     {{m.name}}
-                  </mat-option>
-              </ng-container>
-      </mat-select>
-      <mat-error>Ce champs est obligatoire!</mat-error>
-     
-  </mat-form-field>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>marque</mat-label>
+        <mat-select formControlName="marque" [(ngModel)]="marque" [disabled]="showMarque">
+          <ng-container *ngFor="let m of marques">
+            <mat-option [value]="m._id">
+              {{m.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Ce champs est obligatoire!</mat-error>
+
+      </mat-form-field>
 
 
-<mat-form-field appearance="outline" floatLabel="always">
-  <mat-label>Artisant</mat-label>
-  <mat-select formControlName="artisant" [(ngModel)]="artisant" >
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Artisant</mat-label>
+        <mat-select formControlName="artisant" [(ngModel)]="artisant">
           <ng-container *ngFor="let a of artisantList ">
             <mat-option [value]="a._id">
               {{a.name}}
             </mat-option>
           </ng-container>
-          
-  </mat-select>
- 
-  <mat-error>Ce champs est obligatoire!</mat-error>
-</mat-form-field>
+
+        </mat-select>
+
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
 
 
-<ngx-dropzone (change)="onSelect($event)">
-  <ngx-dropzone-label>glissez ici</ngx-dropzone-label>
-  <ngx-dropzone-preview *ngFor="let f of files"  [removable]="true" (removed)="onRemove(f)">
-      <ngx-dropzone-label></ngx-dropzone-label>
-  </ngx-dropzone-preview>
-</ngx-dropzone>
-<span *ngIf="files.length == 0 && submitted ">les images sont obligatoires!</span>
-<br>
-  <button class="buttonSubmit" mat-raised-button color="primary" type="submit" (click)="addProduct()">ajouter</button>
-</form>
-</div>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>glissez ici</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <span *ngIf="files.length == 0 && submitted ">les images sont obligatoires!</span>
+      <br>
+      <button class="buttonSubmit" mat-raised-button color="primary" type="submit"
+        (click)="addProduct()">ajouter</button>
+    </form>
+  </div>
 </mat-card>
