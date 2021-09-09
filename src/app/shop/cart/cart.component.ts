@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from "../../shared/services/product.service";
 import { Product } from "../../models/product";
+
 
 @Component({
   selector: 'app-cart',
@@ -9,6 +10,7 @@ import { Product } from "../../models/product";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  @Input() currency: any = this.productService.Currency; // Default Currency 
 
   public products: Product[] = [];
   constructor(public productService: ProductService) {

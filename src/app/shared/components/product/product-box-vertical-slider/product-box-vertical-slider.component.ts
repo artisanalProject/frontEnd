@@ -9,6 +9,7 @@ import { ProductService } from '../../../services/product.service';
   styleUrls: ['./product-box-vertical-slider.component.scss']
 })
 export class ProductBoxVerticalSliderComponent implements OnInit {
+  @Input() currency: any = this.productService.Currency; // Default Currency 
 
   @Input() title: string; // Default
   @Input() type: string = 'fashion'; // Default Fashion
