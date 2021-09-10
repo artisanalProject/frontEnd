@@ -15,4 +15,7 @@ export class ArtisantService {
   public deleteAccount(id) {
     return this.http.delete(this.baseUrl + "/artisant/deleteAccount/" + id);
   }
+  public nbArtisansPerMonth() {
+    return this.http.get(this.baseUrl + "/artisant/nbArtisansPerMonth");
+  }
 }
