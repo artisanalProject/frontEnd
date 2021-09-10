@@ -3,3 +3,10 @@ img {
     height: 150px !important;
     margin-left: 5px !important;
 }
+@media screen and (max-width: 480px) {
+    img {
+        width: 200px !important;
+        height: 200px !important;
+        margin-left: 5px !important;
+    }
+  }
