@@ -11,7 +11,7 @@ import { artisanService } from "src/app/services/artisanService";
 export class ProfileComponent implements OnInit {
   user: any;
   show = true;
-  btnName = "Enable Form";
+  btnName = "Activé la modification";
   role = "";
   SN;
   adr;
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       } else if (JSON.parse(localStorage.getItem("connectedUser")).admin) {
         this.role = "admin";
         this.user = JSON.parse(localStorage.getItem("connectedUser")).admin;
-        console.log(this.user);
+       
       }
     }
   }
@@ -42,8 +42,8 @@ export class ProfileComponent implements OnInit {
     phoneNumber: any,
     storeName: any
   ) {
-    if (this.btnName == "Enable Form") {
-      this.btnName = "Update Profile";
+    if (this.btnName == "Activé la modification") {
+      this.btnName = "Modifier profil";
       this.show = false;
     } else {
       if (this.role == "artisan") {
@@ -60,7 +60,6 @@ export class ProfileComponent implements OnInit {
         // this.user.storeName=storeName.value
       }
 
-      console.log(this.user);
       let body = {
         role: this.role,
         user: this.user,
@@ -138,7 +137,6 @@ export class ProfileComponent implements OnInit {
     );
   }
   deleteAccount() {
-    console.log(this.user._id);
 
     this.artisanService.deleteAccount(this.user._id).subscribe(
       (res) => {},
