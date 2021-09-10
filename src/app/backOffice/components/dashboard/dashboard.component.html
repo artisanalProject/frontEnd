@@ -7,12 +7,12 @@
                     <div class="media static-top-widget row">
                         <div class="icons-widgets col-4">
                             <div class="align-self-center text-center">
-                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                                <app-feather-icons [icon]="'message-square'" class="font-warning"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">Earnings</span>
-                            <h3 class="mb-0">$ <span class="counter" [CountTo]="6659" [from]="0"
-                                    [duration]="2">6659</span><small> This Month</small></h3>
+                        <div class="media-body col-8"><span class="m-0">Articles</span>
+                            <h3 class="mb-0">$ <span class="counter" [CountTo]="nbArticles" [from]="0"
+                                    [duration]="1">{{nbArticles}}</span><small> Articles</small></h3>
                         </div>
                     </div>
                 </div>
@@ -27,9 +27,9 @@
                                 <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">Products</span>
-                            <h3 class="mb-0">$ <span class="counter" [CountTo]="9856" [from]="0"
-                                    [duration]="2">9856</span><small> This Month</small></h3>
+                        <div class="media-body col-8"><span class="m-0">Produits</span>
+                            <h3 class="mb-0">$ <span class="counter" [CountTo]="nbProducts" [from]="0"
+                                    [duration]="1">{{nbProducts}}</span><small> produits</small></h3>
                         </div>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Messages</span>
-                            <h3 class="mb-0">$ <span class="counter" [CountTo]="893" [from]="0"
-                                    [duration]="2">893</span><small> This Month</small></h3>
+                            <h3 class="mb-0">$ <span class="counter" [CountTo]="nbContacts" [from]="0"
+                                    [duration]="1">{{nbContacts}}</span><small>Messages</small></h3>
                         </div>
                     </div>
                 </div>
@@ -61,23 +61,23 @@
                                 <app-feather-icons [icon]="'users'" class="font-danger"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">New Vendors</span>
-                            <h3 class="mb-0">$ <span class="counter" [CountTo]="45631" [from]="0"
-                                    [duration]="2">45631</span><small> This Month</small></h3>
+                        <div class="media-body col-8"><span class="m-0">Artisans</span>
+                            <h3 class="mb-0">$ <span class="counter" [CountTo]="nbArtisans" [from]="0"
+                                    [duration]="1">{{nbArtisans}}</span><small> Artisans</small></h3>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
         <div class="col-xl-6 xl-100">
             <div class="card">
                 <div class="card-header">
-                    <h5>Market Value</h5>
+                    <h5>Nombre des artisans inscrits par mois</h5>
                 </div>
                 <div class="card-body">
                     <div class="market-chart">
-                        <x-chartist class="board-chart ct-golden-section" [data]="chart3.data" [type]="chart3.type"
-                            [options]="chart3.options" [events]="chart3.events">
+                        <x-chartist class="board-chart ct-golden-section" [data]="chart3?.data" [type]="chart3?.type"
+                            [options]="chart3?.options" [events]="chart3?.events">
                         </x-chartist>
                     </div>
                 </div>
@@ -486,8 +486,8 @@
                                     <td class="bd-t-none u-s-tb">
                                         <div class="align-middle image-sm-size"><img
                                                 class="img-radius align-top m-r-15 rounded-circle"
-                                                src="assets/images/dashboard/designer.jpg" alt=""
-                                                data-original-title="" title="">
+                                                src="assets/images/dashboard/designer.jpg" alt="" data-original-title=""
+                                                title="">
                                             <div class="d-inline-block">
                                                 <h6>Pusiz bia <span class="text-muted digits">(14+ Online)</span></h6>
                                             </div>
