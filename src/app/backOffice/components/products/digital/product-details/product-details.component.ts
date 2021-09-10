@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -7,12 +7,15 @@ import { ModalDismissReasons, NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng
 import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from 'src/app/shared/data/slider';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  @Input() currency: any = this.ps.Currency; // Default Currency 
+
   product_id:string;
   product : any
   ratingValue : number;
