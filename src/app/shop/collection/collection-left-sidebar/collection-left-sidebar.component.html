@@ -4,6 +4,7 @@
     <div class="collection-wrapper">
         <div class="container">
             <div class="row">
+              
                 <div class="col-lg-3">
                     <div class="collection-filter" [class.openFilterbar]="mobileSidebar">
                         <!-- side-bar colleps block stat -->
@@ -33,7 +34,7 @@
                                 </span>
                             </div>
                             <!-- artisant filter start -->
-                            <app-artisant (click)=updateFilter()></app-artisant>
+                            <app-artisant (click)=updateFilter(null)></app-artisant>
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar colleps block stat -->
@@ -57,11 +58,7 @@
                         </app-product-box-vertical-slider>
                         <!-- side-bar single product slider end -->
                         <!-- side-bar banner start here -->
-                        <!-- <div class="collection-sidebar-banner">
-                            <a [routerLink]="['/shop/collection/left/sidebar']">
-                                <img src="assets/images/collection-sidebar-banner.png" class="img-fluid" alt="banner">
-                            </a>
-                        </div> -->
+                        
                         <!-- side-bar banner end here -->
                     </div>
                 </div>
@@ -71,7 +68,7 @@
                             <div class="col-sm-12">
                                 <div class="top-banner-wrapper">
                                     <a [routerLink]="['/shop']">
-                                        <img src="assets/images/collection/shop-first.png" class="img-fluid " alt="">
+                                        <img src="assets/images/offer-banner-3.jpg" class="img-fluid " alt="">
                                     </a>
                                     <div class="top-banner-content small-section">
                                         <h4>fashion</h4>
