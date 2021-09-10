@@ -188,6 +188,7 @@ export class ProductService {
 
   // Add to Cart
   public addToCart(product): any {
+    
     const cartItem = state.cart.find(item => item._id === product._id);
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
@@ -228,12 +229,12 @@ export class ProductService {
 
     // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
-    console.log(product);
-    
-    console.log(product.quantity);
-     
+console.log("dzadzaz");
+
     const qty = product.quantity+quantity
     const stock = product.stock
+    console.log("here");
+    
     console.log(qty);
     console.log(stock);
     
@@ -321,18 +322,18 @@ export class ProductService {
       })
     } else if (payload === 'low') {
       return products.sort((a, b) => {
-        if (a.price < b.price) {
+        if ( a?.price-( (a?.price * a?.remise) / 100 ) <  b?.price-( (b?.price * b?.remise) / 100 )) {
           return -1;
-        } else if (a.price > b.price) {
+        } else if ( a?.price-( (a?.price * a?.remise) / 100 ) >  b?.price-( (b?.price * b?.remise) / 100 )) {
           return 1;
         }
         return 0;
       })
     } else if (payload === 'high') {
       return products.sort((a, b) => {
-        if (a.price > b.price) {
+        if ( a?.price-( (a?.price * a?.remise) / 100 )> b?.price-( (b?.price * b?.remise) / 100 )) {
           return -1;
-        } else if (a.price < b.price) {
+        } else if ( a?.price-( (a?.price * a?.remise) / 100 ) <  b?.price-( (b?.price * b?.remise) / 100 )) {
           return 1;
         }
         return 0;
