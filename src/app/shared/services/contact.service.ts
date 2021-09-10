@@ -44,4 +44,8 @@ export class ContactService {
       }
     );
   }
+
+  public nbContacts() {
+    return this.http.get(this.baseUrl + "/contact/nbContacts");
+  }
 }

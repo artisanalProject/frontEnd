@@ -1,17 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import * as chartData from '../../shared/data/chart';
-import { doughnutData, pieData } from '../../shared/data/chart';
+import { Component, OnInit } from "@angular/core";
+import { ArtisantService } from "src/app/shared/services/artisant.service";
+import { ProductService } from "src/app/shared/services/product.service";
+import { ContactService } from "src/app/shared/services/contact.service";
+import { BlogService } from "src/app/services/blog.service";
+
+import * as chartData from "../../shared/data/chart";
+import { doughnutData, pieData } from "../../shared/data/chart";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
   public doughnutData = doughnutData;
   public pieData = pieData;
-  constructor() {
-    Object.assign(this, { doughnutData, pieData })
+  nbProducts;
+  nbArtisans;
+  nbContacts;
+  nbArticles;
+  constructor(
+    private productService: ProductService,
+    private artisanService: ArtisantService,
+    private contactService: ContactService,
+    private blogService: BlogService
+  ) {
+    Object.assign(this, { doughnutData, pieData });
   }
 
   // doughnut 2
@@ -22,7 +36,6 @@ export class DashboardComponent implements OnInit {
   public doughnutChartTooltip = chartData.doughnutChartTooltip;
 
   public chart5 = chartData.chart5;
-
 
   // lineChart
   public lineChartData = chartData.lineChartData;
@@ -64,17 +77,75 @@ export class DashboardComponent implements OnInit {
   public smallLine4ChartLegend = chartData.smallLine4ChartLegend;
   public smallLine4ChartType = chartData.smallLine4ChartType;
 
-  public chart3 = chartData.chart3;
-
-
+  public chart3;
 
   // events
-  public chartClicked(e: any): void {
-  }
-  public chartHovered(e: any): void {
-  }
+  public chartClicked(e: any): void {}
+  public chartHovered(e: any): void {}
 
   ngOnInit() {
-  }
+    this.productService.getProducts().subscribe((res) => {
+      this.nbProducts = JSON.parse(JSON.stringify(res)).length;
+    });
+    this.artisanService.getArtisant().subscribe((res) => {
+      this.nbArtisans = JSON.parse(JSON.stringify(res)).length;
+    });
 
+    this.contactService.nbContacts().subscribe((res) => {
+      this.nbContacts = JSON.parse(JSON.stringify(res));
+    });
+    this.blogService.getArticles().subscribe((res) => {
+      this.nbArticles = JSON.parse(JSON.stringify(res)).length;
+    });
+    this.artisanService.nbArtisansPerMonth().subscribe((res) => {
+      this.chart3 = {
+        type: "Bar",
+        data: {
+          labels: [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Aout",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre",
+          ],
+          series: [
+            [
+              res[0].nb,
+              res[1].nb,
+              res[2].nb,
+              res[3].nb,
+              res[4].nb,
+              res[5].nb,
+              res[6].nb,
+              res[7].nb,
+              res[8].nb,
+              res[9].nb,
+              res[10].nb,
+              res[11].nb,
+            ],
+          ],
+        },
+        options: {
+          height: 303,
+          seriesBarDistance: 12,
+          axisX: {
+            showGrid: false,
+            labelInterpolationFnc: function (value) {
+              return value;
+            },
+          },
+        },
+        events: {
+          created: (data) => {},
+        },
+      };
+    });
+  }
 }
