@@ -19,24 +19,24 @@
 
 
 
-                <li class="onhover-dropdown" *ngIf="role=='admin'">
+                <li class="onhover-dropdown"  [routerLink]="'/settings/pendingRegistration'" *ngIf="role=='admin'">
                     <span
                         class="badge badge-pill badge-primary pull-right notification-badge">{{notActivated?.length}}</span>
-                    <app-feather-icons [routerLink]="'/settings/pendingRegistration'" [icon]="'user-plus'">
+                    <app-feather-icons [icon]="'user-plus'">
                     </app-feather-icons><span class="dot"></span>
                 </li>
-                <li class="onhover-dropdown" *ngIf="role=='admin'">
+                <li  [routerLink]="'/settings/Notifications'" class="onhover-dropdown" *ngIf="role=='admin'">
                     <span
                         class="badge badge-pill badge-primary pull-right notification-badge">{{productService.notifProducts?.value}}</span>
-                    <app-feather-icons [icon]="'bell'" [routerLink]="'/settings/Notifications'"></app-feather-icons>
+                    <app-feather-icons [icon]="'bell'"></app-feather-icons>
                     <span class="dot"></span>
 
                 </li>
-                <li class="onhover-dropdown" *ngIf="role=='admin'"><a>
+                <li class="onhover-dropdown" [routerLink]="'/settings/messages'" *ngIf="role=='admin'"><a>
                         <span
                             class="badge badge-pill badge-primary pull-right notification-badge">{{contactService.notifEmails?.value}}</span>
                         <app-feather-icons class="right_side_toggle" [icon]="'message-square'"
-                            [routerLink]="'/settings/messages'">
+                            >
                         </app-feather-icons><span class="dot"></span>
                     </a></li>
                 <li class="onhover-dropdown" *ngIf="role=='artisan'"></li>
