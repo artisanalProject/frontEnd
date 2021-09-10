@@ -47,7 +47,7 @@ export class UpdateProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("hello there");
+
 
     this.getArtisant();
     this.getCategories();
@@ -64,7 +64,7 @@ export class UpdateProductComponent implements OnInit {
         console.log(this.product);
 
         this.categorie = this.product.category;
-
+        this.artisant = this.product.artisant
         this.createProductForm();
       }
     );
@@ -134,7 +134,7 @@ export class UpdateProductComponent implements OnInit {
     this.formData.set("price", data.price);
     this.formData.set("reference", data.reference);
     this.formData.set("category", data.category);
-    this.formData.set("artisan", data.artisant);
+    this.formData.set("artisant", data.artisant);
     this.formData.set("quantity", data.quantity);
     this.formData.set("marque", data.marque);
     this.formData.set("collections", data.collections);

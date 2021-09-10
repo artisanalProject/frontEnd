@@ -33,7 +33,7 @@
                                 </span>
                             </div>
                             <!-- artisant filter start -->
-                            <app-artisant></app-artisant>
+                            <app-artisant (click)=updateFilter()></app-artisant>
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar colleps block stat -->
@@ -114,7 +114,8 @@
                                 <div class="collection-product-wrapper" id="products">
                                     <app-grid [products]="products" [paginate]="paginate" [layoutView]="layoutView"
                                         [sortBy]="sortBy" (setGrid)="updateGridLayout($event)"
-                                        (setLayout)="updateLayoutView($event)" (sortedBy)="sortByFilter($event)">
+                                        (setLayout)="updateLayoutView($event)" (sortedBy)="sortByFilter($event)" >
+                                        
                                     </app-grid>
                                     <div class="product-wrapper-grid" [ngClass]="layoutView">
                                         <div class="row">

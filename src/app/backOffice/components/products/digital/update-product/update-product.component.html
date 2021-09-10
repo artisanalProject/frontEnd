@@ -87,6 +87,18 @@
         <mat-error>Ce champs est obligatoire!</mat-error>
       </mat-form-field>
 
+      <mat-form-field *ngIf="!artisant" appearance="outline" floatLabel="always">
+        <mat-label>Artisant</mat-label>
+        <mat-select formControlName="artisant" >
+          <ng-container *ngFor="let a of artisantList">
+            <mat-option [value]="a._id">
+              {{a.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Ce champs est obligatoire!</mat-error>
+      </mat-form-field>
+
       <section class="products">
 
         <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->

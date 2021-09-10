@@ -33,6 +33,8 @@ export class ProductLeftSidebarComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    
+
     this.ReviewForm = new FormGroup({
       name : new FormControl('',Validators.required),
       email:new FormControl('',[Validators.email , Validators.required]),
@@ -42,9 +44,18 @@ export class ProductLeftSidebarComponent implements OnInit {
     })
    
     this.idProduct = this.route.snapshot.params['id'];
+    let cart = JSON.parse(localStorage.getItem('cartItems'))
+    console.log(cart);
+    
+   const prod= cart.find(p=>p._id==this.idProduct)
+   if(prod){
+     this.counter=prod.quantity
+     console.log(this.counter);
+     
+   }
     this.productService.getProductById(this.idProduct).subscribe(product=>{
    this.product = product
-    
+   
     },err=>{
       console.log(err);
       
@@ -95,7 +106,7 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   // Add to cart
   async addToCart(product: any) {
-    product.quantity = this.counter || 1;
+    product.quantity =1;
     const status = await this.productService.addToCart(product);
     if(status)
       this.router.navigate(['/shop/cart']);
