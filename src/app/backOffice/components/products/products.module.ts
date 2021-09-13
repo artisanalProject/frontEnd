@@ -39,6 +39,7 @@ import { ArtisanPendingRequestsComponent } from "./digital/artisan-pending-reque
 import { UpdatePendingProductComponent } from "./digital/update-pending-product/update-pending-product.component";
 import { ArtisanRefusedRequestsComponent } from "./digital/artisan-refused-requests/artisan-refused-requests.component";
 import { ProductDetailsComponent } from "./digital/product-details/product-details.component";
+import { ConfirmedProductsComponent } from './digital/confirmed-products/confirmed-products.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: "https://httpbin.org/post",
@@ -59,6 +60,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     UpdatePendingProductComponent,
     ArtisanRefusedRequestsComponent,
     ProductDetailsComponent,
+    ConfirmedProductsComponent,
   ],
   imports: [
     CommonModule,
