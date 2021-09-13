@@ -2,12 +2,12 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Artisant } from "src/app/models/artisant";
-
+import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
 })
 export class ArtisantService {
-  baseUrl = "/api";
+  baseUrl = environment.base_url;
   constructor(private http: HttpClient) {}
   public getArtisant(): Observable<Artisant[]> {
     return this.http.get<Artisant[]>(this.baseUrl + "/artisant/getArtisant");
