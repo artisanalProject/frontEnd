@@ -2,14 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { Contact } from "src/app/models/contact";
-
+import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
 })
 export class ContactService {
   public notifEmails = new BehaviorSubject(0);
   nbNotif;
-  baseUrl = "/api";
+  baseUrl = environment.base_url;
   constructor(private http: HttpClient) {}
 
   public addContact(contact): Observable<Contact[]> {
