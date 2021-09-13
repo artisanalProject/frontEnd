@@ -54,7 +54,7 @@ export class NavService {
         { path: "/products/product-list", title: "Mes Produits", type: "link" },
       ],
     },
-  
+
     {
       title: "Sales",
       icon: "dollar-sign",
@@ -75,14 +75,11 @@ export class NavService {
       path: "/blog/listAticle",
       title: "blog",
       type: "link",
-      icon: "tag"
+      icon: "tag",
     },
-    
-    
   ];
 
   MENUITEMSARTISAN: Menu[] = [
-  
     {
       title: "Mes produits",
       icon: "box",
@@ -104,9 +101,13 @@ export class NavService {
           title: "Produits réfusés",
           type: "link",
         },
+        {
+          path: "/products/confirmed-products",
+          title: "Produits dans le shop",
+          type: "link",
+        },
       ],
     },
-   
   ];
 
   // Array

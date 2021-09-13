@@ -11,6 +11,7 @@ import { ArtisanPendingRequestsComponent } from "./digital/artisan-pending-reque
 import { UpdatePendingProductComponent } from "./digital/update-pending-product/update-pending-product.component";
 import { ArtisanRefusedRequestsComponent } from "./digital/artisan-refused-requests/artisan-refused-requests.component";
 import { ProductDetailsComponent } from "./digital/product-details/product-details.component";
+import { ConfirmedProductsComponent } from "./digital/confirmed-products/confirmed-products.component";
 const routes: Routes = [
   {
     path: "",
@@ -52,6 +53,14 @@ const routes: Routes = [
         component: ArtisanPendingRequestsComponent,
         data: {
           title: "Listes des produits en attente de confirmation",
+          breadcrumb: "Listes des produits",
+        },
+      },
+      {
+        path: "confirmed-products",
+        component: ConfirmedProductsComponent,
+        data: {
+          title: "Listes des produits dans le shop",
           breadcrumb: "Listes des produits",
         },
       },

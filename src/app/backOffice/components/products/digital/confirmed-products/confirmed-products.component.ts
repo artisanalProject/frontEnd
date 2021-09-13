@@ -7,15 +7,23 @@ import { Product } from "src/app/models/product";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogContentExampleDialogComponent } from "../dialog-content-example-dialog/dialog-content-example-dialog.component";
 import { Router } from "@angular/router";
+
 @Component({
-  selector: "app-artisan-refused-requests",
-  templateUrl: "./artisan-refused-requests.component.html",
-  styleUrls: ["./artisan-refused-requests.component.scss"],
+  selector: "app-confirmed-products",
+  templateUrl: "./confirmed-products.component.html",
+  styleUrls: ["./confirmed-products.component.scss"],
 })
-export class ArtisanRefusedRequestsComponent implements OnInit {
+export class ConfirmedProductsComponent implements OnInit {
   public products = [];
   dataSource: MatTableDataSource<Product>;
-  displayedColumns: string[] = ["ref", "name", "creationDate", "buttons"];
+  displayedColumns: string[] = [
+    "ref",
+    "name",
+    "creationDate",
+    "price",
+    "stock",
+    "buttons",
+  ];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
@@ -25,15 +33,18 @@ export class ArtisanRefusedRequestsComponent implements OnInit {
   ) {
     // this.digital_list = digitalListDB.digital_list;
   }
+
   ngOnInit() {
     this.getAllProduct();
   }
   getAllProduct() {
     this.ps.getProducts().subscribe(
       (result) => {
+        console.log(result);
+
         this.products = JSON.parse(JSON.stringify(result)).filter(
           (e) =>
-            e.status == "refused" &&
+            e.status == "en stock" &&
             e.artisant?._id ==
               JSON.parse(localStorage.getItem("connectedUser")).artisan._id
         );
